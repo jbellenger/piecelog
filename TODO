@@ -1,7 +1,5 @@
-redux
 breakpointable source maps
 tests
-linting
 data-loading
 css
 hosting
@@ -13,3 +11,5 @@ sentry?
   App needs to render children
 # router: deep linking
   pass --history-api-fallback to webpack-dev-server
+# linting
+# redux
