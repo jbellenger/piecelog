@@ -8,7 +8,7 @@ export default class LogEntry extends React.Component {
         <td>{this.props.entry.name}</td>
         <td>{this.props.entry.piece}</td>
       </tr>
-    )
+    );
   }
 }
 

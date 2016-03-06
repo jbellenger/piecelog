@@ -1,5 +1,4 @@
-import { combineReducers, createStore, applyMiddleware, compose } from 'redux'
-
+import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
 import { reducer as counterReducer } from './counter';
 import { reducer as logReducer } from './log';
 import createLogger from 'redux-logger';
