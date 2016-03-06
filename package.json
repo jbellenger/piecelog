@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.3",
+    "fixed-data-table": "^0.6.0",
     "immutable": "^3.7.6",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",

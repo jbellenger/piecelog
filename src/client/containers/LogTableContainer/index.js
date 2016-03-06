@@ -1,16 +1,8 @@
-import React from 'react';
 import LogTable from '../../components/LogTable';
+import { connect } from 'react-redux';
 
-export default class LogTableContainer extends React.Component {
-  render() {
-    const entries = [
-      {name: 'Alice', piece: '2k A'},
-      {name: 'Alice', piece: '6k A'},
-      {name: 'Bob', piece: '2k A'},
-      {name: 'Charlie', piece: '2k B'}
-    ];
+const mapStateToProps = state => ({rows: state.log});
 
-    return <LogTable entries={entries} />;
-  }
-}
+const LogTableContainer = connect(mapStateToProps)(LogTable);
 
+export default LogTableContainer;
