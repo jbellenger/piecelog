@@ -3,7 +3,7 @@ import React from 'react';
 import Router from './routes';
 import { Provider } from 'react-redux';
 import { initStore }  from './modules/store';
-import mockstate from './mockstate';
+import mockstate from 'json!./mockstate.json';
 
 const store = initStore(mockstate);
 const app = (

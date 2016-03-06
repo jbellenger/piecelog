@@ -1,2 +1,4 @@
 /node_modules
+local.json
+src/client/mockstate.json
 *.swp

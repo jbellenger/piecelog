@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "import-spreadsheet": "node ./scripts/import-spreadsheet.js",
     "start": "./scripts/start",
     "lint": "eslint src"
   },
@@ -19,6 +20,8 @@
     "babel-preset-stage-0": "^6.5.0",
     "css-loader": "^0.23.1",
     "eslinter": "^3.2.1",
+    "google-spreadsheet": "^1.1.4",
+    "json-loader": "^0.5.4",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.13",
     "webpack-dev-server": "^1.14.1"
