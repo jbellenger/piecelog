@@ -1,6 +1,10 @@
-experiments in react and redux
+# Piece Log
 
-# Setup
+![](https://media.giphy.com/media/bR2tBgwxpEhTW/giphy.gif)
+
+## Setup
+```
 npm install
 npm run import-spreadsheet
 npm start
+```
