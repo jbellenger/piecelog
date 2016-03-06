@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -eax
+
+# webpack-dev-server --progress --colors --config config/webpack.config.js
+# webpack -d --watch --config config/webpack.config.js
+webpack-dev-server --history-api-fallback --progress --colors --content-base=build --config config/webpack.config.js
