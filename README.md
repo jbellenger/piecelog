@@ -6,7 +6,7 @@
 ```
 cat > local.json
 {
-  "google_spreadsheet_key": SOME_SPREADSHEET_KEY,
+  "google_spreadsheet_key": SOME_SPREADSHEET_KEY
 }
 ^D
 
