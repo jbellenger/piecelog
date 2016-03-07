@@ -1,7 +1,6 @@
-const webpack = require('webpack');
 const path = require('path');
 
-const BUILD_DIR = './build';
+const BUILD_DIR = path.resolve('./build/web');
 const APP_DIR = './src/client';
 
 module.exports = {

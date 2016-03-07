@@ -21,6 +21,11 @@ export const DurationCell = ({rowIndex, data, col, ...props}) => {
 export default class LogTable extends React.Component {
   render() {
     const { rows } = this.props;
+    const columnDefaults = {
+      align: 'left',
+      allowCellsRecycling: true,
+      width: 100,
+    };
 
     return (
       <Table
@@ -30,7 +35,6 @@ export default class LogTable extends React.Component {
           width={500}
           maxHeight={400}>
         <Column 
-            align='left'
             header={<Cell>Name</Cell>}
             flexGrow={1}
             fixed={true}
@@ -42,7 +46,7 @@ export default class LogTable extends React.Component {
             width={50} />
 
         <Column 
-            align='left'
+            {...columnDefaults}
             header={<Cell>Piece</Cell>}
             flexGrow={1}
             fixed={true}
@@ -52,43 +56,37 @@ export default class LogTable extends React.Component {
                   {rows[props.rowIndex].piece}
                 </Cell>
               )
-            }
-            width={50} />
+            }/>
         <Column 
-            align='left'
+            {...columnDefaults}
             header={<Cell>Time</Cell>}
             cell={
               props => <DurationCell data={rows} col="time_millis" {...props} />
-            }
-            width={50} />
+            }/>
         <Column 
-            align='left'
+            {...columnDefaults}
             header={<Cell>Stamp</Cell>}
             cell={
               props => <TextCell data={rows} col="stamp" {...props} />
-            }
-            width={50} />
+            } />
         <Column 
-            align='left'
+            {...columnDefaults}
             header={<Cell>Meters</Cell>}
             cell={
               props => <TextCell data={rows} col="distance_meters" {...props} />
-            }
-            width={50} />
+            } />
         <Column 
-            align='left'
+            {...columnDefaults}
             header={<Cell>Kilos</Cell>}
             cell={
               props => <TextCell data={rows} col="weight_kilos" {...props} />
-            }
-            width={50} />
+            } />
         <Column 
-            align='left'
+            {...columnDefaults}
             header={<Cell>Age</Cell>}
             cell={
               props => <TextCell data={rows} col="age" {...props} />
-            }
-            width={50} />
+            } />
       </Table>
     );
   }

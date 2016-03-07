@@ -1,7 +1,7 @@
 {
   "name": "piecelog",
   "version": "0.0.1",
-  "description": "rowing piece log",
+  "description": "piece log",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.3",
+    "express": "^4.13.4",
     "fixed-data-table": "^0.6.0",
     "immutable": "^3.7.6",
     "react": "^0.14.7",
@@ -36,6 +37,7 @@
     "react-router": "^2.0.0",
     "redux": "^3.3.1",
     "redux-logger": "^2.6.1",
-    "reselect": "^2.1.0"
+    "reselect": "^2.1.0",
+    "source-map-support": "^0.4.0"
   }
 }
