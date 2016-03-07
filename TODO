@@ -1,8 +1,9 @@
+correctly sized tables
+person extraction
 data-loading
-api server
 breakpointable source maps
 tests
-css
+styling
 hosting
 deployment
 sentry?
@@ -14,3 +15,4 @@ sentry?
   pass --history-api-fallback to webpack-dev-server
 # linting
 # redux
+# api server
