@@ -1,3 +1,4 @@
+load state from api server
 correctly sized tables
 person extraction
 data-loading

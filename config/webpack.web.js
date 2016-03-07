@@ -1,5 +1,6 @@
 const path = require('path');
 
+// needed to prevent in-memory FS errors when running webpack-dev-server
 const BUILD_DIR = path.resolve('./build/web');
 const APP_DIR = './src/client';
 

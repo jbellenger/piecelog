@@ -7,7 +7,10 @@ const fs = require('fs');
 
 const sheetKey = local.google_spreadsheet_key;
 const auth = local.google_service_auth;
-const outputPath = './src/client/mockstate.json';
+const outPaths = [
+  './src/client/mockstate.json',
+  './src/server/mockstate.json'
+];
 
 const sheet = new GoogleSpreadsheet(sheetKey); //, auth);
 
@@ -99,8 +102,10 @@ sheet.getInfo((err, info) => {
         people: results[2]
       };
 
-      fs.writeFileSync(outputPath, JSON.stringify(json), {encoding: 'utf-8'});
-      console.log('wrote', outputPath);
+      outPaths.forEach(path => {
+        fs.writeFileSync(path, JSON.stringify(json), {encoding: 'utf-8'});
+        console.log('wrote', path);
+      });
     })
     .catch((err) => {
       console.error('caught error', err);

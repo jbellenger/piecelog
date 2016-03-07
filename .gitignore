@@ -1,6 +1,6 @@
 /node_modules
 /local.json
-/src/client/mockstate.json
+/src/*/mockstate.json
 /npm-debug.log
 /build
 *.swp
