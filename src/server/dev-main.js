@@ -5,8 +5,6 @@ import Main from './main';
 
 const compiler = webpack(webConfig);
 const server = new WebpackDevServer(compiler, {
-  progress: true,
-  lazy: false,
   stats: {
     colors: true
   },

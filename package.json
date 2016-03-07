@@ -4,10 +4,11 @@
   "description": "piece log",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./scripts/build",
     "import-spreadsheet": "node ./scripts/import-spreadsheet.js",
+    "lint": "eslint src",
     "start": "./scripts/start",
-    "lint": "eslint src"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "james@bellenger.org",
   "license": "ISC",

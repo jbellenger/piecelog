@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -ex
+
+NODE_ENV=production webpack -p --progress --config config/webpack.config.js

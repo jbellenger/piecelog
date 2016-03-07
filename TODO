@@ -1,7 +1,11 @@
-load state from api server
-correctly sized tables
-person extraction
-data-loading
+table sizing
+git lint/test hooks
+person model
+calculated fields
+production build
+log editing
+data-loading from api
+a11y
 breakpointable source maps
 tests
 styling
