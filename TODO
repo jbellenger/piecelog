@@ -1,4 +1,6 @@
-passport integration
+figure out a story for user identity
+figure out a story for rower identity
+passport integration?
 fine-grained data loading: client
 fine-grained data serving: server
 db state storage

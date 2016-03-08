@@ -5,7 +5,17 @@ import mockstate from 'json!./mockstate.json';
 export const middleware = Router();
 middleware.use(cors());
 
-// TODO: endpoint should support queryable fields
 middleware.get('/1/book', (req, res) => {
-  res.json(mockstate);
+  const { log, people, pieces } = req.query;
+  const data = {};
+  if (log === 'true') {
+    data.log = mockstate.log;
+  }
+  if (people === 'true') {
+    data.people = mockstate.people;
+  }
+  if (pieces === 'true') {
+    data.pieces = mockstate.pieces;
+  }
+  res.json(data);
 });
