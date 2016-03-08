@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Table, Column, Cell } from 'fixed-data-table';
-import * as styles from 'fixed-data-table/dist/fixed-data-table.css';
+import defaultStyles from 'fixed-data-table/dist/fixed-data-table.css';
+import styles from './styles.css';
 
 export const TextCell = ({rowIndex, data, col, ...props}) => (
   <Cell {...props}>
@@ -29,6 +30,7 @@ export default class LogTable extends React.Component {
 
     return (
       <Table
+          className={styles.root}
           rowHeight={40}
           rowsCount={rows.length}
           headerHeight={50}

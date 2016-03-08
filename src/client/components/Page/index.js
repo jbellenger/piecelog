@@ -1,13 +1,15 @@
 import React from 'react';
-import NavBar from '../../components/NavBar';
 import { Link } from 'react-router';
+import TopNav from '../TopNav';
+import Footer from '../Footer';
 
-export default class App extends React.Component {
+export default class Page extends React.Component {
   render () {
     return (
       <div>
-        <NavBar />
+        <TopNav />
         {this.props.children}
+        <Footer />
       </div>
     );
   }

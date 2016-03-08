@@ -1,6 +1,6 @@
 import { render } from 'react-dom';
 import React from 'react';
-import Router from './routes';
+import Router from './components/Router';
 import { Provider } from 'react-redux';
 import { initStore }  from './modules/store';
 import BookApi from './modules/api/BookApi';
