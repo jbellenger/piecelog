@@ -1,10 +1,13 @@
+passport integration
+fine-grained data loading: client
+fine-grained data serving: server
+db state storage
+integrate redux-devtools
 table sizing
 git lint/test hooks
 person model
 calculated fields
-production build
 log editing
-data-loading from api
 a11y
 breakpointable source maps
 tests
@@ -21,3 +24,5 @@ sentry?
 # linting
 # redux
 # api server
+# data-loading from api
+# production build

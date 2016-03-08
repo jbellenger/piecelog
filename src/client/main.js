@@ -3,15 +3,18 @@ import React from 'react';
 import Router from './routes';
 import { Provider } from 'react-redux';
 import { initStore }  from './modules/store';
-import mockstate from 'json!./mockstate.json';
+import BookApi from './modules/api/BookApi';
+import styles from './styles.css';
 
-console.log('API_HOST', API_HOST);
+BookApi.loadBook()
+  .then(book => {
+    const store = initStore(book);
+    const app = (
+      <Provider store={store}>
+        <Router />
+      </Provider>
+    );
 
-const store = initStore(mockstate);
-const app = (
-  <Provider store={store}>
-    <Router />
-  </Provider>
-);
+    render(app, document.getElementById('app'));
+  });
 
-render(app, document.getElementById('app'));
