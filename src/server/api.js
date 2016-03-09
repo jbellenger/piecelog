@@ -9,9 +9,7 @@ middleware.get('/1/bootstrap', (req, res) => {
   const { log, people, pieces } = req.query;
   const data = {};
   if (log === 'true') {
-    data.log = {
-      all: mockstate.log
-    };
+    data.log = mockstate.log;
   }
   if (people === 'true') {
     data.people = mockstate.people;

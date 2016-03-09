@@ -9,7 +9,15 @@ import styles from './styles.css';
 
 BookApi.bootstrap()
   .then(boot => {
-    const store = initStore(boot);
+    // munge bootstrap data to match the shape of the store
+    const initialState = {
+      ...boot,
+      log: {
+        all: boot.log
+      }
+    };
+
+    const store = initStore(initialState);
     const app = (
       <Provider store={store}>
         <Router />

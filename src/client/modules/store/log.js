@@ -27,7 +27,7 @@ export const filtered = fn => (...args) => {
   };
 };
 
-export const reducer = filtered((state = initialState, action) => {
+export const reducer = filtered((state, action) => {
   switch (action.type) {
     case SET_FILTER:
       return {
@@ -36,7 +36,9 @@ export const reducer = filtered((state = initialState, action) => {
       };
 
     default:
-      return state;
+      // state may be partially initialied. Spread to fill in defaults for
+      // missing values
+      return {...initialState, ...state};
   }
 });
 

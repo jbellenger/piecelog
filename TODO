@@ -1,17 +1,17 @@
+table sizing
+calculated fields
 separate filter state from log state
 smarter filtering
+tests
 figure out a story for user identity
 figure out a story for rower identity
 passport integration?
 db state storage
 integrate redux-devtools
-table sizing
 git lint/test hooks
 person model
-calculated fields
 log editing
 a11y
-tests
 styling
 hosting
 deployment
@@ -32,3 +32,4 @@ sentry?
 # breakpointable source maps
   use dev-tool: 'source-map'. Previous 'eval-source-map' would
   not fire breakpoints
+# move bootstrap api munging to client
