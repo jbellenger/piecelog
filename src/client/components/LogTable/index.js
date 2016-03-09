@@ -21,7 +21,7 @@ export const DurationCell = ({rowIndex, data, col, ...props}) => {
 
 export default class LogTable extends React.Component {
   render() {
-    const { rows } = this.props;
+    const { rows, height } = this.props;
     const columnDefaults = {
       align: 'left',
       allowCellsRecycling: true,
@@ -35,7 +35,7 @@ export default class LogTable extends React.Component {
           rowsCount={rows.length}
           headerHeight={50}
           width={500}
-          maxHeight={400}>
+          height={height}>
         <Column 
             header={<Cell>Name</Cell>}
             flexGrow={1}

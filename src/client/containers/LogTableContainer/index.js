@@ -8,17 +8,23 @@ const mapStateToProps = state => ({rows: state.log.view});
 
 // @connect(mapStateToProps)
 export class LogTableContainer extends React.Component {
+  componentDidMount(...args) {
+    const { section } = this.refs;
+    if (section.clientHeight !== section.parentNode.clientHeight) {
+      this.setState({height: section.parentNode.clientHeight});
+    }
+  }
+
   render() {
+    const { height = 0 } = (this.state || {});
+
     return (
-      <section className={styles.root}>
+      <section ref="section" className={styles.root}>
         <LogTableControls />
-        <LogTable {...this.props} />
+        <LogTable {...this.props} height={height}/>
       </section>
     );
   }
 }
 
 export default connect(mapStateToProps)(LogTableContainer);
-
-// const LogTableContainer = connect(mapStateToProps)(LogTable);
-// export default LogTableContainer;

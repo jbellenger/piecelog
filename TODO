@@ -1,4 +1,6 @@
-table sizing
+table width sizing
+table resize on window resize
+decorator support
 calculated fields
 separate filter state from log state
 smarter filtering
@@ -33,3 +35,4 @@ sentry?
   use dev-tool: 'source-map'. Previous 'eval-source-map' would
   not fire breakpoints
 # move bootstrap api munging to client
+# table height sizing
