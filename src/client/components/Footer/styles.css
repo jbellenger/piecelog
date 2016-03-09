@@ -4,8 +4,7 @@
   border-top: 2px solid #888;
   box-shadow: inset 0px 10px 10px 0px rgba(0,0,0,.15);
   padding: 3em;
-  /* JMB TODO: be smarter about this */
-  height: 60%;
+  max-height: 200px;
   color: #fff;
   list-style-type: none;
 }
