@@ -1,8 +1,8 @@
+separate filter state from log state
+smarter filtering
 figure out a story for user identity
 figure out a story for rower identity
 passport integration?
-fine-grained data loading: client
-fine-grained data serving: server
 db state storage
 integrate redux-devtools
 table sizing
@@ -11,7 +11,6 @@ person model
 calculated fields
 log editing
 a11y
-breakpointable source maps
 tests
 styling
 hosting
@@ -28,3 +27,8 @@ sentry?
 # api server
 # data-loading from api
 # production build
+# fine-grained data loading: client
+# fine-grained data serving: server
+# breakpointable source maps
+  use dev-tool: 'source-map'. Previous 'eval-source-map' would
+  not fire breakpoints

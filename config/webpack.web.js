@@ -8,7 +8,7 @@ const API_HOST = "'http://127.0.0.1:3000'";
 
 module.exports = {
   entry: APP_DIR + '/main.js',
-  devtool: 'eval-source-map',
+  devtool: 'source-map',
   output: {
     path: BUILD_DIR,
     publicPath: '/assets/',
