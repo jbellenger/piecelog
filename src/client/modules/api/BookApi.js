@@ -1,13 +1,13 @@
 import api from '.';
 
-const loadBook = (opts = {}) => {
+const bootstrap = (opts = {}) => {
   const defaulted = {
     log: true,
     people: true,
     pieces: true,
     ...opts
   };
-  return api.get('/book', defaulted);
-}
+  return api.get('/bootstrap', defaulted);
+};
 
-export default { loadBook };
+export default { bootstrap };

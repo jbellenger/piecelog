@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import styles from './styles.css';
 
-const mapStateToProps = state => ({rows: state.log});
+const mapStateToProps = state => ({rows: state.log.view});
 
 // @connect(mapStateToProps)
 export class LogTableContainer extends React.Component {

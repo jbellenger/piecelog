@@ -5,11 +5,13 @@ import mockstate from 'json!./mockstate.json';
 export const middleware = Router();
 middleware.use(cors());
 
-middleware.get('/1/book', (req, res) => {
+middleware.get('/1/bootstrap', (req, res) => {
   const { log, people, pieces } = req.query;
   const data = {};
   if (log === 'true') {
-    data.log = mockstate.log;
+    data.log = {
+      all: mockstate.log
+    };
   }
   if (people === 'true') {
     data.people = mockstate.people;

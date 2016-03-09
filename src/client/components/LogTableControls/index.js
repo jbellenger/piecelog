@@ -1,12 +1,24 @@
 import React from 'react';
 import styles from './styles.css';
+import { connect } from 'react-redux';
+import { setFilter } from '../../modules/store/log';
 
-export default class LogTableControls extends React.Component {
+const mapStateToProps = (state) => Object();
+
+export class Component extends React.Component {
   render() {
+    const onFilterChange = (...args) => this._onFilterChange(...args);
     return (
       <div className={styles.root}>
-        CONTROLS
+        <input placeholder="filter" type='text' default='filter' 
+          onChange={onFilterChange} />
       </div>
     );
   }
+
+  _onFilterChange(e) {
+    this.props.setFilter(e.target.value);
+  }
 }
+
+export default connect(mapStateToProps, { setFilter })(Component);

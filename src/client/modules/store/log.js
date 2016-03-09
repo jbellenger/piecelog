@@ -1,14 +1,47 @@
-export const ADD_ENTRIES = 'ADD_ENTRIES';
-export const addEntries = (payload) => ({payload, type: ADD_ENTRIES});
+const initialState = {
+  all: [],
+  view: [],
+  filter: null
+};
 
-const initialState = [];
+export const rowFilter = (query) => {
+  if (!query) {
+    return () => true;
+  }
+  const fields = ['name', 'piece', 'distance_meters'];
+  return row => fields.some(field => {
+    if (row[field] === undefined) {
+      return false;
+    }
+    const value = String(row[field]).toLowerCase();
+    return value.indexOf(query) !== -1;
+  });
+};
 
-export const reducer = (state = initialState, action) => {
+// reducer decorator
+export const filtered = fn => (...args) => {
+  const state = fn(...args);
+  return {
+    ...state,
+    view: state.all.filter(rowFilter(state.filter))
+  };
+};
+
+export const reducer = filtered((state = initialState, action) => {
   switch (action.type) {
-    case ADD_ENTRIES:
-      return [...state, ...action.payload];
+    case SET_FILTER:
+      return {
+        ...state,
+        filter: action.payload
+      };
 
     default:
       return state;
   }
+});
+
+
+const SET_FILTER = 'SET_FILTER';
+export const setFilter = (params) => {
+  return {type: SET_FILTER, payload: params};
 };
