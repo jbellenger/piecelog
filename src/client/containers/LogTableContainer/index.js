@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import styles from './styles.css';
 import FlexSizing from '../../components/FlexSizing';
+import Debug from '../../components/Debug';
 
 const mapStateToProps = state => ({rows: state.log.view});
 

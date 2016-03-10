@@ -1,4 +1,6 @@
 :local .root {
-  width: 200px;
+  --bar-width: 8em;
+  width: var(--bar-width);
   background: red;
+  min-width: var(--bar-width);
 }

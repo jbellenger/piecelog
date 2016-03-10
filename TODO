@@ -1,5 +1,3 @@
-FlexSizing component: fill width and height, handle window resize
-debounce window resizing
 decorator support
 calculated fields
 separate filter state from log state
@@ -36,3 +34,6 @@ sentry?
   not fire breakpoints
 # move bootstrap api munging to client
 # table height sizing
+# FlexSizing component: fill width and height, handle window resize
+  have to zero-out dimensions before remeasuring on resize
+# debounce window resizing
