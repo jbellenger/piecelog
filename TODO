@@ -1,5 +1,5 @@
-table width sizing
-table resize on window resize
+FlexSizing component: fill width and height, handle window resize
+debounce window resizing
 decorator support
 calculated fields
 separate filter state from log state

@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { Table, Column, Cell } from 'fixed-data-table';
 import defaultStyles from 'fixed-data-table/dist/fixed-data-table.css';
 import styles from './styles.css';
+import FlexSizing from '../FlexSizing';
 
 export const TextCell = ({rowIndex, data, col, ...props}) => (
   <Cell {...props}>
@@ -19,9 +20,9 @@ export const DurationCell = ({rowIndex, data, col, ...props}) => {
   );
 };
 
-export default class LogTable extends React.Component {
+class LogTable extends React.Component {
   render() {
-    const { rows, height } = this.props;
+    const { rows, height, width } = this.props;
     const columnDefaults = {
       align: 'left',
       allowCellsRecycling: true,
@@ -34,7 +35,7 @@ export default class LogTable extends React.Component {
           rowHeight={40}
           rowsCount={rows.length}
           headerHeight={50}
-          width={500}
+          width={width}
           height={height}>
         <Column 
             header={<Cell>Name</Cell>}
@@ -97,3 +98,5 @@ export default class LogTable extends React.Component {
 LogTable.propTypes = {
   rows: PropTypes.array.isRequired
 };
+
+export default FlexSizing(LogTable);
