@@ -11,7 +11,6 @@ if (!sheetKey) {
   process.exit(1);
 }
 
-const auth = local.google_service_auth;
 const outPath = './src/server/mockstate.json';
 
 const sheet = new GoogleSpreadsheet(sheetKey);

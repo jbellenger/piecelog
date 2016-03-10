@@ -1,3 +1,4 @@
+query experimentation: alasql, jsinq, breeze, jbj
 decorator support
 calculated fields
 separate filter state from log state
