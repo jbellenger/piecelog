@@ -5,11 +5,16 @@ const local = require('../local');
 const lodash = require('lodash');
 const fs = require('fs');
 
-const sheetKey = local.google_spreadsheet_key;
+const sheetKey = process.argv[2];
+if (!sheetKey) {
+  console.error('sheet key missing. Syntax: npm run import-spreadsheet <sheetkey>');
+  process.exit(1);
+}
+
 const auth = local.google_service_auth;
 const outPath = './src/server/mockstate.json';
 
-const sheet = new GoogleSpreadsheet(sheetKey); //, auth);
+const sheet = new GoogleSpreadsheet(sheetKey);
 
 const dump = (sheet) => {
   return new Promise((resolve, reject) => {
