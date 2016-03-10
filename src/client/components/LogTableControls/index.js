@@ -10,7 +10,7 @@ export class Component extends React.Component {
     const onFilterChange = (...args) => this._onFilterChange(...args);
     return (
       <div className={styles.root}>
-        <input placeholder="filter" type='text' default='filter' 
+        <input className={styles.filter} placeholder="filter" type='text' default='filter' 
           onChange={onFilterChange} />
       </div>
     );

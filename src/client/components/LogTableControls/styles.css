@@ -4,3 +4,7 @@
   background: red;
   min-width: var(--bar-width);
 }
+
+:local .filter {
+  width: 100%;
+}
