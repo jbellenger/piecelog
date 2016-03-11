@@ -2,3 +2,7 @@
   background: #ddd;
   padding: 1em;
 }
+
+:local Link {
+  background: red;
+}

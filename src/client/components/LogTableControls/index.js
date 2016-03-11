@@ -9,10 +9,10 @@ export class Component extends React.Component {
   render() {
     const onFilterChange = (...args) => this._onFilterChange(...args);
     return (
-      <div className={styles.root}>
+      <aside className={styles.root}>
         <input className={styles.filter} placeholder="filter" type='text' default='filter' 
           onChange={onFilterChange} />
-      </div>
+      </aside>
     );
   }
 

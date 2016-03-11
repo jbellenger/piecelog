@@ -38,3 +38,5 @@ sentry?
 # FlexSizing component: fill width and height, handle window resize
   have to zero-out dimensions before remeasuring on resize
 # debounce window resizing
+# unbind window resizing: find a helper lib
+  WindowResizeListener

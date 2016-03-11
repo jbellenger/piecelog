@@ -1,5 +1,5 @@
 import React from 'react';
-import debounce from 'debounce';
+import { WindowResizeListener } from 'react-window-resize-listener'
 
 const defaultState = {height: 0, width: 0, sized: false};
 
@@ -7,11 +7,6 @@ const FlexSizing = Inner => class extends React.Component {
   constructor(...args) {
     super(...args);
     this.state = defaultState;
-    window.onresize = debounce(() => this._resize(), 200);
-  }
-
-  componentDidMount() {
-    this._resize();
   }
 
   _resize() {
@@ -41,6 +36,7 @@ const FlexSizing = Inner => class extends React.Component {
 
     return (
       <div style={styles} ref="div">
+        <WindowResizeListener onResize={() => this._resize()} />
         <Inner {...this.props} height={this.state.height} width={this.state.width} />
       </div>
     );
