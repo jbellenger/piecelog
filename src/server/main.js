@@ -1,9 +1,10 @@
 import Express from 'express';
 import { middleware as ApiMiddleware } from './api';
+import compression from 'compression';
 
-const app = Express();
-
-app.use('/api', ApiMiddleware);
+const app = Express()
+  .use(compression())
+  .use('/api', ApiMiddleware);
 
 const port = 3000;
 const server = app.listen(port, () => {
