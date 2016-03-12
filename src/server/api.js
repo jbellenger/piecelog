@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import cors from 'cors';
-import mockstate from 'json!./mockstate.json';
+import mockstate from './mockstate.json';
 
 export const middleware = Router();
 middleware.use(cors());
