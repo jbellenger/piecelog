@@ -4,10 +4,10 @@ import Router from './components/Router';
 import { Provider } from 'react-redux';
 import { initStore }  from './modules/store';
 import * as LogStore from './modules/store/log';
-import BookApi from './modules/api/BookApi';
+import { bootstrap } from './modules/api/BootstrapApi';
 import styles from './styles.css';
 
-BookApi.bootstrap()
+bootstrap()
   .then(boot => {
     // munge bootstrap data to match the shape of the store
     const initialState = {

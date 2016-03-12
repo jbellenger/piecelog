@@ -1,6 +1,6 @@
 import api from '.';
 
-const bootstrap = (opts = {}) => {
+export const bootstrap = (opts = {}) => {
   const defaulted = {
     log: true,
     people: true,
@@ -10,4 +10,4 @@ const bootstrap = (opts = {}) => {
   return api.get('/bootstrap', defaulted);
 };
 
-export default { bootstrap };
+// export default { bootstrap };
