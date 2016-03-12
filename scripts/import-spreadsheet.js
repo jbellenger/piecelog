@@ -11,7 +11,7 @@ if (!sheetKey) {
   process.exit(1);
 }
 
-const outPath = './src/server/mockstate.json';
+const outPath = './src/server/mockdb.json';
 
 const sheet = new GoogleSpreadsheet(sheetKey);
 
