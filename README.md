@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jbellenger/piecelog.svg?branch=master)](https://travis-ci.org/jbellenger/piecelog)
+
 # Piece Log
 
 ![](https://media.giphy.com/media/bR2tBgwxpEhTW/giphy.gif)

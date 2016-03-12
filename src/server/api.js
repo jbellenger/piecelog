@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import cors from 'cors';
 
-let db = {pieces: [], log: [], people: []}
+let db = {pieces: [], log: [], people: []};
 try {
   db = require('./mockdb.json');
 } catch (err) {

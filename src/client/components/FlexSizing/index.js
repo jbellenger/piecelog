@@ -1,5 +1,5 @@
 import React from 'react';
-import { WindowResizeListener } from 'react-window-resize-listener'
+import { WindowResizeListener } from 'react-window-resize-listener';
 
 const defaultState = {height: 0, width: 0, sized: false};
 
