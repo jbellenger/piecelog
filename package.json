@@ -27,12 +27,14 @@
     "google-spreadsheet": "^1.1.4",
     "json-loader": "^0.5.4",
     "mocha": "^2.4.5",
+    "script-loader": "^0.6.1",
     "style-loader": "^0.13.0",
     "supertest": "^1.2.0",
     "webpack": "^1.12.13",
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "alasql": "^0.2.4",
     "classnames": "^2.2.3",
     "compression": "^1.6.1",
     "cors": "^2.7.1",

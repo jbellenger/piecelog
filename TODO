@@ -1,10 +1,10 @@
+fix alasql/webpack loading
 eslint airbnb rules: https://www.npmjs.com/package/eslint-config-airbnb
 query experimentation: alasql, jsinq, breeze, jbj
 decorator support
 calculated fields
 separate filter state from log state
 smarter filtering
-tests
 figure out a story for user identity
 figure out a story for rower identity
 passport integration?
@@ -42,3 +42,4 @@ sentry?
 # unbind window resizing: find a helper lib
   WindowResizeListener
 # rename bootstrap api
+# tests
