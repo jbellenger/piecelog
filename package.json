@@ -8,6 +8,7 @@
     "import-spreadsheet": "node ./scripts/import-spreadsheet.js",
     "lint": "eslint src",
     "start": "./scripts/start",
+    "inspect-bundle": "webpack --json --config config/webpack.web.js | webpack-bundle-size-analyzer",
     "test": "mocha --ui tdd --recursive --require babel-register src/**/*-test.js",
     "test-watch": "npm test -- --watch"
   },
@@ -31,6 +32,7 @@
     "style-loader": "^0.13.0",
     "supertest": "^1.2.0",
     "webpack": "^1.12.13",
+    "webpack-bundle-size-analyzer": "^2.0.1",
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {

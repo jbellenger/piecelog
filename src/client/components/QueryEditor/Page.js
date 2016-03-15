@@ -7,8 +7,10 @@ import * as query from '../../modules/query';
 
 export default class Page extends React.Component {
   _onChange(queryString) {
-    console.log('onChange', queryString);
-    console.log(query.parse(queryString));
+    const parsed = query.parse(queryString);
+    if (parsed) {
+      console.log(parsed);
+    }
   }
 
   render() {
