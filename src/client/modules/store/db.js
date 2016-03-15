@@ -6,18 +6,12 @@ export const install = (data) => {
   return {type: INSTALL, payload: data};
 };
 
-export const reducer = (state, action) => {
+export const reducer = (state = new Database(), action) => {
   switch (action.type) {
     case INSTALL: 
-      return {
-        ...state,
-        db: new Database().install(action.payload)
-      };
+      return new Database().install(action.payload);
 
     default:
-      return {
-        ...state,
-        db: new Database()
-      };
+      return state;
   }
 };

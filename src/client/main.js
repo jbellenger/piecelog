@@ -11,8 +11,8 @@ import styles from './styles.css';
 bootstrap()
   .then(({db, queries}) => {
     const store = initStore();
-    DbStore.install(db);
-    QueryStore.install(queries);
+    store.dispatch(DbStore.install(db));
+    store.dispatch(QueryStore.install(queries));
 
     const app = (
       <Provider store={store}>
