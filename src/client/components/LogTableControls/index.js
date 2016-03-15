@@ -1,11 +1,8 @@
 import React from 'react';
 import styles from './styles.css';
 import { connect } from 'react-redux';
-import { setFilter } from '../../modules/store/log';
 
-const mapStateToProps = (state) => Object();
-
-export class Component extends React.Component {
+export default class Component extends React.Component {
   render() {
     const onFilterChange = (...args) => this._onFilterChange(...args);
     return (
@@ -17,8 +14,6 @@ export class Component extends React.Component {
   }
 
   _onFilterChange(e) {
-    this.props.setFilter(e.target.value);
+    console.error('NOT IMPLEMENTED: setFilter', e.target.value);
   }
 }
-
-export default connect(mapStateToProps, { setFilter })(Component);
