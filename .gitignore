@@ -3,4 +3,5 @@
 /src/*/mockdb.json
 /npm-debug.log
 /build
+tmp
 *.swp

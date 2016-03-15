@@ -6,6 +6,10 @@ import express from 'express';
 suite('api', () => {
   const app = express().use(middleware);
 
+  const formatQuery = (obj) => {
+    return {query: JSON.stringify(obj)};
+  };
+
   suite('/1/bootstrap', (done) => {
     test('should return {} by default', (done) => {
       request(app)
@@ -17,7 +21,7 @@ suite('api', () => {
     test('should return log data when requested', (done) => {
       request(app)
         .get('/1/bootstrap')
-        .query({db: {log: true}})
+        .query(formatQuery({db: {log: true}}))
         .expect('Content-Type', /json/)
         .expect((res) => assert.property(res.body.db, 'log'))
         .end(done);
@@ -26,7 +30,7 @@ suite('api', () => {
     test('should return pieces data when requested', (done) => {
       request(app)
         .get('/1/bootstrap')
-        .query({db: {pieces: true}})
+        .query(formatQuery({db: {pieces: true}}))
         .expect('Content-Type', /json/)
         .expect((res) => assert.property(res.body.db, 'pieces'))
         .end(done);
@@ -35,7 +39,7 @@ suite('api', () => {
     test('should return people data when requested', (done) => {
       request(app)
         .get('/1/bootstrap')
-        .query({db: {people: true}})
+        .query(formatQuery({db: {people: true}}))
         .expect('Content-Type', /json/)
         .expect((res) => assert.property(res.body.db, 'people'))
         .end(done);
