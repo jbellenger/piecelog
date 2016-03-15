@@ -1,9 +1,13 @@
 import { Router } from 'express';
 import cors from 'cors';
 
-let db = {pieces: [], log: [], people: []};
+let mockdb = {pieces: [], log: [], people: []};
+let mockqueries = {
+  'all-log-desc': 'select * from log order by stamp desc',
+};
+
 try {
-  db = require('./mockdb.json');
+  mockdb = require('./mockdb.json');
 } catch (err) {
   console.log('mockdb.json not found, defaulting to an empty db');
 }
@@ -12,16 +16,33 @@ export const middleware = Router();
 middleware.use(cors());
 
 middleware.get('/1/bootstrap', (req, res) => {
-  const { log, people, pieces } = req.query;
-  const data = {};
-  if (log === 'true') {
-    data.log = db.log;
+  const json = {};
+  if (req.query.query) {
+    const parsed = JSON.parse(req.query.query);
+
+    if (parsed.queries) {
+      json.queries = {};
+
+      Object.keys(parsed.queries).forEach((key) => {
+        if (mockqueries[key]) {
+          json.queries[key] = mockqueries[key];
+        }
+      });
+    }
+
+    if (parsed.db) {
+      json.db = {};
+      if (parsed.db.log) {
+        json.db.log = mockdb.log;
+      }
+      if (parsed.db.people) {
+        json.db.people = mockdb.people;
+      }
+      if (parsed.db.pieces) {
+        json.db.pieces = mockdb.pieces;
+      }
+    }
   }
-  if (people === 'true') {
-    data.people = db.people;
-  }
-  if (pieces === 'true') {
-    data.pieces = db.pieces;
-  }
-  res.json(data);
+  
+  res.json(json);
 });

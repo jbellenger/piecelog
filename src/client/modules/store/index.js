@@ -1,14 +1,12 @@
 import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
-import { reducer as logReducer } from './log';
-import { reducer as piecesReducer } from './pieces';
-import { reducer as peopleReducer } from './people';
+import { reducer as dbReducer } from './db';
+import { reducer as queryReducer } from './query';
 import createLogger from 'redux-logger';
 
 export function initStore(initialState = {}) {
   const reducers = combineReducers({
-    log: logReducer,
-    pieces: piecesReducer,
-    people: peopleReducer
+    db: dbReducer,
+    query: queryReducer,
   });
 
   const logger = createLogger({

@@ -3,21 +3,17 @@ import React from 'react';
 import Router from './components/Router';
 import { Provider } from 'react-redux';
 import { initStore }  from './modules/store';
-import * as LogStore from './modules/store/log';
 import { bootstrap } from './modules/api/BootstrapApi';
+import * as DbStore from './modules/store/db';
+import * as QueryStore from './modules/store/query';
 import styles from './styles.css';
 
 bootstrap()
-  .then(boot => {
-    // munge bootstrap data to match the shape of the store
-    const initialState = {
-      ...boot,
-      log: {
-        all: boot.log
-      }
-    };
+  .then(({db, queries}) => {
+    const store = initStore();
+    DbStore.install(db);
+    QueryStore.install(queries);
 
-    const store = initStore(initialState);
     const app = (
       <Provider store={store}>
         <Router />

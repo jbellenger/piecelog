@@ -17,27 +17,27 @@ suite('api', () => {
     test('should return log data when requested', (done) => {
       request(app)
         .get('/1/bootstrap')
-        .query({log: true})
+        .query({db: {log: true}})
         .expect('Content-Type', /json/)
-        .expect((res) => assert.property(res.body, 'log'))
+        .expect((res) => assert.property(res.body.db, 'log'))
         .end(done);
     });
 
     test('should return pieces data when requested', (done) => {
       request(app)
         .get('/1/bootstrap')
-        .query({pieces: true})
+        .query({db: {pieces: true}})
         .expect('Content-Type', /json/)
-        .expect((res) => assert.property(res.body, 'pieces'))
+        .expect((res) => assert.property(res.body.db, 'pieces'))
         .end(done);
     });
 
     test('should return people data when requested', (done) => {
       request(app)
         .get('/1/bootstrap')
-        .query({people: true})
+        .query({db: {people: true}})
         .expect('Content-Type', /json/)
-        .expect((res) => assert.property(res.body, 'people'))
+        .expect((res) => assert.property(res.body.db, 'people'))
         .end(done);
     });
   });

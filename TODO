@@ -1,6 +1,5 @@
-fix alasql/webpack loading
+migrate plumbing: log -> query
 eslint airbnb rules: https://www.npmjs.com/package/eslint-config-airbnb
-query experimentation: alasql, jsinq, breeze, jbj
 decorator support
 calculated fields
 separate filter state from log state
@@ -43,3 +42,5 @@ sentry?
   WindowResizeListener
 # rename bootstrap api
 # tests
+# fix alasql/webpack loading
+# query experimentation: alasql, jsinq, breeze, jbj
