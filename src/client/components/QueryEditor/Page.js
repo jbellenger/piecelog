@@ -3,25 +3,55 @@ import InputField from './InputField';
 import Sidebar from './Sidebar';
 import LogTable from '../LogTable';
 import styles from './styles.css';
-import * as query from '../../modules/query';
+import { connect } from 'react-redux';
 
-export default class Page extends React.Component {
+class Page extends React.Component {
   _onChange(queryString) {
-    const parsed = query.parse(queryString);
-    if (parsed) {
-      console.log(parsed);
+    const query = queryString.trim();
+    const state = { query, error: null, result: null };
+
+    const { db } = this.props;
+
+    try {
+      state.result = db.exec(query);
+    } catch (err) {
+      state.error = err;
     }
+
+    this.setState(state);
   }
 
   render() {
+    const { result, error } = (this.state || {});
+      
     return (
       <div className={styles.Page}>
         <Sidebar />
         <div className={styles.Content}>
-          <InputField onChange={this._onChange} />
-          <LogTable rows={[]} />
+          <InputField onChange={this._onChange.bind(this)} />
+          {error && (
+            <div className={styles.error}>{error.message}</div>
+          )}
+          {result && (
+            <div className={styles.preview}>
+              <LogTable rows={result} />
+            </div>
+          )}
+          {(!error && !result) && (
+            <div className={styles.zool} />
+          )}
         </div>
       </div>
     );
   }
 }
+
+Page.propTypes = {
+  db: React.PropTypes.object.isRequired
+};
+
+const mapStateToProps = (state) => {
+  return {db: state.db};
+};
+
+export default connect(mapStateToProps)(Page);

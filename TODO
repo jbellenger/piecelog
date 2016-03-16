@@ -1,3 +1,4 @@
+smart table columns
 eslint airbnb rules: https://www.npmjs.com/package/eslint-config-airbnb
 decorator support
 calculated fields
@@ -44,3 +45,4 @@ sentry?
 # fix alasql/webpack loading
 # query experimentation: alasql, jsinq, breeze, jbj
 # migrate plumbing: log -> query
+# query editor w/ preview
