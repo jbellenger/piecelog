@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "build": "./scripts/build",
-    "import-spreadsheet": "node ./scripts/import-spreadsheet.js",
-    "lint": "eslint src",
+    "import-spreadsheet": "node ./tools/import-spreadsheet",
+    "lint": "eslint src tools",
     "start": "./scripts/start",
     "inspect-bundle": "webpack --json --config config/webpack.web.js | webpack-bundle-size-analyzer",
-    "test": "mocha --ui tdd --recursive --require babel-register src/**/*-test.js",
+    "test": "mocha --ui tdd --recursive --require babel-register src/**/*-test.js tools/**/*-test.js",
     "test-watch": "npm test -- --watch"
   },
   "author": "james@bellenger.org",
