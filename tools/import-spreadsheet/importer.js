@@ -1,6 +1,7 @@
 'use strict';
 
 import GoogleSpreadsheet from 'google-spreadsheet';
+import lodash from 'lodash';
 
 const dump = (sheet) => {
   return new Promise((resolve, reject) => {
@@ -68,6 +69,17 @@ export const parsePieceRow = (row) => {
   };
 };
 
+export const extractPeople = (log) => {
+  const people = {};
+  log.forEach((row) => {
+    people[row.name] = {
+      name: row.name,
+    };
+  });
+
+  return lodash.values(people);
+};
+
 export const process = (sheetKey) => {
   const sheet = new GoogleSpreadsheet(sheetKey);
   return new Promise((resolve, reject) => {
@@ -82,15 +94,11 @@ export const process = (sheetKey) => {
       const piecesPromise = dump(info.worksheets.find((sheet) => sheet.title === 'pieces'))
         .then((rows) => rows.map(parsePieceRow));
 
-      const peoplePromise = Promise.resolve([]);
-
-      Promise.all([logPromise, piecesPromise, peoplePromise]) 
+      Promise.all([logPromise, piecesPromise]) 
         .then((results) => {
-          resolve({
-            log: results[0],
-            pieces: results[1],
-            people: results[2]
-          });
+          const [log, pieces] = results;
+          const people = extractPeople(log);
+          resolve({log, pieces, people});
         });
     });
   });

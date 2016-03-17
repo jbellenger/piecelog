@@ -1,5 +1,4 @@
 persistent query
-clickable example queries
 smart table columns
 value formatting
 smart query errors
@@ -50,3 +49,4 @@ sentry?
 # query experimentation: alasql, jsinq, breeze, jbj
 # migrate plumbing: log -> query
 # query editor w/ preview
+# clickable example queries
