@@ -1,4 +1,8 @@
+persistent query
+clickable example queries
 smart table columns
+value formatting
+smart query errors
 eslint airbnb rules: https://www.npmjs.com/package/eslint-config-airbnb
 decorator support
 calculated fields

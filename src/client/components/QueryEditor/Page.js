@@ -22,13 +22,13 @@ class Page extends React.Component {
   }
 
   render() {
-    const { result, error } = (this.state || {});
+    const { result, error, query } = (this.state || {});
       
     return (
       <div className={styles.Page}>
-        <Sidebar />
+        <Sidebar onQueryClick={this._onChange.bind(this)}/>
         <div className={styles.Content}>
-          <InputField onChange={this._onChange.bind(this)} />
+          <InputField text={query} onChange={this._onChange.bind(this)} />
           {error && (
             <div className={styles.error}>{error.message}</div>
           )}

@@ -33,3 +33,7 @@
   display:flex;
   flex: 1 1 auto;
 }
+
+:local .ExampleQuery:hover {
+  cursor: pointer;
+}
