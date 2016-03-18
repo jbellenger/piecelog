@@ -69,7 +69,9 @@ export const parsePieceRow = (row) => {
   };
 };
 
-export const extractPeople = (log) => {
+export const fillPeople = (db) => {
+  const {log} = db;
+
   const people = {};
   log.forEach((row) => {
     people[row.name] = {
@@ -77,7 +79,10 @@ export const extractPeople = (log) => {
     };
   });
 
-  return lodash.values(people);
+  return {
+    ...db,
+    people: lodash.values(people),
+  };
 };
 
 export const process = (sheetKey) => {
@@ -96,9 +101,9 @@ export const process = (sheetKey) => {
 
       Promise.all([logPromise, piecesPromise]) 
         .then((results) => {
-          const [log, pieces] = results;
-          const people = extractPeople(log);
-          resolve({log, pieces, people});
+          let result ={log, pieces, people: []};
+          result = fillPeople(result);
+          resolve(result);
         });
     });
   });

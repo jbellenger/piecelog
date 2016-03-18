@@ -13,16 +13,18 @@ suite('importer', () => {
     });
   });
 
-  suite('extractPeople', () => {
-    test('extracts people', () => {
-      const log = [
-        {name: 'name-1', racingage: 1, piece: 'piece-1'},
-        {name: 'name-1', racingage: 2, piece: 'piece-2'},
-        {name: 'name-2', racingage: 3, piece: 'piece-1'},
-      ];
+  suite('fillPeople', () => {
+    test('fillsPeople', () => {
+      const input = {
+        log: [
+          {name: 'name-1', racingage: 1, piece: 'piece-1'},
+          {name: 'name-1', racingage: 2, piece: 'piece-2'},
+          {name: 'name-2', racingage: 3, piece: 'piece-1'},
+        ],
+      };
 
-      const result = importer.extractPeople(log);
-      assert.deepEqual(result, [
+      const result = importer.fillPeople(input);
+      assert.deepEqual(result.people, [
         {name: 'name-1'},
         {name: 'name-2'}
       ]);
