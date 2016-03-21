@@ -14,6 +14,7 @@ class Page extends React.Component {
 
     try {
       state.result = db.exec(query);
+      console.table(state.result);
     } catch (err) {
       state.error = err;
     }

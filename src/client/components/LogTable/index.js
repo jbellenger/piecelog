@@ -22,8 +22,6 @@ export const DurationCell = ({rowIndex, data, col, ...props}) => {
 
 class LogTable extends React.Component {
   render() {
-    console.log('LogTable render', this.props);
-
     const { rows, height, width } = this.props;
     const columnDefaults = {
       align: 'left',
