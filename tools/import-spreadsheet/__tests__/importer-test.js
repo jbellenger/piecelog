@@ -30,4 +30,23 @@ suite('importer', () => {
       ]);
     });
   });
+
+  suite('racingDob', () => {
+    test('extracts utc dobs', () => {
+      const row = {
+        stamp: new Date(Date.parse('2015-08-22')),
+        racingage: 34,
+      };
+      const dob = importer.racingDob(row);
+      assert.equal(dob.getTime(), Date.parse('1981-01-01'));
+    });
+
+    test('returns undefined if racingage is missing', () => {
+      assert.isUndefined(importer.racingDob({stamp: new Date()}));
+    });
+
+    test('returns undefined if stamp is missing', () => {
+      assert.isUndefined(importer.racingDob({racingage: 34}));
+    });
+  });
 });

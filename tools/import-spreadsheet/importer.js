@@ -69,14 +69,28 @@ export const parsePieceRow = (row) => {
   };
 };
 
+export const racingDob = (logEntry) => {
+  const {stamp, racingage} = logEntry;
+  if (racingage && stamp) {
+    const birthYear = stamp.getUTCFullYear() - racingage;
+    const dob = new Date(Date.parse('1900-01-01'));
+    dob.setUTCFullYear(birthYear);
+    return dob;
+  }
+};
+
 export const fillPeople = (db) => {
   const {log} = db;
 
   const people = {};
   log.forEach((row) => {
-    people[row.name] = {
-      name: row.name,
-    };
+    const person = {name: row.name};
+    const dob = racingDob(row);
+    if (dob) {
+      person.racingdob = dob;
+    }
+
+    people[row.name] = person;
   });
 
   return {
