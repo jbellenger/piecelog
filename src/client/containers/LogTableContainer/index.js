@@ -13,7 +13,6 @@ const mapStateToProps = (state) => {
   return {rows};
 };
 
-// @connect(mapStateToProps)
 export class LogTableContainer extends React.Component {
   render() {
     return (

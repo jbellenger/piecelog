@@ -1,4 +1,5 @@
 import alasql from 'alasql';
+import './alasql-patch';
 
 const DEFAULT_DB_NAME = 'piecelog';
 
