@@ -6,6 +6,7 @@ const Sidebar = ({onQueryClick}) => {
   const queries = [
     ['log', 'select * from log'],
     ['pieces', 'select * from piece'],
+    ['people', 'select * from people'],
   ];
 
   const exampleProps = {onClick: onQueryClick};
