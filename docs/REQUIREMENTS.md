@@ -1,0 +1,1 @@
+- means to analyze pieces with multiple components (2x22, 3x2k)

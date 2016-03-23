@@ -1,3 +1,5 @@
+person DOB
+figure out queries to replicate spreadsheet functionality
 similar piece comparison view
 query editor persists query between component mounts
 smart table columns
