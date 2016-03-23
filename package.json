@@ -9,6 +9,7 @@
     "lint": "eslint src tools",
     "start": "./scripts/start",
     "inspect-bundle": "webpack --json --config config/webpack.web.js | webpack-bundle-size-analyzer",
+    "query": "node -r babel-register ./scripts/query.js",
     "test": "mocha --ui tdd --recursive --require babel-register src/**/*-test.js tools/**/*-test.js",
     "test-watch": "npm test -- --watch"
   },

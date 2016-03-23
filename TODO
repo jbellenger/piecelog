@@ -1,5 +1,5 @@
 similar piece comparison view
-persistent query
+query editor persists query between component mounts
 smart table columns
 value formatting
 smart query errors
