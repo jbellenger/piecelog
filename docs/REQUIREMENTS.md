@@ -1,2 +1,4 @@
-- means to analyze pieces with multiple components (2x22, 3x2k)
+- means of analyzing pieces with multiple components (2x22, 3x2k)
 - screen-reader friendly
+- personal progress tracking
+- user-selectable ranking criteria
