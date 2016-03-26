@@ -43,7 +43,7 @@ class LogTable extends React.Component {
             fixed={true}
             cell={
               props => (
-                <TextCell data={rows} col="name" {...props} />
+                <TextCell data={rows} col="person_id" {...props} />
               )
             }
             width={50} />
@@ -56,7 +56,7 @@ class LogTable extends React.Component {
             cell={
               props => (
                 <Cell {...props}>
-                  {rows[props.rowIndex].piece}
+                  {rows[props.rowIndex].piece_id}
                 </Cell>
               )
             }/>
