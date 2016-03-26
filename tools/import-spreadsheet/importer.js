@@ -47,8 +47,8 @@ export const parseKilos = (string) => {
 
 export const parseLogRow = (row) => {
   return {
-    name: row.name,
-    piece: row.piece,
+    person_id: row.name,
+    piece_id: row.piece,
     stamp: parseStamp(row.realdate),
     distance_meters: parseNumber(row.realmeters),
     time_millis: parseTime(row.realtime),
@@ -61,7 +61,7 @@ const parseString = (string) => string || undefined;
 
 export const parsePieceRow = (row) => {
   return {
-    name: row.name,
+    piece_id: row.name,
     stamp: parseStamp(row.date),
     time_millis: parseTime(row.time),
     distance_meters: parseNumber(row.meters),
@@ -72,7 +72,7 @@ export const parsePieceRow = (row) => {
 export const racingDob = (logEntry) => {
   const {stamp, racingage} = logEntry;
   if (racingage && stamp) {
-    const birthYear = stamp.getUTCFullYear() - racingage;
+    const birthYear = new Date(stamp).getUTCFullYear() - racingage;
     const dob = new Date(Date.parse('1900-01-01'));
     dob.setUTCFullYear(birthYear);
     return dob;
@@ -84,13 +84,13 @@ export const fillPeople = (db) => {
 
   const people = {};
   log.forEach((row) => {
-    const person = {name: row.name};
+    const person = {person_id: row.person_id};
     const dob = racingDob(row);
     if (dob) {
       person.racingdob = dob;
     }
 
-    people[row.name] = person;
+    people[row.person_id] = person;
   });
 
   return {
@@ -114,11 +114,12 @@ export const process = (sheetKey) => {
         .then((rows) => rows.map(parsePieceRow));
 
       Promise.all([logPromise, piecesPromise]) 
-        .then((results) => {
-          let result ={log, pieces, people: []};
+        .then(([log, pieces]) => {
+          let result = {log, pieces, people: []};
           result = fillPeople(result);
           resolve(result);
-        });
+        })
+        .catch(reject);
     });
   });
 };

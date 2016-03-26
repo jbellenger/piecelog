@@ -17,16 +17,16 @@ suite('importer', () => {
     test('fillsPeople', () => {
       const input = {
         log: [
-          {name: 'name-1', racingage: 1, piece: 'piece-1'},
-          {name: 'name-1', racingage: 2, piece: 'piece-2'},
-          {name: 'name-2', racingage: 3, piece: 'piece-1'},
+          {person_id: 'name-1', racingage: 1, piece_id: 'piece-1'},
+          {person_id: 'name-1', racingage: 2, piece_id: 'piece-2'},
+          {person_id: 'name-2', racingage: 3, piece_id: 'piece-1'},
         ],
       };
 
       const result = importer.fillPeople(input);
       assert.deepEqual(result.people, [
-        {name: 'name-1'},
-        {name: 'name-2'}
+        {person_id: 'name-1'},
+        {person_id: 'name-2'}
       ]);
     });
   });

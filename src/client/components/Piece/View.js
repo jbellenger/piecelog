@@ -3,18 +3,18 @@ import { connect } from 'react-redux';
 
 export class View extends React.Component {
   static propTypes = {
-    personId: PropTypes.string.isRequired,
+    pieceId: PropTypes.string.isRequired,
+    piece: PropTypes.object.isRequired,
     log: PropTypes.array.isRequired,
-    person: PropTypes.object.isRequired
   };
 
   render() {
-    const { log, person, personId } = this.props;
+    const { pieceId, piece, log } = this.props;
     return (
       <div>
-        <h1>Person: {personId}</h1>
+        <h1>Piece: {pieceId}</h1>
         <h2>Details</h2>
-        <pre>{JSON.stringify(person)}</pre>
+        <pre>{JSON.stringify(piece)}</pre>
 
         <h2>Log</h2>
         <pre>
@@ -25,11 +25,11 @@ export class View extends React.Component {
   }
 }
 
-export const mapStateToProps = (state, {personId}) => {
+export const mapStateToProps = (state, {pieceId}) => {
   const { db } = state;
   return {
-    log: db.exec('select * from log where person_id=?', [personId]),
-    person: db.exec('select * from people where person_id=?', [personId])[0],
+    piece: db.exec('select * from pieces where piece_id=?', [pieceId])[0],
+    log: db.exec('select * from log where piece_id=?', [pieceId]),
   };
 };
 

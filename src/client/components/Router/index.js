@@ -6,6 +6,7 @@ import Home from '../../containers/Home';
 import LogTableContainer from '../../containers/LogTableContainer';
 import QueryEditorPage from '../../components/QueryEditor/Page';
 import PersonRoute from '../../components/Person/Route';
+import PieceRoute from '../../components/Piece/Route';
 
 export default class PageRouter extends React.Component {
   render() {
@@ -18,6 +19,7 @@ export default class PageRouter extends React.Component {
           <Route path="log" component={LogTableContainer} />
           <Route path="query" component={QueryEditorPage} />
           <Route path="person/:personId" component={PersonRoute} />
+          <Route path="piece/:pieceId" component={PieceRoute} />
         </Route>
       </Router>
     );
