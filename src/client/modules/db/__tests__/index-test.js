@@ -54,6 +54,11 @@ suite('db', () => {
       assert.deepEqual(db.exec('select 1'), [{'1': 1}]);
     });
 
+    test('executes parameterized queries', () => {
+      const db = new Database();
+      assert.deepEqual(db.exec('select ?', [1]), [{'$0': 1}]);
+    });
+
     test('returns expected results', () => {
       const db = new Database().install(testData);
       assert.deepEqual(

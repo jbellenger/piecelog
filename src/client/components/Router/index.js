@@ -5,6 +5,7 @@ import About from '../../containers/About';
 import Home from '../../containers/Home';
 import LogTableContainer from '../../containers/LogTableContainer';
 import QueryEditorPage from '../../components/QueryEditor/Page';
+import PersonRoute from '../../components/Person/Route';
 
 export default class PageRouter extends React.Component {
   render() {
@@ -16,6 +17,7 @@ export default class PageRouter extends React.Component {
           <Route path="about" component={About} />
           <Route path="log" component={LogTableContainer} />
           <Route path="query" component={QueryEditorPage} />
+          <Route path="person/:personId" component={PersonRoute} />
         </Route>
       </Router>
     );

@@ -17,7 +17,7 @@ export default class Database {
     return this;
   }
 
-  exec(query) {
-    return this.sql.exec(query);
+  exec(...args) {
+    return this.sql.exec(...args);
   }
 }
