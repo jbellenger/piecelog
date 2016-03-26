@@ -1,4 +1,4 @@
-table headers
+sortable columns
 remove fixed-data-table?
 person DOB
 figure out queries to replicate spreadsheet functionality
@@ -56,3 +56,4 @@ sentry?
 # query editor w/ preview
 # clickable example queries
 # person racing DOB
+# table headers
