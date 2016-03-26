@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import Row from '../Log/Row';
 
 export class View extends React.Component {
   static propTypes = {
@@ -17,9 +18,7 @@ export class View extends React.Component {
         <pre>{JSON.stringify(person)}</pre>
 
         <h2>Log</h2>
-        <pre>
-          {JSON.stringify(log)}
-        </pre>
+        {log.map((row) => <Row {...row} />)}
       </div>
     );
   }
