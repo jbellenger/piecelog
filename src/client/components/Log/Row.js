@@ -1,20 +1,30 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-export default class View extends React.Component {
+export default class Row extends React.Component {
   static propTypes = {
-    piece_id: PropTypes.string.isRequired,
-    person_id: PropTypes.string.isRequired
-  };
+    data: PropTypes.object.isRequired,
+    cols: PropTypes.array.isRequired
+  }
+
+  cell(key) {
+    const value = this.props.data[key];
+    switch (key) {
+      case 'piece_id':
+        return <Link to={'/piece/' + value}>{value}</Link>;
+      case 'person_id':
+        return <Link to={'/person/' + value}>{value}</Link>
+      default:
+        return value;
+    }
+  }
 
   render() {
-    const {piece_id, person_id} = this.props;
+    const {cols} = this.props;
     return (
-      <div>
-        piece_id=<Link to={'/piece/' + piece_id}>{piece_id}</Link>
-        &nbsp;
-        person_id=<Link to={'/person/' + person_id}>{person_id}</Link>
-      </div>
+      <tr>
+        {cols.map((col) => <td>{this.cell(col)}</td>)}
+      </tr>
     );
   }
 }
