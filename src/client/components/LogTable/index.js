@@ -10,6 +10,6 @@ export default class View extends React.Component {
       Cols.PERSON,
     ];
 
-    return <Table cols={cols} rows={rows}/>
+    return <Table cols={cols} rows={rows}/>;
   }
 }
