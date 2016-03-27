@@ -12,7 +12,8 @@ const PERSON_FORMAT = (value) => (
 );
 export const PERSON = new Col('person_id', 'person', PERSON_FORMAT);
 
-export const STAMP = new Col('stamp');
+const STAMP_FORMAT = (value) => new Date(value).toDateString();
+export const STAMP = new Col('stamp', null, STAMP_FORMAT);
 
 export const DISTANCE = new Col('distance_meters', 'distance');
 

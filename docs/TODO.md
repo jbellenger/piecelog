@@ -1,6 +1,5 @@
 calculated fields
 sortable columns
-remove fixed-data-table?
 person DOB
 figure out queries to replicate spreadsheet functionality
 similar piece comparison view
@@ -10,7 +9,6 @@ value formatting
 smart query errors
 eslint airbnb rules: https://www.npmjs.com/package/eslint-config-airbnb
 decorator support
-calculated fields
 separate filter state from log state
 smarter filtering
 figure out a story for user identity
@@ -19,7 +17,6 @@ passport integration?
 db state storage
 integrate redux-devtools
 git lint/test hooks
-person model
 log editing
 a11y
 styling
@@ -58,3 +55,5 @@ sentry?
 # clickable example queries
 # person racing DOB
 # table headers
+# remove fixed-data-table?
+# person model
