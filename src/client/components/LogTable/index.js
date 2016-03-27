@@ -8,6 +8,11 @@ export default class View extends React.Component {
     const cols = [
       Cols.PIECE,
       Cols.PERSON,
+      Cols.STAMP,
+      Cols.DISTANCE,
+      Cols.TIME,
+      Cols.WEIGHT,
+      Cols.RACING_AGE
     ];
 
     return <Table cols={cols} rows={rows}/>;
