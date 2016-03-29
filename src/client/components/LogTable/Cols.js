@@ -19,6 +19,8 @@ export const DISTANCE = new Col('distance_meters', 'distance');
 
 export const TIME = new Col('time_millis', 'time');
 
-export const WEIGHT = new Col('weight_kilos', 'kilos');
+export const POUNDS = new Col('weight_pounds', 'pounds');
+
+export const KILOS = new Col('weight_kilos', 'kilos');
 
 export const RACING_AGE = new Col('racingage', 'racing age');

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import LogTable from '../LogTable';
+import { selector as modelsSelector } from '../../modules/store/models';
 
 export class View extends React.Component {
   static propTypes = {
@@ -25,10 +26,10 @@ export class View extends React.Component {
 }
 
 export const mapStateToProps = (state, {personId}) => {
-  const { db } = state;
+  const models = modelsSelector(state);
   return {
-    log: db.exec('select * from log where person_id=?', [personId]),
-    person: db.exec('select * from people where person_id=?', [personId])[0],
+    log: models.exec('select * from log where person_id=?', [personId]),
+    person: models.exec('select * from people where person_id=?', [personId])[0],
   };
 };
 

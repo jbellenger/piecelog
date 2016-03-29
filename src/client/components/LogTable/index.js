@@ -11,7 +11,7 @@ export default class View extends React.Component {
       Cols.STAMP,
       Cols.DISTANCE,
       Cols.TIME,
-      Cols.WEIGHT,
+      Cols.POUNDS,
       Cols.RACING_AGE
     ];
 
