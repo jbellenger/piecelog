@@ -6,6 +6,8 @@ export default class LogEvent {
   }
 
   get weight_pounds() {
-    return this.weight_kilos * 2.2;
+    if (this.weight_kilos !== undefined) {
+      return this.weight_kilos * 2.2;
+    }
   }
 }

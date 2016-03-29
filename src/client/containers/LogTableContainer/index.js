@@ -9,7 +9,7 @@ import { ALL_LOG_QUERY } from '../../modules/query';
 
 const mapStateToProps = (state) => {
   const query = state.query[ALL_LOG_QUERY];
-  const rows = state.db.exec(query);
+  const rows = state.models.exec(query);
   return {rows};
 };
 

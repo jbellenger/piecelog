@@ -2,25 +2,34 @@ import React from 'react';
 import { Link } from 'react-router';
 import Col from '../Table/Col';
 
+export const _ALL_COLS = [];
+const mk = (...args) => {
+  const col = new Col(...args);
+  _ALL_COLS.push(col);
+  return col;
+}
+
 const PIECE_FORMAT = (value) => (
   <Link to={'/piece/' + value}>{value}</Link>
 );
-export const PIECE = new Col('piece_id', 'piece', PIECE_FORMAT);
+export const PIECE = mk('piece_id', 'piece', PIECE_FORMAT);
 
 const PERSON_FORMAT = (value) => (
   <Link to={'/person/' + value}>{value}</Link>
 );
-export const PERSON = new Col('person_id', 'person', PERSON_FORMAT);
+export const PERSON = mk('person_id', 'person', PERSON_FORMAT);
 
 const STAMP_FORMAT = (value) => new Date(value).toDateString();
-export const STAMP = new Col('stamp', null, STAMP_FORMAT);
+export const STAMP = mk('stamp', null, STAMP_FORMAT);
 
-export const DISTANCE = new Col('distance_meters', 'distance');
+export const DISTANCE = mk('distance_meters', 'distance');
 
-export const TIME = new Col('time_millis', 'time');
+export const TIME = mk('time_millis', 'time');
 
-export const POUNDS = new Col('weight_pounds', 'pounds');
+export const POUNDS = mk('weight_pounds', 'pounds');
 
-export const KILOS = new Col('weight_kilos', 'kilos');
+export const KILOS = mk('weight_kilos', 'kilos');
 
-export const RACING_AGE = new Col('racingage', 'racing age');
+export const RACING_AGE = mk('racingage', 'racing age');
+
+export const _ALL_KEYS = _ALL_COLS.map((x) => x.key);

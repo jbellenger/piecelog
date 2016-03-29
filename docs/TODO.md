@@ -1,4 +1,4 @@
-calculated fields
+easier syntax for querying computed fields: LogTableContainer/Piece.View/Person.View
 sortable columns
 person DOB
 figure out queries to replicate spreadsheet functionality
@@ -13,7 +13,7 @@ separate filter state from log state
 smarter filtering
 figure out a story for user identity
 figure out a story for rower identity
-passport integration?
+flesh out user stories
 db state storage
 integrate redux-devtools
 git lint/test hooks
@@ -57,3 +57,4 @@ sentry?
 # table headers
 # remove fixed-data-table?
 # person model
+# calculated fields

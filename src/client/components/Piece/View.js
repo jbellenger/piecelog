@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import LogTable from '../LogTable';
+import { _ALL_KEYS as LOGTABLE_KEYS } from '../LogTable/Cols';
 import { selector as modelsSelector } from '../../modules/store/models';
 
 export class View extends React.Component {
@@ -29,7 +30,7 @@ export const mapStateToProps = (state, {pieceId}) => {
   const models = modelsSelector(state);
   return {
     piece: models.exec('select * from pieces where piece_id=?', [pieceId])[0],
-    log: models.exec('select * from log where piece_id=?', [pieceId]),
+    log: models.exec(`select ${LOGTABLE_KEYS.join(',')} from log where piece_id=?`, [pieceId])
   };
 };
 
