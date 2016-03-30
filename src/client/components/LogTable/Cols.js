@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Col from '../Table/Col';
+import formatNumber from 'format-number';
 
 export const _ALL_COLS = [];
 const mk = (...args) => {
@@ -26,16 +27,16 @@ export const DISTANCE = mk('distance_meters', 'distance');
 
 export const TIME = mk('time_millis', 'time');
 
-export const POUNDS = mk('weight_pounds', 'pounds');
+export const POUNDS = mk('weight_pounds', 'pounds', formatNumber({round: 1}));
 
-export const KILOS = mk('weight_kilos', 'kilos');
+export const KILOS = mk('weight_kilos', 'kilos', formatNumber({round: 1}));
 
 export const RACING_AGE = mk('racingage', 'racing age');
 
-export const SPLIT = mk('split_seconds', 'split');
+export const SPLIT = mk('split_seconds', 'split', formatNumber({round: 2}));
 
-export const WATTS = mk('watts', 'watts');
+export const WATTS = mk('watts', 'watts', formatNumber({round: 0}));
 
-export const WATTS_PER_KG = mk('watts_per_kg', 'watts/kg');
+export const WATTS_PER_KG = mk('watts_per_kg', 'watts/kg', formatNumber({round: 2}));
 
 export const _ALL_KEYS = _ALL_COLS.map((x) => x.key);
