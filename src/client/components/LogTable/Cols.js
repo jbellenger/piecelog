@@ -7,7 +7,7 @@ const mk = (...args) => {
   const col = new Col(...args);
   _ALL_COLS.push(col);
   return col;
-}
+};
 
 const PIECE_FORMAT = (value) => (
   <Link to={'/piece/' + value}>{value}</Link>
