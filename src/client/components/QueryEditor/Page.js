@@ -4,16 +4,17 @@ import Sidebar from './Sidebar';
 import LogTable from '../LogTable';
 import styles from './styles.css';
 import { connect } from 'react-redux';
+import { selector as modelsSelector } from '../../modules/store/models';
 
 class Page extends React.Component {
   _onChange(queryString) {
     const query = queryString.trim();
     const state = { query, error: null, result: null };
 
-    const { db } = this.props;
+    const { models } = this.props;
 
     try {
-      state.result = db.exec(query);
+      state.result = models.exec(query);
       console.table(state.result);
     } catch (err) {
       state.error = err;
@@ -48,11 +49,11 @@ class Page extends React.Component {
 }
 
 Page.propTypes = {
-  db: React.PropTypes.object.isRequired
+  models: React.PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => {
-  return {db: state.db};
+  return {models: modelsSelector(state)};
 };
 
 export default connect(mapStateToProps)(Page);

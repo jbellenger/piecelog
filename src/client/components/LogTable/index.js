@@ -9,10 +9,13 @@ export default class View extends React.Component {
       Cols.PIECE,
       Cols.PERSON,
       Cols.STAMP,
+      Cols.SPLIT,
       Cols.DISTANCE,
       Cols.TIME,
       Cols.POUNDS,
-      Cols.RACING_AGE
+      Cols.RACING_AGE,
+      Cols.WATTS,
+      Cols.WATTS_PER_KG,
     ];
 
     return <Table cols={cols} rows={rows}/>;

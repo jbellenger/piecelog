@@ -32,4 +32,10 @@ export const KILOS = mk('weight_kilos', 'kilos');
 
 export const RACING_AGE = mk('racingage', 'racing age');
 
+export const SPLIT = mk('split_seconds', 'split');
+
+export const WATTS = mk('watts', 'watts');
+
+export const WATTS_PER_KG = mk('watts_per_kg', 'watts/kg');
+
 export const _ALL_KEYS = _ALL_COLS.map((x) => x.key);
