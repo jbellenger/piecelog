@@ -24,11 +24,13 @@ rl.setPrompt('sql> ');
 rl.prompt();
 
 rl.on('line', (line) => {
-  try {
-    const result = db.exec(line);
-    console.log(util.inspect(result));
-  } catch (err) {
-    console.error('Error:', err);
+  if (line.trim()) {
+    try {
+      const result = db.exec(line.trim());
+      console.log(util.inspect(result));
+    } catch (err) {
+      console.error('Error:', err);
+    }
   }
   rl.prompt();
 });
