@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Col from '../Table/Col';
-import formatNumber from 'format-number';
+import * as Format from '../../modules/format';
 
 export const _ALL_COLS = [];
 const mk = (...args) => {
@@ -20,23 +20,22 @@ const PERSON_FORMAT = (value) => (
 );
 export const PERSON = mk('person_id', 'person', PERSON_FORMAT);
 
-const STAMP_FORMAT = (value) => new Date(value).toDateString();
-export const STAMP = mk('stamp', null, STAMP_FORMAT);
+export const STAMP = mk('stamp', null, Format.formatStamp);
 
 export const DISTANCE = mk('distance_meters', 'distance');
 
-export const TIME = mk('time_millis', 'time');
+export const TIME = mk('time_millis', 'time', Format.formatTime);
 
-export const POUNDS = mk('weight_pounds', 'pounds', formatNumber({round: 1}));
+export const POUNDS = mk('weight_pounds', 'pounds', Format.formatWeight);
 
-export const KILOS = mk('weight_kilos', 'kilos', formatNumber({round: 1}));
+export const KILOS = mk('weight_kilos', 'kilos', Format.formatWeight);
 
 export const RACING_AGE = mk('racingage', 'racing age');
 
-export const SPLIT = mk('split_seconds', 'split', formatNumber({round: 2}));
+export const SPLIT = mk('split_seconds', 'split', Format.formatSplit);
 
-export const WATTS = mk('watts', 'watts', formatNumber({round: 0}));
+export const WATTS = mk('watts', 'watts', Format.formatWatts);
 
-export const WATTS_PER_KG = mk('watts_per_kg', 'watts/kg', formatNumber({round: 2}));
+export const WATTS_PER_KG = mk('watts_per_kg', 'watts/kg', Format.formatWattsPerKg);
 
 export const _ALL_KEYS = _ALL_COLS.map((x) => x.key);

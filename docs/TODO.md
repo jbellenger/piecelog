@@ -1,3 +1,7 @@
+piece type view
+field editing
+record entry
+data sync
 figure out where racingage fits into logevent
 migrate query editor to use new views
 easier syntax for querying computed fields: LogTableContainer/Piece.View/Person.View
