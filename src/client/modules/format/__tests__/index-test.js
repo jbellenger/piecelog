@@ -25,4 +25,10 @@ suite('Format', () => {
       assert.equal(Format.formatWattsPerKg(3.00001), '3.00');
     });
   });
+
+  suite('formatStamp', () => {
+    test('formats stamps', () => {
+      assert.equal(Format.formatStamp(0), '1970-01-01');
+    });
+  });
 });

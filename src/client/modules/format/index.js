@@ -17,7 +17,7 @@ export const formatDate = (date) => {
   if (date) {
     const parts = [
       date.getUTCFullYear(),
-      date.getUTCMonth(),
+      date.getUTCMonth() + 1,
       date.getUTCDate()
     ];
     const partFormat = formatNumber({padLeft: 2, integerSeparator: ''});
