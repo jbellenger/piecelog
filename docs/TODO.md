@@ -3,15 +3,11 @@ field editing
 record entry
 data sync
 figure out where racingage fits into logevent
-migrate query editor to use new views
-easier syntax for querying computed fields: LogTableContainer/Piece.View/Person.View
 sortable columns
-person DOB
 figure out queries to replicate spreadsheet functionality
 similar piece comparison view
 query editor persists query between component mounts
 smart table columns
-value formatting
 smart query errors
 eslint airbnb rules: https://www.npmjs.com/package/eslint-config-airbnb
 decorator support
@@ -23,7 +19,6 @@ flesh out user stories
 db state storage
 integrate redux-devtools
 git lint/test hooks
-log editing
 a11y
 styling
 hosting
@@ -64,3 +59,7 @@ sentry?
 # remove fixed-data-table?
 # person model
 # calculated fields
+# value formatting
+# person DOB
+# migrate query editor to use new views
+# easier syntax for querying computed fields: LogTableContainer/Piece.View/Person.View
