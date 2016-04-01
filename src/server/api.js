@@ -33,13 +33,13 @@ middleware.get('/1/bootstrap', (req, res) => {
     if (parsed.db) {
       json.db = {};
       if (parsed.db.log) {
-        json.db.log = mockdb.log;
+        json.db.log = mockdb.log || [];
       }
       if (parsed.db.person) {
-        json.db.person = mockdb.person;
+        json.db.person = mockdb.person || [];
       }
       if (parsed.db.piece) {
-        json.db.piece = mockdb.piece;
+        json.db.piece = mockdb.piece || [];
       }
     }
   }
