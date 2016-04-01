@@ -9,8 +9,8 @@ export const bootstrap = (opts = {}) => {
   const defaulted = {
     db: {
       log: true,
-      people: true,
-      pieces: true,
+      person: true,
+      piece: true,
     },
     queries: {
       [Queries.ALL_LOG_QUERY]: true,

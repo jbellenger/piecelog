@@ -27,21 +27,21 @@ suite('api', () => {
         .end(done);
     });
 
-    test('should return pieces data when requested', (done) => {
+    test('should return piece data when requested', (done) => {
       request(app)
         .get('/1/bootstrap')
-        .query(formatQuery({db: {pieces: true}}))
+        .query(formatQuery({db: {piece: true}}))
         .expect('Content-Type', /json/)
-        .expect((res) => assert.property(res.body.db, 'pieces'))
+        .expect((res) => assert.property(res.body.db, 'piece'))
         .end(done);
     });
 
-    test('should return people data when requested', (done) => {
+    test('should return person data when requested', (done) => {
       request(app)
         .get('/1/bootstrap')
-        .query(formatQuery({db: {people: true}}))
+        .query(formatQuery({db: {person: true}}))
         .expect('Content-Type', /json/)
-        .expect((res) => assert.property(res.body.db, 'people'))
+        .expect((res) => assert.property(res.body.db, 'person'))
         .end(done);
     });
   });

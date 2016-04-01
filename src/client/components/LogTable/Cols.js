@@ -13,29 +13,27 @@ const mk = (...args) => {
 const PIECE_FORMAT = (value) => (
   <Link to={'/piece/' + value}>{value}</Link>
 );
-export const PIECE = mk('piece_id', 'piece', PIECE_FORMAT);
+export const PIECE = mk('log_piece_id', 'piece', PIECE_FORMAT);
 
 const PERSON_FORMAT = (value) => (
   <Link to={'/person/' + value}>{value}</Link>
 );
-export const PERSON = mk('person_id', 'person', PERSON_FORMAT);
+export const PERSON = mk('log_person_id', 'person', PERSON_FORMAT);
 
-export const STAMP = mk('stamp', null, Format.formatStamp);
+export const STAMP = mk('log_stamp', null, Format.formatStamp);
 
-export const DISTANCE = mk('distance_meters', 'distance');
+export const DISTANCE = mk('log_distance_meters', 'distance');
 
-export const TIME = mk('time_millis', 'time', Format.formatTime);
+export const TIME = mk('log_time_millis', 'time', Format.formatTime);
 
-export const POUNDS = mk('weight_pounds', 'pounds', Format.formatWeight);
+export const POUNDS = mk('log_weight_pounds', 'pounds', Format.formatWeight);
 
-export const KILOS = mk('weight_kilos', 'kilos', Format.formatWeight);
+export const KILOS = mk('log_weight_kilos', 'kilos', Format.formatWeight);
 
-export const RACING_AGE = mk('racingage', 'racing age');
+export const SPLIT = mk('log_split_seconds', 'split', Format.formatSplit);
 
-export const SPLIT = mk('split_seconds', 'split', Format.formatSplit);
+export const WATTS = mk('log_watts', 'watts', Format.formatWatts);
 
-export const WATTS = mk('watts', 'watts', Format.formatWatts);
-
-export const WATTS_PER_KG = mk('watts_per_kg', 'watts/kg', Format.formatWattsPerKg);
+export const WATTS_PER_KG = mk('log_watts_per_kg', 'watts/kg', Format.formatWattsPerKg);
 
 export const _ALL_KEYS = _ALL_COLS.map((x) => x.key);

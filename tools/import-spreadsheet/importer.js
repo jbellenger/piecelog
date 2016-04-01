@@ -47,13 +47,13 @@ export const parseKilos = (string) => {
 
 export const parseLogRow = (row) => {
   return {
-    person_id: row.name,
-    piece_id: row.piece,
-    stamp: parseStamp(row.realdate),
-    distance_meters: parseNumber(row.realmeters),
-    time_millis: parseTime(row.realtime),
-    weight_kilos: parseKilos(row.pounds),
-    racingage: parseNumber(row.racingage),
+    log_person_id: row.name,
+    log_piece_id: row.piece,
+    log_stamp: parseStamp(row.realdate),
+    log_distance_meters: parseNumber(row.realmeters),
+    log_time_millis: parseTime(row.realtime),
+    log_racingage: parseNumber(row.racingage),
+    log_weight_kilos: parseKilos(row.pounds),
   };
 };
 
@@ -62,15 +62,16 @@ const parseString = (string) => string || undefined;
 export const parsePieceRow = (row) => {
   return {
     piece_id: row.name,
-    stamp: parseStamp(row.date),
-    time_millis: parseTime(row.time),
-    distance_meters: parseNumber(row.meters),
-    description: parseString(row.notes)
+    piece_stamp: parseStamp(row.date),
+    piece_time_millis: parseTime(row.time),
+    piece_distance_meters: parseNumber(row.meters),
+    piece_description: parseString(row.notes)
   };
 };
 
 export const racingDob = (logEntry) => {
-  const {stamp, racingage} = logEntry;
+  const stamp = logEntry.log_stamp;
+  const racingage = logEntry.log_racingage;
   if (racingage && stamp) {
     const birthYear = new Date(stamp).getUTCFullYear() - racingage;
     const dob = new Date(Date.parse('1900-01-01'));
@@ -79,24 +80,20 @@ export const racingDob = (logEntry) => {
   }
 };
 
-export const fillPeople = (db) => {
-  const {log} = db;
-
+export const extractPeople = (log) => {
   const people = {};
+
   log.forEach((row) => {
-    const person = {person_id: row.person_id};
+    const person = {person_id: row.log_person_id};
     const dob = racingDob(row);
     if (dob) {
-      person.racingdob = dob;
+      person.person_dob = dob;
     }
 
-    people[row.person_id] = person;
+    people[person.person_id] = person;
   });
 
-  return {
-    ...db,
-    people: lodash.values(people),
-  };
+  return lodash.values(people);
 };
 
 export const process = (sheetKey) => {
@@ -114,10 +111,12 @@ export const process = (sheetKey) => {
         .then((rows) => rows.map(parsePieceRow));
 
       Promise.all([logPromise, piecesPromise]) 
-        .then(([log, pieces]) => {
-          let result = {log, pieces, people: []};
-          result = fillPeople(result);
-          resolve(result);
+        .then(([log, piece]) => {
+          resolve({
+            log,
+            piece,
+            person: extractPeople(log)
+          });
         })
         .catch(reject);
     });

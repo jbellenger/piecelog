@@ -13,7 +13,6 @@ export default class View extends React.Component {
       Cols.DISTANCE,
       Cols.TIME,
       Cols.POUNDS,
-      Cols.RACING_AGE,
       Cols.WATTS,
       Cols.WATTS_PER_KG,
     ];

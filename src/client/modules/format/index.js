@@ -9,7 +9,7 @@ export const formatSplit = (seconds, round=2) => {
   } else {
     return '';
   }
-}
+};
 
 export const formatStamp = (millis) => formatDate(new Date(millis));
 
@@ -22,8 +22,10 @@ export const formatDate = (date) => {
     ];
     const partFormat = formatNumber({padLeft: 2, integerSeparator: ''});
     return parts.map(partFormat).join('-');
-  } else return '';
-}
+  } else { 
+    return '';
+  }
+};
 
 export const formatWatts = formatNumber({round: 0});
 export const formatWeight = formatNumber({round: 1, padRight: 1});

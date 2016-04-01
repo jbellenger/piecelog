@@ -35,11 +35,11 @@ middleware.get('/1/bootstrap', (req, res) => {
       if (parsed.db.log) {
         json.db.log = mockdb.log;
       }
-      if (parsed.db.people) {
-        json.db.people = mockdb.people;
+      if (parsed.db.person) {
+        json.db.person = mockdb.person;
       }
-      if (parsed.db.pieces) {
-        json.db.pieces = mockdb.pieces;
+      if (parsed.db.piece) {
+        json.db.piece = mockdb.piece;
       }
     }
   }

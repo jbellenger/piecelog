@@ -5,12 +5,13 @@ import React from 'react';
 import styles from './styles.css';
 import FlexSizing from '../../components/FlexSizing';
 import Debug from '../../components/Debug';
-import { ALL_LOG_QUERY } from '../../modules/query';
+import LogEvent from '../../modules/model/LogEvent';
+import { selector as modelsSelector } from '../../modules/store/models';
 
 const mapStateToProps = (state) => {
-  const query = state.query[ALL_LOG_QUERY];
-  const rows = state.models.exec(query);
-  return {rows};
+  const models = modelsSelector(state);
+  const rows = models.exec(`select ${LogEvent.fields.join(',')} from log`);
+  return { rows };
 };
 
 export class LogTableContainer extends React.Component {
