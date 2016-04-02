@@ -1,4 +1,4 @@
-fix alasql
+repeating piece types
 piece type view
 field editing
 record entry
@@ -64,3 +64,4 @@ sentry?
 # person DOB
 # migrate query editor to use new views
 # easier syntax for querying computed fields: LogTableContainer/Piece.View/Person.View
+# fix alasql

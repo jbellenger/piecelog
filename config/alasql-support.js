@@ -12,6 +12,7 @@ const ignoreModules = [
   'stream-browserify',
   'tough-cookie',
   'tunnel-agent',
+  'vertx',
   'xls',
   'xlsjs',
   'xlsx',

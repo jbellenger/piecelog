@@ -2,4 +2,4 @@
 
 set -ex
 
-NODE_ENV=production webpack -p --progress --config config/webpack.config.js
+NODE_ENV=production webpack --progress --config config/webpack.config.js
