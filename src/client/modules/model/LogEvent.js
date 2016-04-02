@@ -1,4 +1,5 @@
 import lodash from 'lodash';
+import * as Adjust from '../adjust';
 
 export default class LogEvent {
   static fields = [
@@ -12,6 +13,7 @@ export default class LogEvent {
     'log_split_seconds',
     'log_watts',
     'log_watts_per_kg',
+    'log_weight_adjusted_split_seconds',
   ];
 
   constructor(json) {
@@ -36,6 +38,12 @@ export default class LogEvent {
   get log_watts_per_kg() {
     if (this.log_weight_kilos) {
       return this.log_watts/this.log_weight_kilos;
+    }
+  }
+
+  get log_weight_adjusted_split_seconds() {
+    if (this.log_weight_pounds) {
+      return Adjust.weightAdjustTime(this.log_weight_pounds, this.log_split_seconds);
     }
   }
 }

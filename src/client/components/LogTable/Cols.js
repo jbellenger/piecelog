@@ -36,4 +36,6 @@ export const WATTS = mk('log_watts', 'watts', Format.formatWatts);
 
 export const WATTS_PER_KG = mk('log_watts_per_kg', 'watts/kg', Format.formatWattsPerKg);
 
+export const WEIGHT_ADJUSTED_SPLIT = mk('log_weight_adjusted_split_seconds', 'weight adjusted split', Format.formatSplit);
+
 export const _ALL_KEYS = _ALL_COLS.map((x) => x.key);
