@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import * as Adjust from '..';
 
-suite.only('Adjust', () => {
+suite('Adjust', () => {
   suite('weightFactor', () => {
     test('replicates concept2 calculator', () => {
       assert.closeTo(Adjust.weightFactor(100), .802, .001);
