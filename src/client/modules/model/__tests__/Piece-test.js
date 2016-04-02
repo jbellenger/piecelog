@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import Piece from '../piece';
+import Piece from '../Piece';
 
 suite('Piece', () => {
   suite('piece_type', () => {
