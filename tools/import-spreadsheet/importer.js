@@ -74,9 +74,9 @@ export const racingDob = (logEntry) => {
   const racingage = logEntry.log_racingage;
   if (racingage && stamp) {
     const birthYear = new Date(stamp).getUTCFullYear() - racingage;
-    const dob = new Date(Date.parse('1900-01-01'));
-    dob.setUTCFullYear(birthYear);
-    return dob;
+    const rdob = new Date(0);
+    rdob.setUTCFullYear(birthYear);
+    return rdob;
   }
 };
 
