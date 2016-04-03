@@ -6,31 +6,28 @@ import LogEvent from '../../modules/model/LogEvent';
 
 export class View extends React.Component {
   static propTypes = {
-    pieceId: PropTypes.string.isRequired,
     piece: PropTypes.object.isRequired,
-    log: PropTypes.array.isRequired,
   };
 
   render() {
-    const { pieceId, piece, log } = this.props;
+    const { piece} = this.props;
     return (
       <div>
-        <h1>Piece: {pieceId}</h1>
+        <h1>Piece: {piece.piece_id}</h1>
         <h2>Details</h2>
         <pre>{JSON.stringify(piece)}</pre>
 
-        <h2>Log</h2>
-        <LogTable rows={log} />
+        {this.props.children}
       </div>
     );
   }
 }
 
-export const mapStateToProps = (state, {pieceId}) => {
-  const models = modelsSelector(state);
+export const mapStateToProps = (state, props) => {
+  const {pieceId} = props;
   return {
-    piece: models.exec('select * from piece where piece_id=?', [pieceId])[0],
-    log: models.exec(`select ${LogEvent.fields.join(',')} from log where log_piece_id=?`, [pieceId])
+    ...props,
+    piece: modelsSelector(state).exec('select * from piece where piece_id=?', [pieceId])[0],
   };
 };
 

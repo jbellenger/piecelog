@@ -6,33 +6,28 @@ import { selector as modelsSelector } from '../../modules/store/models';
 
 export class View extends React.Component {
   static propTypes = {
-    personId: PropTypes.string.isRequired,
-    log: PropTypes.array.isRequired,
     person: PropTypes.object.isRequired
   };
 
   render() {
-    const { log, person, personId } = this.props;
+    const { person } = this.props;
     return (
       <div>
-        <h1>Person: {personId}</h1>
+        <h1>Person: {person.person_id}</h1>
         <h2>Details</h2>
         <pre>{JSON.stringify(person)}</pre>
-
-        <h2>Log</h2>
-        <LogTable rows={log} />
+        {this.props.children}
       </div>
     );
   }
 }
 
-export const mapStateToProps = (state, {personId}) => {
-  const models = modelsSelector(state);
-  const log = models.exec(`select ${LogEvent.fields.join(',')} from log where log.log_person_id=?`, [personId]);
+export const mapStateToProps = (state, props) => {
+  const { personId } = props;
 
   return {
-    log,
-    person: models.exec('select * from person where person_id=?', [personId])[0],
+    ...props,
+    person: modelsSelector(state).exec('select * from person where person_id=?', [personId])[0],
   };
 };
 
