@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import Row from './Row';
 import Col from './Col';
 import Headers from './Headers';
+import styles from './styles.css';
 
 export default class Table extends React.Component {
   static propTypes = {
@@ -14,7 +15,7 @@ export default class Table extends React.Component {
     const cols = this.props.cols || Col.fromArray(Object.keys(rows[0]));
     
     return (
-      <table>
+      <table className={styles.root}>
         <tbody>
           <Headers cols={cols} />
           {rows.map((row, idx) => <Row key={idx} cols={cols} data={row}/>)}

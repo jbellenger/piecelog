@@ -3,6 +3,8 @@ import Table from '../Table';
 import { connect } from 'react-redux';
 import * as Cols from './Cols';
 import { selector as modelsSelector } from '../../modules/store/models';
+import ErrorComponent from './Error';
+import QueryDebug from './QueryDebug';
 
 class View extends React.Component {
   static propTypes = {
@@ -14,7 +16,6 @@ class View extends React.Component {
 
   render() {
     const {rows, query, error, colKeys} = this.props;
-    const errComponent = error && <pre>{error.toString()}</pre>;
     const cols = colKeys
       .map((key) => Cols._ALL_COLS[key])
       .filter(Boolean);
@@ -23,8 +24,8 @@ class View extends React.Component {
     return (
       <div>
         {tableComponent}
-        <div>{query}</div>
-        {errComponent}
+        <QueryDebug query={query} />
+        {error && <ErrorComponent error={error}/>}
       </div>
     );
   }
