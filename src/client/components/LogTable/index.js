@@ -3,8 +3,7 @@ import Table from '../Table';
 import { connect } from 'react-redux';
 import * as Cols from './Cols';
 import { selector as modelsSelector } from '../../modules/store/models';
-import ErrorComponent from './Error';
-import QueryDebug from './QueryDebug';
+import QueryDebug from '../QueryDebug';
 
 class View extends React.Component {
   static propTypes = {
@@ -24,8 +23,7 @@ class View extends React.Component {
     return (
       <div>
         {tableComponent}
-        <QueryDebug query={query} />
-        {error && <ErrorComponent error={error}/>}
+        <QueryDebug query={query} error={error}/>
       </div>
     );
   }
