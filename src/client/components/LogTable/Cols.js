@@ -3,10 +3,10 @@ import { Link } from 'react-router';
 import Col from '../Table/Col';
 import * as Format from '../../modules/format';
 
-export const _ALL_COLS = [];
+export const _ALL_COLS = {};
 const mk = (...args) => {
   const col = new Col(...args);
-  _ALL_COLS.push(col);
+  _ALL_COLS[col.key] = col;
   return col;
 };
 
@@ -38,4 +38,4 @@ export const WATTS_PER_KG = mk('log_watts_per_kg', 'watts/kg', Format.formatWatt
 
 export const WEIGHT_ADJUSTED_SPLIT = mk('log_weight_adjusted_split_seconds', 'weight adjusted split', Format.formatSplit);
 
-export const _ALL_KEYS = _ALL_COLS.map((x) => x.key);
+export const _ALL_KEYS = Object.keys(_ALL_COLS);

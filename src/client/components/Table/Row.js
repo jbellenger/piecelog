@@ -13,7 +13,7 @@ export default class Row extends React.Component {
 
     return (
       <tr>
-        {cols.map((col) => <td key={col.key}>{col.apply(data)}</td>)}
+        {cols.map((col,i) => <td key={i}>{col.apply(data)}</td>)}
       </tr>
     );
   }

@@ -11,7 +11,7 @@ export default class Headers extends React.Component {
     const {cols} = this.props;
     return (
       <tr>
-        {cols.map((col) => <th key={col.key}>{col.header}</th>)}
+        {cols.map((col, i) => <th key={i}>{col.header}</th>)}
       </tr>
     );
   }

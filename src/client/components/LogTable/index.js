@@ -5,22 +5,36 @@ import * as Cols from './Cols';
 import { selector as modelsSelector } from '../../modules/store/models';
 
 class View extends React.Component {
+  static propTypes = {
+    colKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
+    rows: PropTypes.arrayOf(PropTypes.object),
+    error: PropTypes.instanceOf(Error),
+    query: PropTypes.string.isRequired
+  };
+
   render() {
-    const {rows, query} = this.props;
+    const {rows, query, error, colKeys} = this.props;
+    const errComponent = error && <pre>{error.toString()}</pre>;
+    const cols = colKeys
+      .map((key) => Cols._ALL_COLS[key])
+      .filter(Boolean);
+
+    const tableComponent = rows && <Table cols={cols} rows={rows}/>;
     return (
       <div>
-        <Table cols={Cols._ALL_COLS} rows={rows}/>
-        <span>{query}</span>
+        {tableComponent}
+        <div>{query}</div>
+        {errComponent}
       </div>
     );
   }
 }
 
 export const mapStateToProps = (state, props) => {
-  const {personId, pieceId, selectKeys, sortBy} = props;
+  const {personId, pieceId, colKeys, sortBy} = props;
 
   const models = modelsSelector(state);
-  const keys = selectKeys || Cols._ALL_KEYS;
+  const keys = colKeys || Cols._ALL_KEYS;
   const wheres = [];
   const params = [];
 
@@ -42,11 +56,22 @@ export const mapStateToProps = (state, props) => {
     query = `${query} sort by ${sortBy}`;
   }
 
+  const nextProps = {
+    ...props,
+    colKeys: keys,
+    query
+  };
+
   try {
-    const rows = models.exec(query, params);
-    return { ...props, query, rows };
+    return {
+      ...nextProps,
+      rows: models.exec(query, params)
+    };
   } catch (error) {
-    return { ...props, query, error };
+    return {
+      ...nextProps,
+      error
+    };
   }
 };
 
