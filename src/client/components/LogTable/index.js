@@ -30,7 +30,7 @@ class View extends React.Component {
 }
 
 export const mapStateToProps = (state, props) => {
-  const {personId, pieceId, colKeys, sortBy} = props;
+  const {personId, pieceId, colKeys, sortBy, sortDesc} = props;
 
   const models = modelsSelector(state);
   const keys = colKeys || Cols._ALL_KEYS;
@@ -53,7 +53,11 @@ export const mapStateToProps = (state, props) => {
 
   if (sortBy) {
     query = `${query} sort by ${sortBy}`;
+    if (sortDesc) {
+      query = `${query} DESC`;
+    }
   }
+
 
   const nextProps = {
     ...props,
