@@ -1,12 +1,12 @@
 import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import Page from '../Page';
-import About from '../../containers/About';
-import Home from '../../containers/Home';
-import LogRoute from '../../components/Log/Route';
-import QueryEditorPage from '../../components/QueryEditor/Page';
-import PersonRoute from '../../components/Person/Route';
-import PieceRoute from '../../components/Piece/Route';
+import About from '../About';
+import Home from '../Home';
+import LogRoute from '../Log/Route';
+import QueryEditorPage from '../QueryEditor/Page';
+import PersonRoute from '../Person/Route';
+import PieceRoute from '../Piece/Route';
 
 export default class PageRouter extends React.Component {
   render() {
