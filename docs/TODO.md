@@ -1,10 +1,10 @@
+sortable columns
 repeating piece types
 piece type view
 field editing
 record entry
 data sync
 figure out where racingage fits into logevent
-sortable columns
 figure out queries to replicate spreadsheet functionality
 similar piece comparison view
 query editor persists query between component mounts
