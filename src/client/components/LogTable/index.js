@@ -16,7 +16,17 @@ class View extends React.Component {
   };
 
   onSort(col) {
-    console.log('TODO: LogTable onSort', col);
+    console.log('TODO: LogTable onSort. Move most of mapStateToProps into LogTable', col);
+
+    const {sortData} = this.props;
+    if (sortData.col === col) {
+      sortData.desc = !sortData.desc;
+    } else {
+      sortData.col = col;
+      sortData.desc = false;
+    }
+
+    this.setState({...this.props, sortData});
   }
 
   render() {
@@ -26,7 +36,7 @@ class View extends React.Component {
     if (rows) {
       const _sortData = {
         ...sortData,
-        onSort: this.onSort
+        onSort: this.onSort.bind(this)
       };
 
       table = <Table sortData={_sortData} cols={cols} rows={rows} />;
@@ -79,8 +89,8 @@ export const mapStateToProps = (state, props) => {
       query = `${query} DESC`;
     }
 
-    sortData.sortBy = cols.find((c) => c.key === sortBy);
-    sortData.sortDesc = !!sortDesc;
+    sortData.col = cols.find((c) => c.key === sortBy);
+    sortData.desc = !!sortDesc;
   }
 
   const nextProps = {

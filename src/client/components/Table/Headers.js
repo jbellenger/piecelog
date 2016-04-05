@@ -14,8 +14,8 @@ export default class Headers extends React.Component {
   static propTypes = {
     cols: PropTypes.arrayOf(PropTypes.instanceOf(Col)).isRequired,
     sortData: PropTypes.shape({
-      sortBy: PropTypes.instanceOf(Col).isRequired,
-      sortDesc: PropTypes.bool.isRequired,
+      col: PropTypes.instanceOf(Col).isRequired,
+      desc: PropTypes.bool.isRequired,
       onSort: PropTypes.func.isRequired,
     })
   };
