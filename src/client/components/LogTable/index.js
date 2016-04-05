@@ -1,32 +1,40 @@
 import React, { PropTypes } from 'react';
 import Table from '../Table';
 import { connect } from 'react-redux';
+import Col from '../Table/Col';
 import * as Cols from './Cols';
 import { selector as modelsSelector } from '../../modules/store/models';
 import QueryDebug from '../QueryDebug';
 
 class View extends React.Component {
   static propTypes = {
-    colKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
+    cols: PropTypes.arrayOf(PropTypes.instanceOf(Col)).isRequired,
     rows: PropTypes.arrayOf(PropTypes.object),
     error: PropTypes.instanceOf(Error),
+    sortData: PropTypes.object,
     query: PropTypes.string.isRequired
   };
 
-  renderTable(rows, colKeys) {
-    const cols = colKeys
-      .map((key) => Cols._ALL_COLS[key])
-      .filter(Boolean);
-
-    return rows && <Table cols={cols} rows={rows}/>;
+  onSort(col) {
+    console.log('TODO: LogTable onSort', col);
   }
 
   render() {
-    const {rows, query, error, colKeys} = this.props;
+    const {cols, rows, query, error, sortData} = this.props;
+
+    let table = null;
+    if (rows) {
+      const _sortData = {
+        ...sortData,
+        onSort: this.onSort
+      };
+
+      table = <Table sortData={_sortData} cols={cols} rows={rows} />;
+    }
 
     return (
       <div>
-        {this.renderTable(rows, colKeys)}
+        {table}
         <QueryDebug query={query} error={error}/>
       </div>
     );
@@ -55,22 +63,31 @@ export const mapStateToProps = (state, props) => {
     params.push(pieceId);
   }
 
-  let query = `select ${colKeys.join(', ')} from log`;
+  const cols = colKeys
+    .map((key) => Cols._ALL_COLS[key])
+    .filter(Boolean);
+
+  let query = `select ${cols.map((c) => c.key).join(', ')} from log`;
   if (wheres.length) {
     query = `${query} where ${wheres.join(' and ')}`;
   }
 
+  const sortData = {};
   if (sortBy) {
     query = `${query} order by ${sortBy}`;
     if (sortDesc) {
       query = `${query} DESC`;
     }
-  }
 
+    sortData.sortBy = cols.find((c) => c.key === sortBy);
+    sortData.sortDesc = !!sortDesc;
+  }
 
   const nextProps = {
     ...defaultProps,
     ...props,
+    cols,
+    sortData,
     query
   };
 
