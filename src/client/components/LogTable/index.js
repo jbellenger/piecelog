@@ -13,27 +13,36 @@ class View extends React.Component {
     query: PropTypes.string.isRequired
   };
 
-  render() {
-    const {rows, query, error, colKeys} = this.props;
+  renderTable(rows, colKeys) {
     const cols = colKeys
       .map((key) => Cols._ALL_COLS[key])
       .filter(Boolean);
 
-    const tableComponent = rows && <Table cols={cols} rows={rows}/>;
+    return rows && <Table cols={cols} rows={rows}/>;
+  }
+
+  render() {
+    const {rows, query, error, colKeys} = this.props;
+
     return (
       <div>
-        {tableComponent}
+        {this.renderTable(rows, colKeys)}
         <QueryDebug query={query} error={error}/>
       </div>
     );
   }
 }
 
+const defaultProps = {
+  colKeys: Cols._ALL_KEYS,
+  sortBy: 'log_stamp',
+  sortDesc: true,
+};
+
 export const mapStateToProps = (state, props) => {
-  const {personId, pieceId, colKeys, sortBy, sortDesc} = props;
+  const {personId, pieceId, colKeys, sortBy, sortDesc} = {...defaultProps, ...props};
 
   const models = modelsSelector(state);
-  const keys = colKeys || Cols._ALL_KEYS;
   const wheres = [];
   const params = [];
 
@@ -46,13 +55,13 @@ export const mapStateToProps = (state, props) => {
     params.push(pieceId);
   }
 
-  let query = `select ${keys.join(', ')} from log`;
+  let query = `select ${colKeys.join(', ')} from log`;
   if (wheres.length) {
     query = `${query} where ${wheres.join(' and ')}`;
   }
 
   if (sortBy) {
-    query = `${query} sort by ${sortBy}`;
+    query = `${query} order by ${sortBy}`;
     if (sortDesc) {
       query = `${query} DESC`;
     }
@@ -60,8 +69,8 @@ export const mapStateToProps = (state, props) => {
 
 
   const nextProps = {
+    ...defaultProps,
     ...props,
-    colKeys: keys,
     query
   };
 
