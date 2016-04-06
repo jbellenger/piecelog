@@ -1,4 +1,5 @@
-fix person/piece views
+log query wizard
+log comparisons
 repeating piece types
 piece type view
 field editing
@@ -12,7 +13,6 @@ smart table columns
 smart query errors
 eslint airbnb rules: https://www.npmjs.com/package/eslint-config-airbnb
 decorator support
-separate filter state from log state
 smarter filtering
 figure out a story for user identity
 figure out a story for rower identity
@@ -66,3 +66,5 @@ sentry?
 # easier syntax for querying computed fields: LogTableContainer/Piece.View/Person.View
 # fix alasql
 # sortable columns
+# fix person/piece views
+# sort direction indicator

@@ -2,13 +2,19 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import Col from './Col';
 
-const TableHeader = ({key, col, sortData}) => (
-  <th 
-    onClick={() => sortData.onSort(col)}
-    key={key}>
-    {col.header}
-  </th>
-);
+const TableHeader = ({key, col, sortData}) => {
+  let contents = col.header;
+  if (col === sortData.col) {
+    contents += sortData.desc ? '↓' : '↑';
+  }
+  return (
+    <th 
+      onClick={() => sortData.onSort(col)}
+      key={key}>
+      {contents}
+    </th>
+  );
+};
 
 export default class Headers extends React.Component {
   static propTypes = {
