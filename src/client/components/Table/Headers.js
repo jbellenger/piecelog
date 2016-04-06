@@ -8,7 +8,7 @@ const TableHeader = ({key, col, sortData}) => {
     contents += sortData.desc ? '↓' : '↑';
   }
   return (
-    <th 
+    <th
       onClick={() => sortData.onSort(col)}
       key={key}>
       {contents}
