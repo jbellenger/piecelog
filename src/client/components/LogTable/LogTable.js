@@ -46,7 +46,7 @@ class View extends React.Component {
 
     let rows, error = null;
     try {
-      rows = models.exec(query);
+      rows = models.exec(query, params);
     } catch (err) {
       error = err;
     }

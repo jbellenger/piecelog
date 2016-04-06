@@ -32,8 +32,6 @@ export default class Container extends React.Component {
   }
 
   render() {
-    console.log('render with sortData', this.sortData);
-
     return (
       <LogTable {...this.props} sortData={this.sortData} />
     );
