@@ -1,4 +1,4 @@
-sortable columns
+fix person/piece views
 repeating piece types
 piece type view
 field editing
@@ -65,3 +65,4 @@ sentry?
 # migrate query editor to use new views
 # easier syntax for querying computed fields: LogTableContainer/Piece.View/Person.View
 # fix alasql
+# sortable columns

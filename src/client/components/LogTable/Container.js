@@ -3,28 +3,39 @@ import LogTable from './LogTable';
 import * as Cols from './Cols';
 
 export default class Container extends React.Component {
-  onSort() {
-    console.log('TODO: onSort');
-  }
-
   static defaultProps = {
     colKeys: Cols._ALL_KEYS,
-    sortData: {
-      col: Cols.STAMP,
-      desc: false,
-      onSort: () => {}
-    }
   };
 
-  render() {
-    const {sortData} = this.props;
-    const _sortData = {
-      onSort: this.onSort.bind(this),
-      ...sortData
+  constructor(props) {
+    super(props);
+    this.state = {
+      col: Cols.STAMP,
+      desc: false
     };
+  }
+
+  onSort(col) {
+    if (col === this.state.col) {
+      this.setState({desc: !this.state.desc});
+    } else {
+      this.setState({col});
+    }
+  }
+
+  get sortData() {
+    return {
+      col: this.state.col,
+      desc: this.state.desc,
+      onSort: this.onSort.bind(this),
+    };
+  }
+
+  render() {
+    console.log('render with sortData', this.sortData);
 
     return (
-      <LogTable {...this.props} sortData={_sortData} />
+      <LogTable {...this.props} sortData={this.sortData} />
     );
   }
 };
