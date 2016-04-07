@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import * as Stats from '..';
 
-suite.only('Stats', () => {
+suite('Stats', () => {
   suite('apply', () => {
     test('returns stats for an array', () => {
       const stats = Stats.apply([7, 5, 21]);
