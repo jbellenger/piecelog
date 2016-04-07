@@ -1,3 +1,4 @@
+d3 integration
 log query wizard
 log comparisons
 repeating piece types
@@ -22,7 +23,7 @@ integrate redux-devtools
 git lint/test hooks
 a11y
 styling
-hosting
+hosting: zeit now, aws lambda, gcp, heroku
 deployment
 sentry?
 

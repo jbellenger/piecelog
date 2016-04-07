@@ -8,7 +8,7 @@ export const max = (values) => Math.max(...values);
 export const median = (values) => {
   const sorted = sortBy(values);
   return sorted[Number.parseInt(sorted.length/2)];
-}
+};
 
 export const apply = (values) => {
   return {
