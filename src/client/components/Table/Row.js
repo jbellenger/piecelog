@@ -1,19 +1,20 @@
 import React, { PropTypes } from 'react';
 import Col from './Col';
+import * as Shapes from './shapes';
 
 export const DEFAULT_FORMATTER = (x) => x;
 export default class Row extends React.Component {
   static propTypes = {
-    data: PropTypes.object.isRequired,
-    cols: PropTypes.arrayOf(PropTypes.instanceOf(Col)).isRequired
+    row: Shapes.RowShape.isRequired,
+    cols: Shapes.ColsShape.isRequired,
   }
 
   render() {
-    const {cols, data} = this.props;
+    const {cols, row} = this.props;
 
     return (
       <tr>
-        {cols.map((col,i) => <td key={i}>{col.apply(data)}</td>)}
+        {cols.map((col,i) => <td key={i}>{col.apply(row)}</td>)}
       </tr>
     );
   }

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import Col from './Col';
+import * as Shapes from './shapes';
 
 const TableHeader = ({key, col, sortData}) => {
   let contents = col.header;
@@ -18,12 +19,8 @@ const TableHeader = ({key, col, sortData}) => {
 
 export default class Headers extends React.Component {
   static propTypes = {
-    cols: PropTypes.arrayOf(PropTypes.instanceOf(Col)).isRequired,
-    sortData: PropTypes.shape({
-      col: PropTypes.instanceOf(Col).isRequired,
-      desc: PropTypes.bool.isRequired,
-      onSort: PropTypes.func.isRequired,
-    })
+    cols: Shapes.ColsShape.isRequired,
+    sortData: Shapes.SortDataShape.isRequired,
   };
 
   render() {

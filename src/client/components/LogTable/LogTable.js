@@ -6,6 +6,7 @@ import * as Cols from './Cols';
 import Models from '../../modules/model/Models';
 import { selector as modelsSelector } from '../../modules/store/models';
 import QueryDebug from '../QueryDebug';
+import Stats from './Stats';
 
 class View extends React.Component {
   static propTypes = {
@@ -51,14 +52,19 @@ class View extends React.Component {
       error = err;
     }
 
-    let table = null;
+    let rowComponents = null;
     if (rows) {
-      table = <Table sortData={sortData} cols={cols} rows={rows} />;
+      rowComponents = (
+        <div>
+          <Stats rows={rows} />
+          <Table sortData={sortData} cols={cols} rows={rows} />;
+        </div>
+      );
     }
 
     return (
       <div>
-        {table}
+        {rowComponents}
         <QueryDebug query={query} error={error}/>
       </div>
     );

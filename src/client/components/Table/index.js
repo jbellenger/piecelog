@@ -3,12 +3,13 @@ import Row from './Row';
 import Col from './Col';
 import Headers from './Headers';
 import styles from './styles.css';
+import * as Shapes from './shapes';
 
 export default class Table extends React.Component {
   static propTypes = {
-    rows: PropTypes.arrayOf(PropTypes.object).isRequired,
-    cols: PropTypes.arrayOf(PropTypes.instanceOf(Col)),
-    sortData: PropTypes.object.isRequired,
+    rows: Shapes.RowsShape.isRequired,
+    cols: Shapes.ColsShape.isRequied,
+    sortData: Shapes.SortDataShape.isRequired,
   };
 
   render() {
@@ -18,7 +19,7 @@ export default class Table extends React.Component {
       <table className={styles.root}>
         <tbody>
           <Headers cols={cols} sortData={sortData}/>
-          {rows.map((row, idx) => <Row key={idx} cols={cols} data={row}/>)}
+          {rows.map((row, idx) => <Row key={idx} cols={cols} row={row}/>)}
         </tbody>
       </table>
     );
