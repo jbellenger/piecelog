@@ -57,7 +57,7 @@ class View extends React.Component {
       rowComponents = (
         <div>
           <Stats rows={rows} />
-          <Table sortData={sortData} cols={cols} rows={rows} />;
+          <Table sortData={sortData} cols={cols} rows={rows} />
         </div>
       );
     }
