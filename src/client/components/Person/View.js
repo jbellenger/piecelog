@@ -14,8 +14,6 @@ export class View extends React.Component {
     return (
       <div>
         <h1>Person: {person.person_id}</h1>
-        <h2>Details</h2>
-        <pre>{JSON.stringify(person)}</pre>
         {this.props.children}
       </div>
     );

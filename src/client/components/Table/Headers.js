@@ -5,13 +5,16 @@ import * as Shapes from './shapes';
 
 const TableHeader = ({key, col, sortData}) => {
   let contents = col.header;
-  if (col === sortData.col) {
+  if (sortData && col === sortData.col) {
     contents += sortData.desc ? '↓' : '↑';
   }
+  const attrs = {key};
+  if (sortData) {
+    attrs.onClick = () => sortData.onSort(col);
+  }
+
   return (
-    <th
-      onClick={() => sortData.onSort(col)}
-      key={key}>
+    <th {...attrs}>
       {contents}
     </th>
   );
@@ -20,7 +23,7 @@ const TableHeader = ({key, col, sortData}) => {
 export default class Headers extends React.Component {
   static propTypes = {
     cols: Shapes.ColsShape.isRequired,
-    sortData: Shapes.SortDataShape.isRequired,
+    sortData: Shapes.SortDataShape,
   };
 
   render() {

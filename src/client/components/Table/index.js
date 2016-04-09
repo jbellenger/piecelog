@@ -9,7 +9,7 @@ export default class Table extends React.Component {
   static propTypes = {
     rows: Shapes.RowsShape.isRequired,
     cols: Shapes.ColsShape.isRequied,
-    sortData: Shapes.SortDataShape.isRequired,
+    sortData: Shapes.SortDataShape,
   };
 
   render() {
