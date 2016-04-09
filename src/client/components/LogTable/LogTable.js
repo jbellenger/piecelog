@@ -6,7 +6,6 @@ import * as Cols from './Cols';
 import Models from '../../modules/model/Models';
 import { selector as modelsSelector } from '../../modules/store/models';
 import QueryDebug from '../QueryDebug';
-import Stats from './Stats';
 
 class View extends React.Component {
   static propTypes = {

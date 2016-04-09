@@ -13,7 +13,7 @@ export class View extends React.Component {
     const { person } = this.props;
     return (
       <div>
-        <h1>Person: {person.person_id}</h1>
+        <h1>{person.person_id}</h1>
         {this.props.children}
       </div>
     );
