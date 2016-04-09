@@ -1,3 +1,4 @@
+fix LogTable/Table 'cols' prop warning 
 d3 integration
 log query wizard
 log comparisons
