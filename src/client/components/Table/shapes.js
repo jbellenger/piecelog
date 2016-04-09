@@ -1,7 +1,7 @@
 import {PropTypes} from 'react';
 import Col from './Col';
 
-export const RowShape = PropTypes.object;
+export const RowShape = PropTypes.any;
 
 export const RowsShape = PropTypes.arrayOf(RowShape);
 

@@ -7,7 +7,7 @@ export default class Row extends React.Component {
   static propTypes = {
     row: Shapes.RowShape.isRequired,
     cols: Shapes.ColsShape.isRequired,
-  }
+  };
 
   render() {
     const {cols, row} = this.props;

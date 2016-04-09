@@ -1,7 +1,7 @@
 import React from 'react';
 import View from './View';
 import LogTable from '../LogTable';
-import PersonSummary from '../PersonSummary';
+import PersonSummary from './PersonSummary';
 
 const Route = ({params: {personId}}) => (
   <View personId={personId}>
