@@ -1,5 +1,6 @@
-fix LogTable/Table 'cols' prop warning 
+graphing: remove plotly, try react-boxplot or react-d3
 d3 integration
+fix LogTable/Table 'cols' prop warning 
 log query wizard
 log comparisons
 repeating piece types
