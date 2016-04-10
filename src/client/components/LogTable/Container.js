@@ -11,7 +11,6 @@ export default class Container extends React.Component {
       Cols.DISTANCE,
       Cols.TIME,
       Cols.POUNDS,
-      Cols.KILOS,
       Cols.SPLIT,
       Cols.WATTS,
       Cols.WATTS_PER_KG,
