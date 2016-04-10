@@ -2,18 +2,17 @@ import React from 'react';
 import { Link } from 'react-router';
 import Col from '../Table/Col';
 import * as Format from '../../modules/format';
+import orderBy from 'lodash/orderBy';
+import * as stats from '../../modules/stats';
 
-export const _ALL_COLS = {};
-const mk = (...args) => {
-  const col = new Col(...args);
-  _ALL_COLS[col.key] = col;
-  return col;
-};
+const mk = (...args) => new Col(...args);
 
 const PIECE_FORMAT = (value) => (
   <Link to={'/piece/' + value}>{value}</Link>
 );
 export const PIECE = mk('log_piece_id', 'piece', PIECE_FORMAT);
+
+export const PIECE_TYPE = mk('piece_type', 'piece type');
 
 const PERSON_FORMAT = (value) => (
   <Link to={'/person/' + value}>{value}</Link>
@@ -38,4 +37,30 @@ export const WATTS_PER_KG = mk('log_watts_per_kg', 'watts/kg', Format.formatWatt
 
 export const WEIGHT_ADJUSTED_SPLIT = mk('log_weight_adjusted_split_seconds', 'weight adjusted split', Format.formatSplit);
 
-export const _ALL_KEYS = Object.keys(_ALL_COLS);
+export const BEST_SPLIT = mk(
+  null,
+  'best split', 
+  Format.formatSplit, 
+  ({group}) => orderBy(group, ['log_split_seconds'])[0].log_split_seconds
+);
+
+export const LATEST_SPLIT = mk(
+  null,
+  'latest split', 
+  Format.formatSplit, 
+  ({group}) => orderBy(group, ['log_stamp'], ['desc'])[0].log_split_seconds
+);
+
+export const MEDIAN_SPLIT = mk(
+  null,
+  'median split', 
+  Format.formatSplit,
+  ({group}) => stats.median(group.map((x) => x.log_split_seconds))
+);
+
+export const COUNT = mk(
+  null,
+  'count', 
+  Format.formatInteger, 
+  ({group}) => group.length
+);

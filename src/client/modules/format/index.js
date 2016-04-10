@@ -27,7 +27,8 @@ export const formatDate = (date) => {
   }
 };
 
-export const formatWatts = formatNumber({round: 0});
 export const formatWeight = formatNumber({round: 1, padRight: 1});
 export const formatWattsPerKg = formatNumber({padRight: 2, round: 2});
 export const formatTime = (millis) => formatSplit(millis/1000);
+export const formatInteger = formatNumber({round: 0});
+export const formatWatts = formatInteger;

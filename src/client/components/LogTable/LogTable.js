@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import Table from '../Table';
+import * as TableShapes from '../Table/shapes';
 import { connect } from 'react-redux';
 import Col from '../Table/Col';
 import * as Cols from './Cols';
@@ -9,7 +10,7 @@ import QueryDebug from '../QueryDebug';
 
 class View extends React.Component {
   static propTypes = {
-    colKeys: PropTypes.arrayOf(String).isRequired,
+    cols: TableShapes.ColsShape.isRequired,
     models: PropTypes.instanceOf(Models).isRequired,
     personId: PropTypes.string,
     pieceId: PropTypes.string,
@@ -17,7 +18,7 @@ class View extends React.Component {
   };
 
   render() {
-    const {colKeys, models, personId, pieceId, sortData} = this.props;
+    const {cols, models, personId, pieceId, sortData} = this.props;
 
     const wheres = [];
     const params = [];
@@ -29,10 +30,6 @@ class View extends React.Component {
       wheres.push('log_piece_id=?');
       params.push(pieceId);
     }
-
-    const cols = colKeys
-      .map((key) => Cols._ALL_COLS[key])
-      .filter(Boolean);
 
     let query = `select ${cols.map((c) => c.key).join(', ')} from log`;
     if (wheres.length) {

@@ -5,25 +5,25 @@ import LogEvent from '../../modules/model/LogEvent';
 import * as Cols from '../LogTable/Cols';
 import GroupingTable from '../GroupingTable';
 
-const mapStateToProps = (state, {personId}) => {
+const mapStateToProps = (state, {pieceId}) => {
   const rows = modelsSelector(state).exec(`
     select 
       ${LogEvent.fields.join(',')},
       piece.piece_type
     from log 
     join piece on log.log_piece_id=piece.piece_id
-    where log.log_person_id=?
-  `, [personId]);
+    where log.log_piece_id=?
+  `, [pieceId]);
 
   return {rows};
 };
 
-const PersonSummary = (props) => (
+const PieceSummary = (props) => (
   <GroupingTable 
-    cols={[Cols.PIECE_TYPE, Cols.BEST_SPLIT, Cols.LATEST_SPLIT]}
+    cols={[Cols.PIECE_TYPE, Cols.BEST_SPLIT, Cols.MEDIAN_SPLIT, Cols.COUNT]}
     groupKey={"piece_type"}
     {...props} 
   />
 );
 
-export default connect(mapStateToProps)(PersonSummary);
+export default connect(mapStateToProps)(PieceSummary);

@@ -4,7 +4,19 @@ import * as Cols from './Cols';
 
 export default class Container extends React.Component {
   static defaultProps = {
-    colKeys: Cols._ALL_KEYS,
+    cols: [
+      Cols.PIECE,
+      Cols.PERSON,
+      Cols.STAMP,
+      Cols.DISTANCE,
+      Cols.TIME,
+      Cols.POUNDS,
+      Cols.KILOS,
+      Cols.SPLIT,
+      Cols.WATTS,
+      Cols.WATTS_PER_KG,
+      Cols.WEIGHT_ADJUSTED_SPLIT,
+    ]
   };
 
   constructor(props) {
