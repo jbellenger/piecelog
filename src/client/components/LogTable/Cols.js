@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import {Link} from 'react-router';
 import Col from '../Table/Col';
 import * as Format from '../../modules/format';
 import orderBy from 'lodash/orderBy';
@@ -12,7 +12,10 @@ const PIECE_FORMAT = (value) => (
 );
 export const PIECE = mk('log_piece_id', 'piece', PIECE_FORMAT);
 
-export const PIECE_TYPE = mk('piece_type', 'piece type');
+const PIECE_TYPE_FORMAT = (value) => (
+  <Link to={'/piece-type/' + value}>{value}</Link>
+);
+export const PIECE_TYPE = mk('piece_type', 'piece type', PIECE_TYPE_FORMAT);
 
 const PERSON_FORMAT = (value) => (
   <Link to={'/person/' + value}>{value}</Link>
