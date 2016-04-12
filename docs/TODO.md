@@ -1,3 +1,7 @@
+person/piece-type sparkline
+piece-type: summary stats
+piece/multi-people distribution
+piece-type view
 graphing: remove plotly, try react-boxplot or react-d3
 d3 integration
 fix LogTable/Table 'cols' prop warning 

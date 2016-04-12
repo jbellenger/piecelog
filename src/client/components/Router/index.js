@@ -7,6 +7,7 @@ import LogRoute from '../Log/Route';
 import QueryEditorPage from '../QueryEditor/Page';
 import PersonRoute from '../Person/Route';
 import PieceRoute from '../Piece/Route';
+import PieceTypeRoute from '../PieceType/Route';
 
 export default class PageRouter extends React.Component {
   render() {
@@ -20,6 +21,7 @@ export default class PageRouter extends React.Component {
           <Route path="query" component={QueryEditorPage} />
           <Route path="person/:personId" component={PersonRoute} />
           <Route path="piece/:pieceId" component={PieceRoute} />
+          <Route path="piece-type/:pieceType" component={PieceTypeRoute} />
         </Route>
       </Router>
     );

@@ -1,8 +1,6 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import LogTable from '../LogTable';
 import {selector as modelsSelector} from '../../modules/store/models';
-import LogEvent from '../../modules/model/LogEvent';
 
 export class View extends React.Component {
   static propTypes = {

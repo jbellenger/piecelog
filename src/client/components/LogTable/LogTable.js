@@ -14,24 +14,32 @@ class View extends React.Component {
     models: PropTypes.instanceOf(Models).isRequired,
     personId: PropTypes.string,
     pieceId: PropTypes.string,
+    pieceTYpe: PropTypes.string,
     sortData: PropTypes.object.isRequired
   };
 
   render() {
-    const {cols, models, personId, pieceId, sortData} = this.props;
+    const {cols, models, personId, pieceId, pieceType, sortData} = this.props;
 
     const wheres = [];
     const params = [];
     if (personId) {
-      wheres.push('log_person_id=?');
+      wheres.push('log.log_person_id=?');
       params.push(personId);
     }
     if (pieceId) {
-      wheres.push('log_piece_id=?');
+      wheres.push('log.log_piece_id=?');
       params.push(pieceId);
     }
+    if (pieceType) {
+      wheres.push('piece.piece_type=?');
+      params.push(pieceType);
+    }
 
-    let query = `select ${cols.map((c) => c.key).join(', ')} from log`;
+    let query = `
+      select ${cols.map((c) => c.key).join(', ')} from log
+      join piece on log.log_piece_id=piece.piece_id
+    `;
     if (wheres.length) {
       query = `${query} where ${wheres.join(' and ')}`;
     }
