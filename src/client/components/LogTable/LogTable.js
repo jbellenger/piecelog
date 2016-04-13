@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import Col from '../Table/Col';
 import * as Cols from './Cols';
 import Models from '../../modules/model/Models';
+import LogEvent from '../../modules/model/LogEvent';
+import Piece from '../../modules/model/Piece';
 import { selector as modelsSelector } from '../../modules/store/models';
 import QueryDebug from '../QueryDebug';
 
@@ -14,7 +16,7 @@ class View extends React.Component {
     models: PropTypes.instanceOf(Models).isRequired,
     personId: PropTypes.string,
     pieceId: PropTypes.string,
-    pieceTYpe: PropTypes.string,
+    pieceType: PropTypes.string,
     sortData: PropTypes.object.isRequired
   };
 
@@ -36,8 +38,9 @@ class View extends React.Component {
       params.push(pieceType);
     }
 
+    const fields = LogEvent.fields.concat(Piece.fields);
     let query = `
-      select ${cols.map((c) => c.key).join(', ')} from log
+      select ${fields.join(',')} from log
       join piece on log.log_piece_id=piece.piece_id
     `;
     if (wheres.length) {
