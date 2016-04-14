@@ -75,3 +75,4 @@ sentry?
 # sortable columns
 # fix person/piece views
 # sort direction indicator
+# unify log queries into a component
