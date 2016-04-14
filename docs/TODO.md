@@ -1,9 +1,6 @@
 person/piece-type sparkline
 piece-type: summary stats
 piece/multi-people distribution
-piece-type view
-graphing: remove plotly, try react-boxplot or react-d3
-d3 integration
 fix LogTable/Table 'cols' prop warning 
 log query wizard
 log comparisons
@@ -76,3 +73,5 @@ sentry?
 # fix person/piece views
 # sort direction indicator
 # unify log queries into a component
+# piece-type view
+# graphing: remove plotly, try react-boxplot or react-d3

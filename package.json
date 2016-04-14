@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "piece log",
   "main": "index.js",
+  "repository": "github:jbellenger/piecelog",
   "scripts": {
     "build": "./scripts/build",
     "import-spreadsheet": "node ./tools/import-spreadsheet",
@@ -48,7 +49,6 @@
     "lodash": "^4.9.0",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
-    "react-plotlyjs": "^0.3.1",
     "react-redux": "^4.4.0",
     "react-router": "^2.0.0",
     "redux": "^3.3.1",
