@@ -20,7 +20,7 @@ const mapStateToProps = (state, {pieceId}) => {
 
 const PieceSummary = (props) => (
   <GroupingTable 
-    cols={[Cols.PIECE_TYPE, Cols.BEST_SPLIT, Cols.MEDIAN_SPLIT, Cols.COUNT]}
+    cols={[Cols.BEST_SPLIT, Cols.MEDIAN_SPLIT, Cols.COUNT]}
     groupKey={"piece_type"}
     {...props} 
   />
