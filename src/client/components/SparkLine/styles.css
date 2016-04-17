@@ -1,0 +1,12 @@
+:local .root {
+  width:150px;
+  height:2em;
+  background:transparent;
+}
+
+:local rect {
+  width:100%;
+  height:100%;
+  fill:orange;
+  stroke:blue;
+}
