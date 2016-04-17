@@ -5,7 +5,7 @@ import GroupingTable from '../GroupingTable';
 
 const PersonSummary = ({rows}) => {
   return <GroupingTable 
-    cols={[Cols.PIECE_TYPE, Cols.BEST_SPLIT, Cols.LATEST_SPLIT]}
+    cols={[Cols.PIECE_TYPE, Cols.BEST_SPLIT, Cols.LATEST_SPLIT, Cols.SPLIT_SPARKLINE]}
     groupKey={"piece_type"}
     rows={rows}
   />;

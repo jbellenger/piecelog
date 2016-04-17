@@ -8,6 +8,7 @@ import QueryEditorPage from '../QueryEditor/Page';
 import PersonRoute from '../Person/Route';
 import PieceRoute from '../Piece/Route';
 import PieceTypeRoute from '../PieceType/Route';
+import SvgTest from '../SvgTest/Route';
 
 export default class PageRouter extends React.Component {
   render() {
@@ -19,6 +20,7 @@ export default class PageRouter extends React.Component {
           <Route path="about" component={About} />
           <Route path="log" component={LogRoute} />
           <Route path="query" component={QueryEditorPage} />
+          <Route path="svg" component={SvgTest} />
           <Route path="person/:personId" component={PersonRoute} />
           <Route path="piece/:pieceId" component={PieceRoute} />
           <Route path="piece-type/:pieceType" component={PieceTypeRoute} />

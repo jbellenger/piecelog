@@ -1,11 +1,10 @@
+fix ":local rect" css poisoning
 person/piece-type sparkline
-piece-type: summary stats
 piece/multi-people distribution
 fix LogTable/Table 'cols' prop warning 
 log query wizard
 log comparisons
 repeating piece types
-piece type view
 field editing
 record entry
 data sync
@@ -75,3 +74,5 @@ sentry?
 # unify log queries into a component
 # piece-type view
 # graphing: remove plotly, try react-boxplot or react-d3
+# piece type view
+# piece-type: summary stats
