@@ -67,7 +67,7 @@ export const COUNT = new Col(
   ({group}) => group.length
 );
 
-const SPARKLINE_FORMAT = (rows) => <SparkLine rows={rows} />;
+const SPARKLINE_FORMAT = (rows) => <SparkLine x="log_stamp" y="log_split_seconds" rows={rows} />;
 
 export const SPLIT_SPARKLINE = new Col(
   null,

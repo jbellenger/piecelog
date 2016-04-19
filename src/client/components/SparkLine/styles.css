@@ -1,12 +1,16 @@
 :local .root {
   width:150px;
   height:2em;
-  background:transparent;
+  background:orange;
 }
 
-:local rect {
-  width:100%;
-  height:100%;
-  fill:orange;
+:local .point {
+  r:4;
+  fill:red;
+  stroke-width:4;
+}
+
+:local .point:hover {
+  fill:transparent;
   stroke:blue;
 }
