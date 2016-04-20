@@ -1,6 +1,5 @@
 sparkline:
-  fix compressed x-positions
-  use same x-axes in sparkline stack? Or maybe just 1 sparkline?
+  use same axes in sparkline stack? Or maybe just 1 sparkline?
 fix ":local rect" css poisoning
 person/piece-type sparkline
 piece/multi-people distribution
@@ -79,3 +78,4 @@ sentry?
 # graphing: remove plotly, try react-boxplot or react-d3
 # piece type view
 # piece-type: summary stats
+# sparkline: fix compressed x-positions

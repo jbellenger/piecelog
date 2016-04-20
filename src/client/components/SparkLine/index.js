@@ -27,9 +27,13 @@ export default class SparkLine extends React.Component {
         yhi = row[y];
       }
     });
+
+    const px = padding * (xhi - xlo);
+    const py = padding * (yhi - ylo);
+
     return [
-      [xlo * (1-padding), xhi * (1+padding)],
-      [ylo * (1-padding), yhi * (1+padding)],
+      [xlo - px, xhi + px],
+      [ylo - py, yhi + py],
     ];
   }
 
