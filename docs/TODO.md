@@ -1,5 +1,6 @@
-sparkline:
-  use same axes in sparkline stack? Or maybe just 1 sparkline?
+linegraph: factory method that can apply groupBy
+linegraph: rendering
+sparkline: remove/deprecate
 fix ":local rect" css poisoning
 person/piece-type sparkline
 piece/multi-people distribution

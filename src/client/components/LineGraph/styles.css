@@ -1,0 +1,15 @@
+:local .root {
+  width:150px;
+  background:orange;
+}
+
+:local .point {
+  r:4;
+  fill:red;
+  stroke-width:4;
+}
+
+:local .point:hover {
+  fill:transparent;
+  stroke:blue;
+}
