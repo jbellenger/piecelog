@@ -12,7 +12,12 @@ const PersonSummary = ({rows}) => (
       groupKey={"piece_type"}
       rows={rows}
     />
-    <LineGraph />
+    <LineGraph 
+      series={groupBy(rows, 'piece_type')} 
+      xcol={Cols.STAMP}
+      ycol={Cols.SPLIT}
+      labelcol={Cols.SPLIT}
+    />
   </div>
 );
 

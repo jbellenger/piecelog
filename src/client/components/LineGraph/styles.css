@@ -5,11 +5,24 @@
 
 :local .point {
   r:4;
-  fill:red;
-  stroke-width:4;
 }
 
 :local .point:hover {
-  fill:transparent;
-  stroke:blue;
+  r:8;
+}
+
+:local .point.i1 {
+  fill:red;
+}
+
+:local .point.i2 {
+  fill:blue;
+}
+
+:local .point.i3 {
+  fill:green;
+}
+
+:local .point.i4 {
+  fill:yellow;
 }
