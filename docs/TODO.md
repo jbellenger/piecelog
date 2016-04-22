@@ -1,5 +1,4 @@
 linegraph: factory method that can apply groupBy
-linegraph: rendering
 sparkline: remove/deprecate
 fix ":local rect" css poisoning
 person/piece-type sparkline
@@ -80,3 +79,4 @@ sentry?
 # piece type view
 # piece-type: summary stats
 # sparkline: fix compressed x-positions
+# linegraph: rendering
