@@ -1,5 +1,7 @@
-linegraph: factory method that can apply groupBy
+linegraph: draw lines
+evaluate path-svg: https://www.npmjs.com/package/path-svg
 sparkline: remove/deprecate
+rename cols to fields?
 fix ":local rect" css poisoning
 person/piece-type sparkline
 piece/multi-people distribution

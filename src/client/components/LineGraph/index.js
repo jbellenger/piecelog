@@ -38,12 +38,18 @@ export default class LineGraph extends React.Component {
     return rect;
   }
 
-  point(row, rect, index) {
-    const {xcol, ycol, labelcol} = this.props;
-
-    const cnames = classNames(styles.point, styles["i" + index]);
+  coords(row, rect) {
+    const {xcol, ycol} = this.props;
     const x = (xcol.extractor(row) - rect.x.lo)/rect.x.range * 100 + "%";
     const y = (1 - (ycol.extractor(row) - rect.y.lo)/rect.y.range) * 100 + "%";
+
+    return [x, y];
+  }
+
+  point(row, rect, index) {
+    const cnames = classNames(styles.point, styles["i" + index]);
+    const [x, y] = this.coords(row, rect)
+    const {labelcol} = this.props;
 
     return (
       <g>
@@ -64,7 +70,9 @@ export default class LineGraph extends React.Component {
 
     return (
       <svg className={styles.root}>
-        {flatten(pointSets)}
+        <g className={styles.zoomContainer}>
+          {flatten(pointSets)}
+        </g>
       </svg>
     );
   }

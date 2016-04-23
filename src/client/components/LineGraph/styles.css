@@ -3,6 +3,11 @@
   background:orange;
 }
 
+:local .zoomContainer {
+  transform: scale(.90);
+  transform-origin: center;
+}
+
 :local .point {
   r:4;
 }
