@@ -1,6 +1,6 @@
 :local .root {
   width:150px;
-  background:orange;
+  background:lightgray;
 }
 
 :local .zoomContainer {
