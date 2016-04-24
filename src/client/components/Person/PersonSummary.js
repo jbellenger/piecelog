@@ -13,6 +13,8 @@ const PersonSummary = ({rows}) => (
       rows={rows}
     />
     <LineGraph 
+      width={300}
+      height={200}
       series={groupBy(rows, 'piece_type')} 
       xcol={Cols.STAMP}
       ycol={Cols.SPLIT}

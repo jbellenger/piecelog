@@ -3,8 +3,14 @@ import styles from './styles.css';
 import values from 'lodash/values';
 import flatten from 'lodash/flatten';
 import classNames from 'classnames';
+import SvgPath from 'path-svg/svg-path'
 
 export default class LineGraph extends React.Component {
+  static propTypes = {
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+  };
+
   rect() {
     const {series, xcol, ycol} = this.props;
     const rect = {x: {}, y: {}};
@@ -39,11 +45,8 @@ export default class LineGraph extends React.Component {
   }
 
   coords(row, rect) {
-    const {xcol, ycol} = this.props;
-    const x = (xcol.extractor(row) - rect.x.lo)/rect.x.range * 100 + "%";
-    const y = (1 - (ycol.extractor(row) - rect.y.lo)/rect.y.range) * 100 + "%";
-
-    return [x, y];
+    const {xcol, ycol, width, height} = this.props;
+    return [xcol.extractor(row), ycol.extractor(row)];
   }
 
   point(row, rect, index) {
@@ -60,7 +63,7 @@ export default class LineGraph extends React.Component {
   }
 
   render() {
-    const {series} = this.props;
+    const {series, width, height} = this.props;
     const rect = this.rect();
     
     const pointSets = values(series)
@@ -68,8 +71,9 @@ export default class LineGraph extends React.Component {
         return rows.map((row) => this.point(row, rect, i));
       });
 
+    const viewBox = `${rect.x.lo} ${rect.y.lo} ${rect.x.hi} ${rect.y.hi}`;
     return (
-      <svg className={styles.root}>
+      <svg width={width} height={height} viewBox={viewBox} className={styles.root}>
         <g className={styles.zoomContainer}>
           {flatten(pointSets)}
         </g>

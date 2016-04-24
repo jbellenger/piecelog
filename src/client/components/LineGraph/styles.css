@@ -1,11 +1,10 @@
 :local .root {
-  width:150px;
   background:lightgray;
 }
 
 :local .zoomContainer {
-  transform: scale(.90);
-  transform-origin: center;
+  transform:scale(.90);
+  transform-origin:center;
 }
 
 :local .point {

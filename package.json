@@ -47,6 +47,7 @@
     "format-number": "^2.0.1",
     "immutable": "^3.7.6",
     "lodash": "^4.9.0",
+    "path-svg": "^0.2.1",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-redux": "^4.4.0",
