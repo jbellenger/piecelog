@@ -1,4 +1,3 @@
-linegraph: clickable point/line
 linegraph: sane labels
 linegraph: axes
 evaluate path-svg: https://www.npmjs.com/package/path-svg
@@ -86,3 +85,4 @@ sentry?
 # linegraph: rendering
 # linegraph: fix coordinate system
 # linegraph: draw lines
+# linegraph: clickable point/line

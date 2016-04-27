@@ -65,11 +65,9 @@ export default class LineGraph extends React.Component {
       .map((row) => {
         const [x, y] = this.coords(row, rect);
         return (
-          <g className={cnames}>
-            <circle 
-              cx={x} 
-              cy={y} 
-              onClick={onPointClick && (() => onPointClick(row))} />
+          <g className={cnames} 
+            onClick={onPointClick && (() => onPointClick(row))}>
+            <circle cx={x} cy={y}/>
             <text x={x} y={y}>
               {labelcol.apply(row)}
             </text>
@@ -92,7 +90,11 @@ export default class LineGraph extends React.Component {
       d.line(x, y);
     });
 
-    const cnames = classNames(styles.line, styles["i"+index]);
+    let cnames = classNames(styles.line, styles["i"+index]);
+    if (onSeriesClick) {
+      cnames = classNames(cnames, styles.hot);
+    }
+
     return <path 
       className={cnames} 
       onClick={onSeriesClick && (() => onSeriesClick(key))}

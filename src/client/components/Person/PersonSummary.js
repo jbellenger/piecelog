@@ -4,6 +4,7 @@ import * as Cols from '../LogTable/Cols';
 import GroupingTable from '../GroupingTable';
 import LineGraph from '../LineGraph';
 import groupBy from 'lodash/groupBy';
+import {browserHistory} from 'react-router';
 
 const PersonSummary = ({rows}) => (
   <div>
@@ -17,10 +18,10 @@ const PersonSummary = ({rows}) => (
       height={200}
       series={groupBy(rows, 'piece_type')} 
       onSeriesClick={(key) => {
-        console.log('seriesClick', key);
+        browserHistory.push(`/piece-type/${key}`)
       }}
       onPointClick={(row) => {
-        console.log('onPointClick', row);
+        browserHistory.push(`/piece/${row.log_piece_id}`)
       }}
       xcol={Cols.STAMP}
       ycol={Cols.SPLIT}
