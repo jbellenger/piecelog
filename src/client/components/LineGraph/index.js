@@ -4,6 +4,7 @@ import values from 'lodash/values';
 import flatten from 'lodash/flatten';
 import classNames from 'classnames';
 import SvgPath from 'path-svg/svg-path'
+import sortBy from 'lodash/sortBy';
 
 export default class LineGraph extends React.Component {
   static propTypes = {
@@ -46,36 +47,89 @@ export default class LineGraph extends React.Component {
 
   coords(row, rect) {
     const {xcol, ycol, width, height} = this.props;
-    return [xcol.extractor(row), ycol.extractor(row)];
+    return [
+      (xcol.extractor(row) - rect.x.lo) * width/rect.x.range, 
+      (rect.y.hi - ycol.extractor(row)) * height/rect.y.range
+    ];
   }
 
-  point(row, rect, index) {
-    const cnames = classNames(styles.point, styles["i" + index]);
-    const [x, y] = this.coords(row, rect)
-    const {labelcol} = this.props;
+  points(rows, rect, index) {
+    const indexStyle = styles["i" + index];
+    const {labelcol, onPointClick} = this.props;
+    let cnames = classNames(styles.point, indexStyle);
+    if (onPointClick) {
+      cnames = classNames(cnames, styles.hot);
+    }
 
-    return (
-      <g>
-        <circle cx={x} cy={y} className={cnames} />
-        <text x={x} y={y}>{labelcol.apply(row)}</text>
-      </g>
-    );
+    return rows
+      .map((row) => {
+        const [x, y] = this.coords(row, rect);
+        return (
+          <g className={cnames}>
+            <circle 
+              cx={x} 
+              cy={y} 
+              onClick={onPointClick && (() => onPointClick(row))} />
+            <text x={x} y={y}>
+              {labelcol.apply(row)}
+            </text>
+          </g>
+        );
+      });
+  }
+
+  line(key, rows, rect, index) {
+    if (rows.length < 2) return null;
+
+    const {onSeriesClick} = this.props;
+
+    const head = this.coords(rows[0], rect);
+    const d = SvgPath()
+      .to(head[0], head[1]);
+
+    rows.slice(1).forEach((row) => {
+      const [x, y] = this.coords(row, rect);
+      d.line(x, y);
+    });
+
+    const cnames = classNames(styles.line, styles["i"+index]);
+    return <path 
+      className={cnames} 
+      onClick={onSeriesClick && (() => onSeriesClick(key))}
+      d={d.str()} />;
+  }
+
+  axes(rect) {
+    const {xcol, ycol} = this.props;
+    const xd = SvgPath()
+      .to(rect.x.lo, rect.y.hi)
+      .line(rect.x.hi, rect.y.hi);
+    const xaxis = <path className="axis x-axis" d={xd.str()} />;
+
+    const yd = SvgPath()
+      .to(rect.x.lo, rect.y.lo)
+      .to(rect.x.lo, rect.y.hi);
+    const yaxis = <path className="axis y-axis" d={yd.str()} />;
+
+    return [xaxis, yaxis];
   }
 
   render() {
-    const {series, width, height} = this.props;
+    const {series, xcol, width, height} = this.props;
     const rect = this.rect();
     
-    const pointSets = values(series)
-      .map((rows, i) => {
-        return rows.map((row) => this.point(row, rect, i));
-      });
+    const elements = Object.keys(series).map((key, index) => {
+      const rows = sortBy(series[key], xcol.extractor);
+      const line = this.line(key, rows, rect, index);
+      const points = this.points(rows, rect, index);
+      return [line, points];
+    });
 
-    const viewBox = `${rect.x.lo} ${rect.y.lo} ${rect.x.hi} ${rect.y.hi}`;
     return (
-      <svg width={width} height={height} viewBox={viewBox} className={styles.root}>
+      <svg width={width} height={height} className={styles.root}>
         <g className={styles.zoomContainer}>
-          {flatten(pointSets)}
+          {flatten(this.axes(rect))}
+          {flatten(elements)}
         </g>
       </svg>
     );

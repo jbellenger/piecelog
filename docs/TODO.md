@@ -1,5 +1,6 @@
-linegraph: fix coordinate system
-linegraph: draw lines
+linegraph: clickable point/line
+linegraph: sane labels
+linegraph: axes
 evaluate path-svg: https://www.npmjs.com/package/path-svg
 sparkline: remove/deprecate
 rename cols to fields?
@@ -83,3 +84,5 @@ sentry?
 # piece-type: summary stats
 # sparkline: fix compressed x-positions
 # linegraph: rendering
+# linegraph: fix coordinate system
+# linegraph: draw lines

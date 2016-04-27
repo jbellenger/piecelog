@@ -16,6 +16,12 @@ const PersonSummary = ({rows}) => (
       width={300}
       height={200}
       series={groupBy(rows, 'piece_type')} 
+      onSeriesClick={(key) => {
+        console.log('seriesClick', key);
+      }}
+      onPointClick={(row) => {
+        console.log('onPointClick', row);
+      }}
       xcol={Cols.STAMP}
       ycol={Cols.SPLIT}
       labelcol={Cols.SPLIT}

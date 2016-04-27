@@ -1,32 +1,68 @@
 :local .root {
-  background:lightgray;
+  background:#eee;
 }
 
 :local .zoomContainer {
-  transform:scale(.90);
+  transform:scale(1);
   transform-origin:center;
 }
 
-:local .point {
+:local .point circle {
   r:4;
+  stroke-width:0;
 }
 
-:local .point:hover {
-  r:8;
+:local .point:hover circle {
+  stroke-width:4;
+  fill:transparent;
+  r:6;
 }
 
-:local .point.i1 {
+:local .point text {
+  stroke:transparent;
+}
+
+:local .hot:hover {
+  cursor: pointer;
+}
+
+:local .i0 {
+  fill:magenta;
+  stroke:magenta;
+}
+
+:local .i1 {
   fill:red;
+  stroke:red;
 }
 
-:local .point.i2 {
+:local .i2 {
   fill:blue;
+  stroke:blue;
 }
 
-:local .point.i3 {
+:local .i3 {
   fill:green;
+  stroke:green;
 }
 
-:local .point.i4 {
+:local .i4 {
   fill:yellow;
 }
+
+:local .i5 {
+  fill:purple;
+}
+
+:local .i6 {
+  fill:pink;
+}
+
+:local .line {
+  fill:transparent;
+}
+
+:local .line:hover {
+  stroke-width:3;
+}
+
