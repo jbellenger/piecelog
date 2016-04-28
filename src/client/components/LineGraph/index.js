@@ -5,6 +5,7 @@ import flatten from 'lodash/flatten';
 import classNames from 'classnames';
 import SvgPath from 'path-svg/svg-path'
 import sortBy from 'lodash/sortBy';
+import ZoomContainer from './ZoomContainer';
 
 export default class LineGraph extends React.Component {
   static propTypes = {
@@ -116,6 +117,12 @@ export default class LineGraph extends React.Component {
     return [xaxis, yaxis];
   }
 
+  zoomTransform(zoomLevel) {
+    const {width, height} = this.props;
+    const adjustFactor = (1-zoomLevel)/2;
+    return `scale(${zoomLevel}) translate(${width*adjustFactor}, ${height*adjustFactor})`;
+  }
+
   render() {
     const {series, xcol, width, height} = this.props;
     const rect = this.rect();
@@ -129,10 +136,10 @@ export default class LineGraph extends React.Component {
 
     return (
       <svg width={width} height={height} className={styles.root}>
-        <g className={styles.zoomContainer}>
+        <ZoomContainer width={width} height={height} zoomLevel={.75}>
           {flatten(this.axes(rect))}
           {flatten(elements)}
-        </g>
+        </ZoomContainer>
       </svg>
     );
   }

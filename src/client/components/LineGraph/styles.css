@@ -2,11 +2,6 @@
   background:#eee;
 }
 
-:local .zoomContainer {
-  transform:scale(1);
-  transform-origin:center;
-}
-
 :local .point circle {
   r:4;
   stroke-width:0;

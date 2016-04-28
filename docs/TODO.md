@@ -1,6 +1,7 @@
+linegraph: pull out Point component, then do labels
 linegraph: sane labels
 linegraph: axes
-evaluate path-svg: https://www.npmjs.com/package/path-svg
+linegraph: repeated pieces
 sparkline: remove/deprecate
 rename cols to fields?
 fix ":local rect" css poisoning
@@ -86,3 +87,5 @@ sentry?
 # linegraph: fix coordinate system
 # linegraph: draw lines
 # linegraph: clickable point/line
+# evaluate path-svg: https://www.npmjs.com/package/path-svg
+# linegraph: fix zoom level
