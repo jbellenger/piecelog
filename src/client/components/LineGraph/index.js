@@ -1,11 +1,12 @@
 import React,{PropTypes} from 'react';
 import styles from './styles.css';
-import values from 'lodash/values';
 import flatten from 'lodash/flatten';
 import classNames from 'classnames';
 import SvgPath from 'path-svg/svg-path'
 import sortBy from 'lodash/sortBy';
 import ZoomContainer from './ZoomContainer';
+import * as geom from './geom';
+import Point from './Point';
 
 export default class LineGraph extends React.Component {
   static propTypes = {
@@ -13,68 +14,10 @@ export default class LineGraph extends React.Component {
     height: PropTypes.number.isRequired,
   };
 
-  rect() {
-    const {series, xcol, ycol} = this.props;
-    const rect = {x: {}, y: {}};
-
-    values(series).forEach((rows) => {
-      rows.forEach((row) => {
-        const x = xcol.extractor(row);
-        const y = ycol.extractor(row);
-
-        if (rect.x.lo === undefined || x < rect.x.lo) {
-          rect.x.lo = x;
-        }
-        if (rect.x.hi === undefined || x > rect.x.hi) {
-          rect.x.hi = x;
-        }
-        if (rect.y.lo === undefined || y < rect.y.lo) {
-          rect.y.lo = y;
-        }
-        if (rect.y.hi === undefined || y > rect.y.hi) {
-          rect.y.hi = y;
-        }
-      });
-    });
-    if (rect.x.lo !== undefined) {
-      rect.x.range = rect.x.hi - rect.x.lo;
-    }
-    if (rect.y.lo !== undefined) {
-      rect.y.range = rect.y.hi - rect.y.lo;
-    }
-
-    return rect;
-  }
-
-  coords(row, rect) {
-    const {xcol, ycol, width, height} = this.props;
-    return [
-      (xcol.extractor(row) - rect.x.lo) * width/rect.x.range, 
-      (rect.y.hi - ycol.extractor(row)) * height/rect.y.range
-    ];
-  }
-
   points(rows, rect, index) {
-    const indexStyle = styles["i" + index];
-    const {labelcol, onPointClick} = this.props;
-    let cnames = classNames(styles.point, indexStyle);
-    if (onPointClick) {
-      cnames = classNames(cnames, styles.hot);
-    }
-
-    return rows
-      .map((row) => {
-        const [x, y] = this.coords(row, rect);
-        return (
-          <g className={cnames} 
-            onClick={onPointClick && (() => onPointClick(row))}>
-            <circle cx={x} cy={y}/>
-            <text x={x} y={y}>
-              {labelcol.apply(row)}
-            </text>
-          </g>
-        );
-      });
+    return rows.map((row) => (
+      <Point {...this.props} row={row} rect={rect} className={styles['i' + index]} />
+    ));
   }
 
   line(key, rows, rect, index) {
@@ -82,12 +25,12 @@ export default class LineGraph extends React.Component {
 
     const {onSeriesClick} = this.props;
 
-    const head = this.coords(rows[0], rect);
+    const head = geom.coords({row: rows[0], rect, ...this.props});
     const d = SvgPath()
       .to(head[0], head[1]);
 
     rows.slice(1).forEach((row) => {
-      const [x, y] = this.coords(row, rect);
+      const [x, y] = geom.coords({row, rect, ...this.props});
       d.line(x, y);
     });
 
@@ -117,15 +60,9 @@ export default class LineGraph extends React.Component {
     return [xaxis, yaxis];
   }
 
-  zoomTransform(zoomLevel) {
-    const {width, height} = this.props;
-    const adjustFactor = (1-zoomLevel)/2;
-    return `scale(${zoomLevel}) translate(${width*adjustFactor}, ${height*adjustFactor})`;
-  }
-
   render() {
     const {series, xcol, width, height} = this.props;
-    const rect = this.rect();
+    const rect = geom.rect(this.props);
     
     const elements = Object.keys(series).map((key, index) => {
       const rows = sortBy(series[key], xcol.extractor);

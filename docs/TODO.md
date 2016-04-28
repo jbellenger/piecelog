@@ -1,4 +1,4 @@
-linegraph: pull out Point component, then do labels
+linegraph: extract line component
 linegraph: sane labels
 linegraph: axes
 linegraph: repeated pieces
@@ -89,3 +89,4 @@ sentry?
 # linegraph: clickable point/line
 # evaluate path-svg: https://www.npmjs.com/package/path-svg
 # linegraph: fix zoom level
+# linegraph: pull out Point component, then do labels
