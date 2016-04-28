@@ -15,6 +15,11 @@
 
 :local .point text {
   stroke:transparent;
+  display:none;
+}
+
+:local .point:hover text {
+  display:inline;
 }
 
 :local .hot:hover {

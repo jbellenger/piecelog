@@ -1,6 +1,6 @@
+linegraph: axes
 linegraph: extract line component
 linegraph: sane labels
-linegraph: axes
 linegraph: repeated pieces
 sparkline: remove/deprecate
 rename cols to fields?

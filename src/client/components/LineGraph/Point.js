@@ -14,8 +14,7 @@ export const Point = (props) => {
 
   const [x, y] = geom.coords(props);
   return (
-    <g className={cnames} 
-      onClick={onPointClick && (() => onPointClick(row))}>
+    <g className={cnames} onClick={onPointClick && (() => onPointClick(row))}>
       <circle cx={x} cy={y}/>
       <text x={x} y={y}>
         {labelcol.apply(row)}

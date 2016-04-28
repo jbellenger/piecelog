@@ -2,11 +2,12 @@ import React,{PropTypes} from 'react';
 import styles from './styles.css';
 import flatten from 'lodash/flatten';
 import classNames from 'classnames';
-import SvgPath from 'path-svg/svg-path'
+import SvgPath from 'path-svg/svg-path';
 import sortBy from 'lodash/sortBy';
 import ZoomContainer from './ZoomContainer';
 import * as geom from './geom';
 import Point from './Point';
+import Axis from './Axis';
 
 export default class LineGraph extends React.Component {
   static propTypes = {
@@ -45,23 +46,8 @@ export default class LineGraph extends React.Component {
       d={d.str()} />;
   }
 
-  axes(rect) {
-    const {xcol, ycol} = this.props;
-    const xd = SvgPath()
-      .to(rect.x.lo, rect.y.hi)
-      .line(rect.x.hi, rect.y.hi);
-    const xaxis = <path className="axis x-axis" d={xd.str()} />;
-
-    const yd = SvgPath()
-      .to(rect.x.lo, rect.y.lo)
-      .to(rect.x.lo, rect.y.hi);
-    const yaxis = <path className="axis y-axis" d={yd.str()} />;
-
-    return [xaxis, yaxis];
-  }
-
   render() {
-    const {series, xcol, width, height} = this.props;
+    const {series, xcol, ycol, width, height} = this.props;
     const rect = geom.rect(this.props);
     
     const elements = Object.keys(series).map((key, index) => {
@@ -74,7 +60,8 @@ export default class LineGraph extends React.Component {
     return (
       <svg width={width} height={height} className={styles.root}>
         <ZoomContainer width={width} height={height} zoomLevel={.75}>
-          {flatten(this.axes(rect))}
+          <Axis dimension={rect.x} col={xcol} />
+          <Axis dimension={rect.y} col={ycol} />
           {flatten(elements)}
         </ZoomContainer>
       </svg>
