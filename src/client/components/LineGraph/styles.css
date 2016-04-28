@@ -13,12 +13,12 @@
   r:6;
 }
 
-:local .point text {
+:local .point .label {
   stroke:transparent;
   display:none;
 }
 
-:local .point:hover text {
+:local .point:hover .label {
   display:inline;
 }
 

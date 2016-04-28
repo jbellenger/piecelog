@@ -4,6 +4,7 @@ import * as Shapes from './shapes';
 import classNames from 'classnames';
 import * as geom from './geom';
 import styles from './styles.css';
+import Label from './Label';
 
 export const Point = (props) => {
   const {row, rect, onPointClick, labelcol, className} = props;
@@ -16,9 +17,7 @@ export const Point = (props) => {
   return (
     <g className={cnames} onClick={onPointClick && (() => onPointClick(row))}>
       <circle cx={x} cy={y}/>
-      <text x={x} y={y}>
-        {labelcol.apply(row)}
-      </text>
+      <Label x={x} y={y} text={labelcol.apply(row)} />
     </g>
   );
 };
