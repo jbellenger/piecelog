@@ -1,3 +1,5 @@
+linegraph: change geom.coords to be usable by Axis
+linegraph: line labels
 linegraph: labels
 linegraph: axes
 linegraph: extract line component

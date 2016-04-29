@@ -1,8 +1,8 @@
 import values from 'lodash/values';
 
-export const coords = ({xcol, ycol, width, height, row, rect}) => [
-  (xcol.extractor(row) - rect.x.lo) * width/rect.x.range, 
-  (rect.y.hi - ycol.extractor(row)) * height/rect.y.range
+export const coords = ({xcol, ycol, viewBox, row, rect}) => [
+  (xcol.extractor(row) - rect.x.lo) * viewBox.width/rect.x.range, 
+  (rect.y.hi - ycol.extractor(row)) * viewBox.height/rect.y.range
 ];
 
 export const rect = ({series, xcol, ycol}) => {

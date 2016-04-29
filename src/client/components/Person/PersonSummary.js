@@ -14,8 +14,7 @@ const PersonSummary = ({rows}) => (
       rows={rows}
     />
     <LineGraph 
-      width={300}
-      height={200}
+      viewBox={{width: 300, height: 200, x: 0, y: 0}}
       series={groupBy(rows, 'piece_type')} 
       onSeriesClick={(key) => {
         browserHistory.push(`/piece-type/${key}`)

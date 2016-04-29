@@ -10,3 +10,10 @@ export const RectShape = PropTypes.shape({
   x: DimensionShape,
   y: DimensionShape,
 });
+
+export const ViewBoxShape = PropTypes.shape({
+  x: PropTypes.number.isRequired,
+  y: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+});

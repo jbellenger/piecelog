@@ -8,11 +8,13 @@ import ZoomContainer from './ZoomContainer';
 import * as geom from './geom';
 import Point from './Point';
 import Axis from './Axis';
+import * as Shapes from './shapes';
 
 export default class LineGraph extends React.Component {
   static propTypes = {
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
+    viewBox: Shapes.ViewBoxShape.isRequired,
   };
 
   points(rows, rect, index) {
@@ -47,7 +49,7 @@ export default class LineGraph extends React.Component {
   }
 
   render() {
-    const {series, xcol, ycol, width, height} = this.props;
+    const {series, xcol, ycol, viewBox} = this.props;
     const rect = geom.rect(this.props);
     
     const elements = Object.keys(series).map((key, index) => {
@@ -58,10 +60,10 @@ export default class LineGraph extends React.Component {
     });
 
     return (
-      <svg width={width} height={height} className={styles.root}>
-        <ZoomContainer width={width} height={height} zoomLevel={.75}>
-          <Axis dimension={rect.x} col={xcol} />
-          <Axis dimension={rect.y} col={ycol} />
+      <svg width={viewBox.width} height={viewBox.height} className={styles.root}>
+        <ZoomContainer viewBox={viewBox} zoomLevel={.75}>
+          <Axis rect={rect} col={xcol} ticks={8} align="bottom"/>
+          <Axis rect={rect} col={ycol} ticks={8} align="left" />
           {flatten(elements)}
         </ZoomContainer>
       </svg>
