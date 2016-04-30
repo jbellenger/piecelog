@@ -3,17 +3,27 @@ import SvgPath from 'path-svg/svg-path';
 import styles from './styles.css';
 import {RectShape} from './shapes';
 import {ColShape} from '../Table/shapes';
+import {scale} from './geom';
 
-const Axis = ({col, rect, ticks, align}) => {
+const Axis = ({col, rect, viewBox, ticks, align}) => {
   const d = SvgPath();
-  // JMB TODO: draw path
+  // this is insane
+  // probably easier to draw this one way and then transform it into the right position
   if (align === 'bottom') {
-    d.to(rect.x.lo, rect.y.hi)
-      .line(rect.x.hi, rect.y.hi);
+    d.to(
+        scale(rect.x.lo, [rect.x.lo, rect.x.hi], [viewBox.x, viewBox.x + viewBox.width]),
+        scale(rect.y.lo, [rect.y.lo, rect.y.hi], [viewBox.y, viewBox.y + viewBox.height], true))
+      .line(
+        scale(rect.x.hi, [rect.x.lo, rect.x.hi], [viewBox.x, viewBox.x + viewBox.width]),
+        scale(rect.y.lo, [rect.y.lo, rect.y.hi], [viewBox.y, viewBox.y + viewBox.height], true));
   } 
   if (align === 'left') {
-    d.to(rect.x.lo, rect.y.lo)
-      .line(rect.x.hi, rect.y.lo);
+    d.to(
+        scale(rect.x.lo, [rect.x.lo, rect.x.hi], [viewBox.x, viewBox.x + viewBox.width]),
+        scale(rect.y.lo, [rect.y.lo, rect.y.hi], [viewBox.y, viewBox.y + viewBox.height], true))
+      .line(
+        scale(rect.x.lo, [rect.x.lo, rect.x.hi], [viewBox.x, viewBox.x + viewBox.width]),
+        scale(rect.y.hi, [rect.y.lo, rect.y.hi], [viewBox.y, viewBox.y + viewBox.height], true));
   }
 
   return <path className={styles.axis} d={d.str()} />;

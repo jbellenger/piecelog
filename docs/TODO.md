@@ -1,3 +1,4 @@
+linegraph: use consistent shape for rect, viewBox, and ranges used in geom.scale
 linegraph: change geom.coords to be usable by Axis
 linegraph: line labels
 linegraph: labels

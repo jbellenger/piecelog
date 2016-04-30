@@ -66,3 +66,6 @@
   stroke-width:3;
 }
 
+:local .axis {
+  stroke: #444;
+}

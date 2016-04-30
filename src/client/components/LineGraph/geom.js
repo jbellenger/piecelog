@@ -1,9 +1,18 @@
 import values from 'lodash/values';
 
 export const coords = ({xcol, ycol, viewBox, row, rect}) => [
-  (xcol.extractor(row) - rect.x.lo) * viewBox.width/rect.x.range, 
-  (rect.y.hi - ycol.extractor(row)) * viewBox.height/rect.y.range
+  scale(xcol.extractor(row), [rect.x.lo, rect.x.hi], [viewBox.x, viewBox.x + viewBox.width]),
+  scale(ycol.extractor(row), [rect.y.lo, rect.y.hi], [viewBox.y, viewBox.y + viewBox.height], true),
 ];
+
+export const scale = (value, rangeIn, rangeOut, invert) => {
+  if (invert) {
+    return scale(value, [rangeIn[1], rangeIn[0]], rangeOut, false);
+  } else {
+    const pct = (value - rangeIn[0])/(rangeIn[1] - rangeIn[0]);
+    return rangeOut[0] + (pct * (rangeOut[1] - rangeOut[0]));
+  }
+};
 
 export const rect = ({series, xcol, ycol}) => {
   const rect = {x: {}, y: {}};

@@ -62,8 +62,8 @@ export default class LineGraph extends React.Component {
     return (
       <svg width={viewBox.width} height={viewBox.height} className={styles.root}>
         <ZoomContainer viewBox={viewBox} zoomLevel={.75}>
-          <Axis rect={rect} col={xcol} ticks={8} align="bottom"/>
-          <Axis rect={rect} col={ycol} ticks={8} align="left" />
+          <Axis rect={rect} viewBox={viewBox} col={xcol} ticks={8} align="bottom"/>
+          <Axis rect={rect} viewBox={viewBox} col={ycol} ticks={8} align="left" />
           {flatten(elements)}
         </ZoomContainer>
       </svg>
