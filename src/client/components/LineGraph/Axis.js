@@ -4,6 +4,7 @@ import styles from './styles.css';
 import {RectShape} from './shapes';
 import {ColShape} from '../Table/shapes';
 import {scale} from './geom';
+import classNames from 'classnames';
 
 const Axis = ({col, rect, viewBox, ticks, align}) => {
   const d = SvgPath();
@@ -26,7 +27,8 @@ const Axis = ({col, rect, viewBox, ticks, align}) => {
         scale(rect.y.hi, [rect.y.lo, rect.y.hi], [viewBox.y, viewBox.y + viewBox.height], true));
   }
 
-  return <path className={styles.axis} d={d.str()} />;
+  const cnames = classNames(styles.axis, styles['axis-' + align]);
+  return <path className={cnames} d={d.str()} />;
 };
 
 Axis.propTypes = {

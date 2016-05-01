@@ -69,3 +69,12 @@
 :local .axis {
   stroke: #444;
 }
+
+:local .axis-bottom {
+  transform: translate(0, 20px);
+}
+
+:local .axis-left {
+  transform: translate(-20px, 0);
+}
+
