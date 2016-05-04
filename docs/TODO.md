@@ -1,4 +1,4 @@
-linegraph: this is turning into a lot of work. revisit using react-d3
+linegraph: this is turning into a lot of work. Revisit issues with using user-space coordinates and viewBoxes
 linegraph: use consistent shape for rect, viewBox, and ranges used in geom.scale
 linegraph: change geom.coords to be usable by Axis
 linegraph: line labels
@@ -94,3 +94,4 @@ sentry?
 # evaluate path-svg: https://www.npmjs.com/package/path-svg
 # linegraph: fix zoom level
 # linegraph: pull out Point component, then do labels
+# linegraph: this is turning into a lot of work. revisit using react-d3
