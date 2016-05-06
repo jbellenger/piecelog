@@ -2,18 +2,21 @@ import React, {PropTypes} from 'react';
 import {ColShape} from '../Table/shapes';
 import * as Shapes from './shapes';
 import classNames from 'classnames';
-import * as geom from './geom';
 import styles from './styles.css';
 import Label from './Label';
 
 export const Point = (props) => {
-  const {row, rect, onPointClick, labelcol, className} = props;
+  const {row, xcol, ycol, geometry, onPointClick, labelcol, className} = props;
   let cnames = classNames(className, styles.point);
   if (onPointClick) {
     cnames = classNames(cnames, styles.hot);
   }
 
-  const [x, y] = geom.coords(props);
+  const [x, y] = geometry.map([
+    xcol.extractor(row),
+    ycol.extractor(row),
+  ]);
+
   return (
     <g className={cnames} onClick={onPointClick && (() => onPointClick(row))}>
       <circle cx={x} cy={y}/>
@@ -23,10 +26,12 @@ export const Point = (props) => {
 };
 
 Point.propTypes = {
-  rect: Shapes.RectShape.isRequired,
+  geometry: Shapes.GeometryShape.isRequired,
+  xcol: ColShape.isRequired,
+  ycol: ColShape.isRequired,
+  labelcol: ColShape.isRequired,
   className: PropTypes.string,
   row: PropTypes.object.isRequired,
-  labelcol: ColShape.isRequired,
   onPointClick: PropTypes.func,
 };
 

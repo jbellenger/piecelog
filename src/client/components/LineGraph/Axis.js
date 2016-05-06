@@ -1,30 +1,21 @@
 import React, {PropTypes} from 'react';
 import SvgPath from 'path-svg/svg-path';
 import styles from './styles.css';
-import {RectShape} from './shapes';
+import {GeometryShape} from './shapes';
 import {ColShape} from '../Table/shapes';
-import {scale} from './geom';
 import classNames from 'classnames';
+import * as Shapes from './shapes';
 
-const Axis = ({col, rect, viewBox, ticks, align}) => {
+const Axis = ({col, geometry, ticks, align}) => {
+  const {x, y} = geometry;
   const d = SvgPath();
-  // this is insane
-  // probably easier to draw this one way and then transform it into the right position
   if (align === 'bottom') {
-    d.to(
-        scale(rect.x.lo, [rect.x.lo, rect.x.hi], [viewBox.x, viewBox.x + viewBox.width]),
-        scale(rect.y.lo, [rect.y.lo, rect.y.hi], [viewBox.y, viewBox.y + viewBox.height], true))
-      .line(
-        scale(rect.x.hi, [rect.x.lo, rect.x.hi], [viewBox.x, viewBox.x + viewBox.width]),
-        scale(rect.y.lo, [rect.y.lo, rect.y.hi], [viewBox.y, viewBox.y + viewBox.height], true));
+    d.to(x.toRange[0], y.toRange[0])
+      .line(x.toRange[1], y.toRange[0]);
   } 
   if (align === 'left') {
-    d.to(
-        scale(rect.x.lo, [rect.x.lo, rect.x.hi], [viewBox.x, viewBox.x + viewBox.width]),
-        scale(rect.y.lo, [rect.y.lo, rect.y.hi], [viewBox.y, viewBox.y + viewBox.height], true))
-      .line(
-        scale(rect.x.lo, [rect.x.lo, rect.x.hi], [viewBox.x, viewBox.x + viewBox.width]),
-        scale(rect.y.hi, [rect.y.lo, rect.y.hi], [viewBox.y, viewBox.y + viewBox.height], true));
+    d.to(x.toRange[0], y.toRange[0])
+      .line(x.toRange[0], y.toRange[1]);
   }
 
   const cnames = classNames(styles.axis, styles['axis-' + align]);
@@ -33,7 +24,7 @@ const Axis = ({col, rect, viewBox, ticks, align}) => {
 
 Axis.propTypes = {
   col: ColShape.isRequired,
-  rect: RectShape.isRequired,
+  geometry: GeometryShape.isRequired,
   ticks: PropTypes.number.isRequired,
   align: PropTypes.string.isRequired,
 }

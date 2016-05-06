@@ -1,21 +1,22 @@
 import React, {PropTypes} from 'react';
-import {ViewBoxShape} from './shapes';
+import {GeometryShape} from './shapes';
 
-export const zoomTransform = (viewBox, zoomLevel) => {
+export const zoomTransform = (width, height, zoomLevel) => {
   const adjustFactor = (1-zoomLevel)/2;
-  return `scale(${zoomLevel}) translate(${viewBox.width*adjustFactor}, ${viewBox.height*adjustFactor})`;
+  return `scale(${zoomLevel}) translate(${width*adjustFactor}, ${height*adjustFactor})`;
 }
 
-export const ZoomContainer = ({viewBox, zoomLevel, ...rest}) => {
+export const ZoomContainer = ({width, height, zoomLevel, ...rest}) => {
   return (
-    <g transform={zoomTransform(viewBox, zoomLevel)}>
+    <g transform={zoomTransform(width, height, zoomLevel)}>
       {rest.children}
     </g>
   );
 };
 
 ZoomContainer.propTypes = {
-  viewBox: ViewBoxShape.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
   zoomLevel: PropTypes.number.isRequired
 };
 

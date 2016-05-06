@@ -1,10 +1,5 @@
-linegraph: this is turning into a lot of work. Revisit issues with using user-space coordinates and viewBoxes
-linegraph: use consistent shape for rect, viewBox, and ranges used in geom.scale
-linegraph: change geom.coords to be usable by Axis
 linegraph: line labels
 linegraph: labels
-linegraph: axes
-linegraph: extract line component
 linegraph: repeated pieces
 sparkline: remove/deprecate
 rename cols to fields?
@@ -95,3 +90,8 @@ sentry?
 # linegraph: fix zoom level
 # linegraph: pull out Point component, then do labels
 # linegraph: this is turning into a lot of work. revisit using react-d3
+# linegraph: this is turning into a lot of work. Revisit issues with using user-space coordinates and viewBoxes
+# linegraph: use consistent shape for rect, viewBox, and ranges used in geom.scale
+# linegraph: change geom.coords to be usable by Axis
+# linegraph: axes
+# linegraph: extract line component

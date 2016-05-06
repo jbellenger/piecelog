@@ -3,7 +3,6 @@ import LogQuery from '../LogQuery';
 import * as Cols from '../LogTable/Cols';
 import GroupingTable from '../GroupingTable';
 import LineGraph from '../LineGraph';
-import LineGraph2 from '../LineGraph2';
 import groupBy from 'lodash/groupBy';
 import {browserHistory} from 'react-router';
 
@@ -15,7 +14,8 @@ const PersonSummary = ({rows}) => (
       rows={rows}
     />
     <LineGraph 
-      viewBox={{width: 300, height: 200, x: 0, y: 0}}
+      width={300}
+      height={200}
       series={groupBy(rows, 'piece_type')} 
       onSeriesClick={(key) => {
         browserHistory.push(`/piece-type/${key}`)
