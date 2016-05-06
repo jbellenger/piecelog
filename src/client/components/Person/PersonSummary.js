@@ -14,7 +14,6 @@ const PersonSummary = ({rows}) => (
       groupKey={"piece_type"}
       rows={rows}
     />
-    {/*
     <LineGraph 
       viewBox={{width: 300, height: 200, x: 0, y: 0}}
       series={groupBy(rows, 'piece_type')} 
@@ -24,14 +23,6 @@ const PersonSummary = ({rows}) => (
       onPointClick={(row) => {
         browserHistory.push(`/piece/${row.log_piece_id}`)
       }}
-      xcol={Cols.STAMP}
-      ycol={Cols.SPLIT}
-      labelcol={Cols.SPLIT}
-    />
-    */}
-    <LineGraph2
-      series={groupBy(rows, 'piece_type')}
-      dimensions={{width: 300, height: 200, x: 0, y: 0}}
       xcol={Cols.STAMP}
       ycol={Cols.SPLIT}
       labelcol={Cols.SPLIT}

@@ -6,6 +6,7 @@ import SvgPath from 'path-svg/svg-path';
 import sortBy from 'lodash/sortBy';
 import ZoomContainer from './ZoomContainer';
 import * as geom from './geom';
+import Geometry from '../../modules/geom';
 import Point from './Point';
 import Axis from './Axis';
 import Line from './Line';

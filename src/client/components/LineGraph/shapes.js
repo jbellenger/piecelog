@@ -1,4 +1,5 @@
 import {PropTypes} from 'react';
+import Geometry from '../../modules/geom/Geometry';
 
 export const DimensionShape = PropTypes.shape({
   hi: PropTypes.number.isRequired,
@@ -17,3 +18,5 @@ export const ViewBoxShape = PropTypes.shape({
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
 });
+
+export const GeometryShape = PropTypes.instanceOf(Geometry);
