@@ -5,8 +5,9 @@ import {GeometryShape} from './shapes';
 import {ColShape} from '../Table/shapes';
 import classNames from 'classnames';
 import * as Shapes from './shapes';
+import Tick from './Tick';
 
-const Axis = ({col, geometry, ticks, align}) => {
+const Axis = ({col, geometry, tickCount, align}) => {
   const {x, y} = geometry;
   const d = SvgPath();
   if (align === 'bottom') {
@@ -18,8 +19,18 @@ const Axis = ({col, geometry, ticks, align}) => {
       .line(x.toRange[0], y.toRange[1]);
   }
 
+  const ticks = [];
+  for (let i=0; i < tickCount; ++i) {
+    ticks.push(<Tick index={i} col={col} geometry={geometry} align={align} />);
+  }
+
   const cnames = classNames(styles.axis, styles['axis-' + align]);
-  return <path className={cnames} d={d.str()} />;
+  return (
+    <g>
+      <path className={cnames} d={d.str()} />
+      {ticks}
+    </g>
+  );
 };
 
 Axis.propTypes = {
