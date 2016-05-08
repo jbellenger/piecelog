@@ -1,3 +1,4 @@
+model: repeated pieces
 linegraph: line labels
 linegraph: labels
 linegraph: repeated pieces
