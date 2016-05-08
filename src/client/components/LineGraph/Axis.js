@@ -21,7 +21,7 @@ const Axis = ({col, geometry, tickCount, align}) => {
 
   const ticks = [];
   for (let i=0; i < tickCount; ++i) {
-    ticks.push(<Tick index={i} col={col} geometry={geometry} align={align} />);
+    ticks.push(<Tick fraction={i/tickCount} col={col} geometry={geometry} align={align} />);
   }
 
   const cnames = classNames(styles.axis, styles['axis-' + align]);
