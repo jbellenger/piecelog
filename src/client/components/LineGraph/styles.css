@@ -70,13 +70,11 @@
   stroke: #444;
 }
 
-/*
 :local .axis-bottom {
-  transform: translate(0, 20px);
+  transform: translate(0, 10px);
 }
 
 :local .axis-left {
-  transform: translate(-20px, 0);
+  transform: translate(-10px, 0);
 }
-*/
 
