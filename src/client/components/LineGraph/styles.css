@@ -62,7 +62,7 @@
   fill:transparent;
 }
 
-:local .line:hover {
+:local .hot.line:hover {
   stroke-width:3;
 }
 
@@ -78,3 +78,16 @@
   transform: translate(-10px, 0);
 }
 
+:local .axis-left .tick text {
+  transform: translate(-15px, 0);
+}
+
+:local .axis-bottom .tick text {
+  transform: translate(0, 15px);
+}
+
+:local .tick text {
+  stroke: red;
+  fill: transparent;
+  text-align: center;
+}

@@ -4,25 +4,31 @@ import styles from './styles.css';
 import {GeometryShape} from './shapes';
 
 const Tick = ({fraction, col, geometry, align, tickLength}) => {
-  const d = SvgPath();
   const {x, y} = geometry;
+
+  let start, end, label;
 
   if (align === 'bottom') {
     const xbase = x.toRange[0] + fraction*(x.toRange[1] - x.toRange[0]);
-    d.to(xbase, y.toRange[0])
-      .line(xbase, y.toRange[0] + tickLength)
+    start = [xbase, y.toRange[0]];
+    end = [xbase, y.toRange[0] + tickLength];
+    label = xbase;
   }
 
   if (align === 'left') {
     const ybase = y.toRange[0] + fraction*(y.toRange[1] - y.toRange[0]);
-    d.to(x.toRange[0], ybase)
-      .line(x.toRange[0] - tickLength, ybase);
+    start = [x.toRange[0], ybase];
+    end = [x.toRange[0] - tickLength, ybase];
+    label = ybase;
   }
 
+  const d = SvgPath().to(...start).line(...end);
   return (
     <g className={styles.tick}>
       <path d={d.str()} />
-      <text>tick</text>
+      <text textAnchor="middle" x={end[0]} y={end[1]}>
+        {label}
+      </text>
     </g>
   );
 };
