@@ -1,6 +1,6 @@
 import formatNumber from 'format-number';
 
-export const formatSplit = (seconds, round=2) => {
+export const formatSplit = (seconds, round=1) => {
   let result = '';
   if (seconds) {
     const minutes = Number.parseInt(seconds/60);

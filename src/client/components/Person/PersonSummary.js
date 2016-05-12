@@ -23,8 +23,8 @@ const PersonSummary = ({rows}) => (
       onPointClick={(row) => {
         browserHistory.push(`/piece/${row.log_piece_id}`)
       }}
-      xTickCount={2}
-      yTickCount={4}
+      xTickCount={3}
+      yTickCount={5}
       xcol={Cols.STAMP}
       ycol={Cols.SPLIT}
       labelcol={Cols.SPLIT}
