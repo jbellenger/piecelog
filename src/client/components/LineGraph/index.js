@@ -15,6 +15,13 @@ export default class LineGraph extends React.Component {
   static propTypes = {
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
+    xTickCount: PropTypes.number,
+    yTickCount: PropTypes.number,
+  };
+
+  static defaultProps = {
+    xTickCount: 8,
+    yTickCount: 8,
   };
 
   points(rows, geometry, index) {
@@ -60,7 +67,7 @@ export default class LineGraph extends React.Component {
   }
 
   render() {
-    const {series, xcol, ycol, width, height} = this.props;
+    const {series, xcol, ycol, width, height, xTickCount, yTickCount} = this.props;
     const geometry = new Geometry(
       this.userSpace(this.props), 
       this.svgSpace(this.props)
@@ -76,8 +83,8 @@ export default class LineGraph extends React.Component {
     return (
       <svg width={width} height={height} className={styles.root}>
         <ZoomContainer height={height} width={width} zoomLevel={.75}>
-          <Axis geometry={geometry} col={xcol} tickCount={8} align="bottom" />
-          <Axis geometry={geometry} col={ycol} tickCount={8} align="left" />
+          <Axis geometry={geometry} col={xcol} tickCount={xTickCount-1} align="bottom" />
+          <Axis geometry={geometry} col={ycol} tickCount={yTickCount-1} align="left" />
           {flatten(elements)}
         </ZoomContainer>
       </svg>

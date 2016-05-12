@@ -87,7 +87,5 @@
 }
 
 :local .tick text {
-  stroke: red;
-  fill: transparent;
   text-align: center;
 }

@@ -24,6 +24,18 @@ suite('LinearTransform', () => {
     });
   });
 
+  suite('value', () => {
+    test('works for positive ranges', () => {
+      const lt = new LinearTransform([0, 50], [0, 200]);
+      assert.equal(lt.value(.5), 25);
+    });
+
+    test('works for negative ranges', () => {
+      const lt = new LinearTransform([100, 50], [0, 200]);
+      assert.equal(lt.value(.5), 75);
+    });
+  });
+
   suite('invert', () => {
     test('round trips values', () => {
       const lt = new LinearTransform([-10, -20], [100, 101]);

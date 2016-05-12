@@ -9,17 +9,19 @@ const Tick = ({fraction, col, geometry, align, tickLength}) => {
   let start, end, label;
 
   if (align === 'bottom') {
-    const xbase = x.toRange[0] + fraction*(x.toRange[1] - x.toRange[0]);
-    start = [xbase, y.toRange[0]];
-    end = [xbase, y.toRange[0] + tickLength];
-    label = xbase;
+    const userx = x.value(fraction);
+    const svgx = x.map(userx);
+    start = [svgx, y.toRange[0]];
+    end = [svgx, y.toRange[0] + tickLength];
+    label = col.formatter(userx);
   }
 
   if (align === 'left') {
-    const ybase = y.toRange[0] + fraction*(y.toRange[1] - y.toRange[0]);
-    start = [x.toRange[0], ybase];
-    end = [x.toRange[0] - tickLength, ybase];
-    label = ybase;
+    const usery = y.value(fraction);
+    const svgy = y.map(usery);
+    start = [x.toRange[0], svgy];
+    end = [x.toRange[0] - tickLength, svgy];
+    label = col.formatter(usery);
   }
 
   const d = SvgPath().to(...start).line(...end);
