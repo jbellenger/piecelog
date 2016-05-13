@@ -1,5 +1,5 @@
 :local .root {
-  background:#eee;
+  /*background:#eee; */
 }
 
 :local .point circle {
@@ -16,6 +16,7 @@
 :local .point .label {
   stroke:transparent;
   display:none;
+  transform: translateY(-12px);
 }
 
 :local .point:hover .label {

@@ -3,7 +3,7 @@ import styles from './styles.css';
 
 const Label = ({x, y, text}) => (
   <g className={styles.label}>
-    <text x={x} y={y}>{text}</text>
+    <text textAnchor="middle" x={x} y={y}>{text}</text>
   </g>
 );
 

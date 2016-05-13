@@ -60,9 +60,11 @@ export default class LineGraph extends React.Component {
   }
 
   svgSpace({width, height}) {
+    // top, right, bottom, left
+    const margin = [30, 40, 40, 60];
     return [
-      [0, width],
-      [height, 0],
+      [0+margin[3], width-margin[1]],
+      [height-margin[2], margin[0]],
     ];
   }
 
@@ -82,11 +84,11 @@ export default class LineGraph extends React.Component {
 
     return (
       <svg width={width} height={height} className={styles.root}>
-        <ZoomContainer height={height} width={width} zoomLevel={.75}>
-          <Axis geometry={geometry} col={xcol} tickCount={xTickCount-1} align="bottom" />
-          <Axis geometry={geometry} col={ycol} tickCount={yTickCount-1} align="left" />
+        <g className={styles.graph}>
           {flatten(elements)}
-        </ZoomContainer>
+        </g>
+        <Axis geometry={geometry} col={xcol} tickCount={xTickCount-1} align="bottom" />
+        <Axis geometry={geometry} col={ycol} tickCount={yTickCount-1} align="left" />
       </svg>
     );
   }
