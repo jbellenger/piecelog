@@ -1,6 +1,6 @@
 import React from 'react';
 import LogQuery from '../LogQuery';
-import * as Cols from '../LogTable/Cols';
+import * as LogTableFields from '../../modules/field/LogTableFields';
 import GroupingTable from '../GroupingTable';
 import LineGraph from '../LineGraph';
 import groupBy from 'lodash/groupBy';
@@ -9,7 +9,11 @@ import {browserHistory} from 'react-router';
 const PieceTypeSummary = ({rows}) => (
   <div>
     <GroupingTable 
-      cols={[Cols.PIECE, Cols.BEST_SPLIT, Cols.MEDIAN_SPLIT, Cols.COUNT]}
+      fields={[
+        LogTableFields.PIECE, 
+        LogTableFields.BEST_SPLIT, 
+        LogTableFields.MEDIAN_SPLIT, 
+        LogTableFields.COUNT]}
       groupKey={"log_piece_id"}
       rows={rows} 
     />
@@ -23,9 +27,9 @@ const PieceTypeSummary = ({rows}) => (
       onPointClick={(row) => {
         browserHistory.push(`/piece/${row.log_piece_id}`)
       }}
-      xcol={Cols.STAMP}
-      ycol={Cols.SPLIT}
-      labelcol={Cols.SPLIT}
+      xfield={LogTableFields.STAMP}
+      yfield={LogTableFields.SPLIT}
+      labelfield={LogTableFields.SPLIT}
     />
   </div>
 );

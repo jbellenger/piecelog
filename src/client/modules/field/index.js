@@ -1,4 +1,4 @@
-export default class Col {
+export default class Field {
   static fromArray = (arr) => arr.map((key) => new Col(key));
 
   constructor(key, header, formatter, extractor) {

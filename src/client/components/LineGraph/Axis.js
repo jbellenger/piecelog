@@ -2,12 +2,12 @@ import React, {PropTypes} from 'react';
 import SvgPath from 'path-svg/svg-path';
 import styles from './styles.css';
 import {GeometryShape} from './shapes';
-import {ColShape} from '../Table/shapes';
+import {FieldShape} from '../Table/shapes';
 import classNames from 'classnames';
 import * as Shapes from './shapes';
 import Tick from './Tick';
 
-const Axis = ({col, geometry, tickCount, align}) => {
+const Axis = ({field, geometry, tickCount, align}) => {
   const {x, y} = geometry;
   const d = SvgPath();
   if (align === 'bottom') {
@@ -22,7 +22,7 @@ const Axis = ({col, geometry, tickCount, align}) => {
   const ticks = [];
   for (let i=0; i <= tickCount; ++i) {
     const fraction = i/tickCount;
-    ticks.push(<Tick fraction={fraction} col={col} geometry={geometry} align={align} />);
+    ticks.push(<Tick fraction={fraction} field={field} geometry={geometry} align={align} />);
   }
 
   const cnames = classNames(styles.axis, styles['axis-' + align]);
@@ -35,7 +35,7 @@ const Axis = ({col, geometry, tickCount, align}) => {
 };
 
 Axis.propTypes = {
-  col: ColShape.isRequired,
+  field: FieldShape.isRequired,
   geometry: GeometryShape.isRequired,
   ticks: PropTypes.number.isRequired,
   align: PropTypes.string.isRequired,

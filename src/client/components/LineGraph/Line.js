@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import SvgPath from 'path-svg/svg-path';
 import classNames from 'classnames';
-import {ColShape} from '../Table/shapes';
+import {FieldShape} from '../Table/shapes';
 import * as Shapes from './shapes';
 import styles from './styles.css';
 
@@ -11,17 +11,17 @@ export default class Line extends React.Component {
     rows: PropTypes.array.isRequired,
     key: PropTypes.string.isRequired,
     geometry: Shapes.GeometryShape.isRequired,
-    xcol: ColShape.isRequired,
-    ycol: ColShape.isRequired,
+    xfield: FieldShape.isRequired,
+    yfield: FieldShape.isRequired,
   };
 
   render() {
-    const {rows, geometry, xcol, ycol, onSeriesClick, key, index} = this.props;
+    const {rows, geometry, xfield, yfield, onSeriesClick, key, index} = this.props;
     if (rows.length < 2) return null;
 
     const coords = (row) => geometry.map([
-      xcol.extractor(row),
-      ycol.extractor(row),
+      xfield.extractor(row),
+      yfield.extractor(row),
     ]);
 
     const head = coords(rows[0]);

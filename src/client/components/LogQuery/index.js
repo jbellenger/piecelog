@@ -47,7 +47,7 @@ const mapStateToProps = (state, props) => {
   }
 
   if (sortData) {
-    query = `${query} order by ${sortData.col.key}`;
+    query = `${query} order by ${sortData.field.key}`;
     if (sortData.desc) {
       query = `${query} DESC`;
     }

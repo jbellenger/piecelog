@@ -1,42 +1,42 @@
 import React, {PropTypes} from 'react';
 import LogTable from './LogTable';
-import * as Cols from './Cols';
+import * as LogTableFields from '../../modules/field/LogTableFields';
 
 export default class Container extends React.Component {
   static defaultProps = {
-    cols: [
-      Cols.PIECE,
-      Cols.PERSON,
-      Cols.STAMP,
-      Cols.DISTANCE,
-      Cols.TIME,
-      Cols.POUNDS,
-      Cols.SPLIT,
-      Cols.WATTS,
-      Cols.WATTS_PER_KG,
-      Cols.WEIGHT_ADJUSTED_SPLIT,
+    fields: [
+      LogTableFields.PIECE,
+      LogTableFields.PERSON,
+      LogTableFields.STAMP,
+      LogTableFields.DISTANCE,
+      LogTableFields.TIME,
+      LogTableFields.POUNDS,
+      LogTableFields.SPLIT,
+      LogTableFields.WATTS,
+      LogTableFields.WATTS_PER_KG,
+      LogTableFields.WEIGHT_ADJUSTED_SPLIT,
     ]
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      col: Cols.STAMP,
+      field: LogTableFields.STAMP,
       desc: false
     };
   }
 
-  onSort(col) {
-    if (col === this.state.col) {
+  onSort(field) {
+    if (field === this.state.field) {
       this.setState({desc: !this.state.desc});
     } else {
-      this.setState({col});
+      this.setState({field});
     }
   }
 
   get sortData() {
     return {
-      col: this.state.col,
+      field: this.state.field,
       desc: this.state.desc,
       onSort: this.onSort.bind(this),
     };

@@ -1,16 +1,15 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import Col from './Col';
 import * as Shapes from './shapes';
 
-const TableHeader = ({key, col, sortData}) => {
-  let contents = col.header;
-  if (sortData && col === sortData.col) {
+const TableHeader = ({key, field, sortData}) => {
+  let contents = field.header;
+  if (sortData && field === sortData.field) {
     contents += sortData.desc ? '↓' : '↑';
   }
   const attrs = {key};
   if (sortData) {
-    attrs.onClick = () => sortData.onSort(col);
+    attrs.onClick = () => sortData.onSort(field);
   }
 
   return (
@@ -22,15 +21,15 @@ const TableHeader = ({key, col, sortData}) => {
 
 export default class Headers extends React.Component {
   static propTypes = {
-    cols: Shapes.ColsShape.isRequired,
+    fields: Shapes.FieldsShape.isRequired,
     sortData: Shapes.SortDataShape,
   };
 
   render() {
-    const {cols} = this.props;
+    const {fields} = this.props;
     return (
       <tr>
-        {cols.map((col, i) => <TableHeader key={i} col={col} {...this.props} />)}
+        {fields.map((field, i) => <TableHeader key={i} field={field} {...this.props} />)}
       </tr>
     );
   }

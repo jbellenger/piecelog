@@ -1,6 +1,6 @@
 import React from 'react';
 import LogQuery from '../LogQuery';
-import * as Cols from '../LogTable/Cols';
+import * as LogTableFields from '../../modules/field/LogTableFields';
 import GroupingTable from '../GroupingTable';
 import LineGraph from '../LineGraph';
 import groupBy from 'lodash/groupBy';
@@ -9,7 +9,10 @@ import {browserHistory} from 'react-router';
 const PersonSummary = ({rows}) => (
   <div>
     <GroupingTable 
-      cols={[Cols.PIECE_TYPE, Cols.BEST_SPLIT, Cols.LATEST_SPLIT]}
+      fields={[
+        LogTableFields.PIECE_TYPE, 
+        LogTableFields.BEST_SPLIT, 
+        LogTableFields.LATEST_SPLIT]}
       groupKey={"piece_type"}
       rows={rows}
     />
@@ -25,9 +28,9 @@ const PersonSummary = ({rows}) => (
       }}
       xTickCount={3}
       yTickCount={5}
-      xcol={Cols.STAMP}
-      ycol={Cols.SPLIT}
-      labelcol={Cols.SPLIT}
+      xfield={LogTableFields.STAMP}
+      yfield={LogTableFields.SPLIT}
+      labelfield={LogTableFields.SPLIT}
     />
   </div>
 );

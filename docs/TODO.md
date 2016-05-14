@@ -1,9 +1,7 @@
 model: repeated pieces
 linegraph: line labels
-linegraph: labels
 linegraph: repeated pieces
 sparkline: remove/deprecate
-rename cols to fields?
 fix ":local rect" css poisoning
 person/piece-type sparkline
 piece/multi-people distribution
@@ -96,3 +94,5 @@ sentry?
 # linegraph: change geom.coords to be usable by Axis
 # linegraph: axes
 # linegraph: extract line component
+# linegraph: labels
+# rename cols to fields?

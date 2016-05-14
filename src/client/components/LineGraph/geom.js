@@ -1,6 +1,6 @@
-export const coords = ({xcol, ycol, viewBox, row, rect}) => [
-  scale(xcol.extractor(row), [rect.x.lo, rect.x.hi], [viewBox.x, viewBox.x + viewBox.width]),
-  scale(ycol.extractor(row), [rect.y.lo, rect.y.hi], [viewBox.y, viewBox.y + viewBox.height], true),
+export const coords = ({xfield, yfield, viewBox, row, rect}) => [
+  scale(xfield.extractor(row), [rect.x.lo, rect.x.hi], [viewBox.x, viewBox.x + viewBox.width]),
+  scale(yfield.extractor(row), [rect.y.lo, rect.y.hi], [viewBox.y, viewBox.y + viewBox.height], true),
 ];
 
 export const scale = (value, rangeIn, rangeOut, invert) => {

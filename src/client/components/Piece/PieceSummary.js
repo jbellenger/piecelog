@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {selector as modelsSelector} from '../../modules/store/models';
 import LogEvent from '../../modules/model/LogEvent';
-import * as Cols from '../LogTable/Cols';
+import * as LogTableFields from '../../modules/field/LogTableFields';
 import GroupingTable from '../GroupingTable';
 
 const mapStateToProps = (state, {pieceId}) => {
@@ -20,7 +20,10 @@ const mapStateToProps = (state, {pieceId}) => {
 
 const PieceSummary = (props) => (
   <GroupingTable 
-    cols={[Cols.BEST_SPLIT, Cols.MEDIAN_SPLIT, Cols.COUNT]}
+    fields={[
+      LogTableFields.BEST_SPLIT, 
+      LogTableFields.MEDIAN_SPLIT, 
+      LogTableFields.COUNT]}
     groupKey={"piece_type"}
     {...props} 
   />

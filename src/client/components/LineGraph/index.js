@@ -30,13 +30,13 @@ export default class LineGraph extends React.Component {
     ));
   }
 
-  userSpace({series, xcol, ycol}) {
+  userSpace({series, xfield, yfield}) {
     const rect = {x: {}, y: {}};
 
     values(series).forEach((rows) => {
       rows.forEach((row) => {
-        const x = xcol.extractor(row);
-        const y = ycol.extractor(row);
+        const x = xfield.extractor(row);
+        const y = yfield.extractor(row);
 
         if (rect.x.lo === undefined || x < rect.x.lo) {
           rect.x.lo = x;
@@ -69,15 +69,15 @@ export default class LineGraph extends React.Component {
   }
 
   render() {
-    const {series, xcol, ycol, width, height, xTickCount, yTickCount} = this.props;
+    const {series, xfield, yfield, width, height, xTickCount, yTickCount} = this.props;
     const geometry = new Geometry(
       this.userSpace(this.props), 
       this.svgSpace(this.props)
     );
     
     const elements = Object.keys(series).map((key, index) => {
-      const rows = sortBy(series[key], xcol.extractor);
-      const line = <Line key={key} xcol={xcol} ycol={ycol} rows={rows} geometry={geometry} index={index} />
+      const rows = sortBy(series[key], xfield.extractor);
+      const line = <Line key={key} xfield={xfield} yfield={yfield} rows={rows} geometry={geometry} index={index} />
       const points = this.points(rows, geometry, index);
       return [line, points];
     });
@@ -87,8 +87,8 @@ export default class LineGraph extends React.Component {
         <g className={styles.graph}>
           {flatten(elements)}
         </g>
-        <Axis geometry={geometry} col={xcol} tickCount={xTickCount-1} align="bottom" />
-        <Axis geometry={geometry} col={ycol} tickCount={yTickCount-1} align="left" />
+        <Axis geometry={geometry} field={xfield} tickCount={xTickCount-1} align="bottom" />
+        <Axis geometry={geometry} field={yfield} tickCount={yTickCount-1} align="left" />
       </svg>
     );
   }

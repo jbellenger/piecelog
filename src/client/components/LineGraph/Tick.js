@@ -3,7 +3,7 @@ import SvgPath from 'path-svg/svg-path';
 import styles from './styles.css';
 import {GeometryShape} from './shapes';
 
-const Tick = ({fraction, col, geometry, align, tickLength}) => {
+const Tick = ({fraction, field, geometry, align, tickLength}) => {
   const {x, y} = geometry;
 
   let start, end, label;
@@ -13,7 +13,7 @@ const Tick = ({fraction, col, geometry, align, tickLength}) => {
     const svgx = x.map(userx);
     start = [svgx, y.toRange[0]];
     end = [svgx, y.toRange[0] + tickLength];
-    label = col.formatter(userx);
+    label = field.formatter(userx);
   }
 
   if (align === 'left') {
@@ -21,7 +21,7 @@ const Tick = ({fraction, col, geometry, align, tickLength}) => {
     const svgy = y.map(usery);
     start = [x.toRange[0], svgy];
     end = [x.toRange[0] - tickLength, svgy];
-    label = col.formatter(usery);
+    label = field.formatter(usery);
   }
 
   const d = SvgPath().to(...start).line(...end);
