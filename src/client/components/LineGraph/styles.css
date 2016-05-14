@@ -2,21 +2,26 @@
   /*background:#eee; */
 }
 
+:local text {
+  stroke: none;
+}
+
 :local .point circle {
   r:4;
   stroke-width:0;
 }
 
 :local .point:hover circle {
-  stroke-width:4;
+  stroke-width:5;
   fill:transparent;
-  r:6;
+  r:8;
 }
 
 :local .point .label {
   stroke:transparent;
   display:none;
   transform: translateY(-12px);
+  font-size:10px;
 }
 
 :local .point:hover .label {
@@ -71,6 +76,11 @@
   stroke: #444;
 }
 
+:local .axis text {
+  font-size: 12px;
+  font-weight: bold;
+}
+
 :local .axis-bottom {
   transform: translate(0, 10px);
 }
@@ -80,11 +90,11 @@
 }
 
 :local .axis-left .tick text {
-  transform: translate(-15px, 0);
+  transform: translate(-1.5em, .25em);
 }
 
 :local .axis-bottom .tick text {
-  transform: translate(0, 15px);
+  transform: translate(0, 1em);
 }
 
 :local .tick text {
