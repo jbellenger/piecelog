@@ -1,4 +1,5 @@
 model: repeated pieces
+field: move LogTableFields to components/LogTable
 linegraph: line labels
 linegraph: repeated pieces
 sparkline: remove/deprecate
