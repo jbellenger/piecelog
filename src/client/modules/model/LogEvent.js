@@ -1,4 +1,4 @@
-import lodash from 'lodash';
+import merge from 'lodash/merge';
 import * as Adjust from '../adjust';
 
 export default class LogEvent {
@@ -17,7 +17,7 @@ export default class LogEvent {
   ];
 
   constructor(json) {
-    lodash.merge(this, json);
+    merge(this, json);
   }
 
   get log_weight_pounds() {

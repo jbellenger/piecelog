@@ -1,4 +1,4 @@
-import lodash from 'lodash';
+import merge from 'lodash/merge';
 import * as Age from '../age';
 
 export default class Person {
@@ -10,7 +10,7 @@ export default class Person {
   ];
 
   constructor(data) {
-    lodash.merge(this, data);
+    merge(this, data);
   }
 
   get person_racingdob() {

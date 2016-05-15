@@ -1,4 +1,4 @@
-import lodash from 'lodash';
+import merge from 'lodash/merge';
 
 export default class Piece {
   static fields = [
@@ -11,7 +11,7 @@ export default class Piece {
   ];
 
   constructor(data) {
-    lodash.merge(this, data);
+    merge(this, data);
   }
 
   get piece_type() {

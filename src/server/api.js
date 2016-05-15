@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import cors from 'cors';
 
-let mockdb = {pieces: [], log: [], people: []};
+let mockdb = {pieces: [], log: [], people: [], results: [], events: [], workouts: []};
 let mockqueries = {
   'all-log-desc': 'select * from log order by stamp desc',
 };
@@ -40,6 +40,15 @@ middleware.get('/1/bootstrap', (req, res) => {
       }
       if (parsed.db.piece) {
         json.db.piece = mockdb.piece || [];
+      }
+      if (parsed.db.results) {
+        json.db.results = mockdb.results || [];
+      }
+      if (parsed.db.events) {
+        json.db.events = mockdb.events || [];
+      }
+      if (parsed.db.workouts) {
+        json.db.workouts = mockdb.workouts || [];
       }
     }
   }

@@ -11,6 +11,9 @@ export const bootstrap = (opts = {}) => {
       log: true,
       person: true,
       piece: true,
+      workouts: true,
+      results: true,
+      events: true,
     },
     queries: {
       [Queries.ALL_LOG_QUERY]: true,
