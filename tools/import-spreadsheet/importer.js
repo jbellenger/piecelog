@@ -45,7 +45,7 @@ export const parseKilos = (string) => {
   }
 };
 
-export const parseLogRow = (row) => {
+export const normalizeLogRow = (row) => {
   return {
     log_person_id: row.name,
     log_piece_id: row.piece,
@@ -59,7 +59,7 @@ export const parseLogRow = (row) => {
 
 const parseString = (string) => string || undefined;
 
-export const parsePieceRow = (row) => {
+export const normalizePieceRow = (row) => {
   return {
     piece_id: row.name,
     piece_stamp: parseStamp(row.date),
@@ -145,11 +145,70 @@ export const extractWorkouts = (log, pieces) => {
       workout_id: extractWorkoutId(workout_pieces),
     };
 
+    // annotate matching pieces with workout_id, to be picked up in
+    // extractSchedule
+    pieceRows.map((row) => {
+      const piece = findPiece(row);
+      piece.piece_workout_id = workout.workout_id;
+    });
+
     return workout;
   });
 
   return lodash.uniqBy(allWorkouts, (wo) => wo.workout_id);
 };
+
+export const extractEvents = (pieces) => pieces
+  .filter((p) => !p.piece_id.startsWith('misc-'))
+  .map((piece) => ({
+    event_id: piece.piece_stamp, // JMB TODO: use guids?
+    event_stamp: piece.piece_stamp,
+    event_workout_id: piece.piece_workout_id,
+  }));
+
+export const extractResults = (log, pieces, workouts, events) => {
+  const pieceGroups = lodash.groupBy(log, (row) => row.log_piece_id);
+  const results = [];
+  lodash.mapKeys(pieceGroups, (pieceRows, log_piece_id) => {
+    const personGroups = lodash.groupBy(pieceRows, (row) => row.log_person_id);
+    const piece = lodash.find(pieces, (p) => p.piece_id === log_piece_id);
+    const event = lodash.find(events, (e) => e.event_stamp === piece.piece_stamp);
+
+    lodash.mapKeys(personGroups, (personRows, log_person_id) => {
+      const base = personRows[0];
+      const workout = lodash.find(workouts, (wo) => wo.workout_id === piece.piece_workout_id);
+      if (!workout) {
+        console.log('dropping rows', personRows);
+        return;
+      }
+      results.push({
+        result_person_id: log_person_id,
+        result_event_id: event && event.event_id,
+        result_workout_id: workout.workout_id,
+        result_stamp: base.log_stamp,
+        result_weight_kilos: base.log_weight_kilos,
+        result_racingage: base.log_racingage,
+        result_entries: personRows.map((row) => ({
+          distance_meters: row.log_distance_meters,
+          time_millis: row.log_time_millis,
+        })),
+      });
+    });
+  })
+  return results;
+};
+
+export const annotatePieces = (pieces, workouts) => pieces
+  .filter((p) => !p.piece_workout_id)
+  .forEach((p) => {
+    const match = p.piece_id.match(/misc-(.*)/);
+    if (match) {
+      const workout = workouts.find((wo) => wo.workout_id === match[1]);
+      if (workout) {
+        p.piece_workout_id = workout.workout_id;
+      }
+    }
+  });
 
 export const process = (sheetKey) => {
   const sheet = new GoogleSpreadsheet(sheetKey);
@@ -160,21 +219,25 @@ export const process = (sheetKey) => {
       }
 
       const logPromise = dump(info.worksheets.find((sheet) => sheet.title === 'log'))
-        .then((rows) => rows.map(parseLogRow));
+        .then((rows) => rows.map(normalizeLogRow));
 
       const piecesPromise = dump(info.worksheets.find((sheet) => sheet.title === 'pieces'))
-        .then((rows) => rows.map(parsePieceRow));
+        .then((rows) => rows.map(normalizePieceRow));
 
       Promise.all([logPromise, piecesPromise]) 
         .then(([log, pieces]) => {
           const workouts = extractWorkouts(log, pieces);
-          console.log('workouts', workouts);
+          annotatePieces(pieces, workouts);
+          const events = extractEvents(pieces);
+          const results = extractResults(log, pieces, workouts, events);
 
           resolve({
             log,
-            piece: pieces,
-            workout: extractWorkouts(log, pieces),
             person: extractPeople(log),
+            piece: pieces,
+            workouts,
+            events,
+            results,
           });
         })
         .catch(reject);

@@ -1,4 +1,5 @@
 model: repeated pieces
+model: cleanup importer legacy objects, piece
 field: move LogTableFields to components/LogTable
 linegraph: line labels
 linegraph: repeated pieces

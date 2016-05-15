@@ -48,6 +48,7 @@
     "format-number": "^2.0.1",
     "immutable": "^3.7.6",
     "lodash": "^4.9.0",
+    "node-uuid": "^1.4.7",
     "path-svg": "^0.2.1",
     "rd3": "^0.6.3",
     "react": "^15.0.1",
