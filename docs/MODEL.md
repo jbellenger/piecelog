@@ -1,6 +1,10 @@
 WORKOUT
   - a manager can define a workout, specifying a collection of pieces
-  - users can see outstanding workouts and log results against those workouts
+  - users can see outstanding workouts and log results against those
+    workouts
+  - workouts are a superset of piece-type. They can measure repeated
+    pieces, and allow distinguishing 3x2k from 1x2k
+  - workouts replace all 'misc-FOO' pieces
 
   Example workouts:
     - 2x22min
@@ -73,7 +77,14 @@ LOG:
     ],
   }
 
+  Stories:
+    - A user may log entries against a workout at any time.
+      - They will always be shown outstanding scheduled workouts
+      - They may also select an unscheduled workout
+
+    - View all log events with matching schedule-id
+    - View all log events with matching workout-id
 
 QUERIES:
   - as a user, show me the upcoming schedule
-  - as a user, show me scheduled workouts that I haven't logged
+  - as a user, show me scheduled workouts that I have not logged

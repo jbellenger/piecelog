@@ -96,6 +96,61 @@ export const extractPeople = (log) => {
   return lodash.values(people);
 };
 
+export const extractWorkoutId = (workout_pieces) => {
+  const baseName = (arch) => {
+    const millis = arch.time_millis;
+    const meters = arch.distance_meters;
+
+    if (millis) {
+      const minutes = millis / (1000 * 60);
+      return `${minutes}min`;
+    } else if (meters) {
+      if (meters >= 1000 && meters % 1000 === 0) {
+        const kms = meters/1000;
+        return `${kms}k`;
+      }
+      return `${meters}m`;
+    }
+  };
+  const base = baseName(workout_pieces[0]);
+  const count = workout_pieces.length;
+  return count > 1 ?
+    `${count} x ${base}` :
+    base;
+};
+
+export const extractWorkouts = (log, pieces) => {
+  const findPiece = (row) => lodash.find(pieces, (p) => p.piece_id === row.log_piece_id);
+
+  const filtered = log.filter((row) => !row.log_piece_id.startsWith('misc-'));
+  const pieceGroups = lodash.groupBy(filtered, (row) => row.log_piece_id);
+
+  const allWorkouts = lodash.values(pieceGroups).map((pieceRows) => {
+    const personRows = lodash.groupBy(pieceRows, (row) => row.log_person_id);
+    const typicalSet = lodash.maxBy(lodash.values(personRows), (rows) => rows.length);
+    const workout_pieces = typicalSet.map((row) => {
+      const piece = findPiece(row);
+      const p = {};
+      if (piece.piece_time_millis) {
+        p.time_millis = piece.piece_time_millis;
+      }
+      if (piece.piece_distance_meters) {
+        p.distance_meters = piece.piece_distance_meters;
+      }
+      return p;
+    });
+
+    const workout = {
+      workout_pieces,
+      workout_id: extractWorkoutId(workout_pieces),
+    };
+
+    return workout;
+  });
+
+  return lodash.uniqBy(allWorkouts, (wo) => wo.workout_id);
+};
+
 export const process = (sheetKey) => {
   const sheet = new GoogleSpreadsheet(sheetKey);
   return new Promise((resolve, reject) => {
@@ -111,11 +166,15 @@ export const process = (sheetKey) => {
         .then((rows) => rows.map(parsePieceRow));
 
       Promise.all([logPromise, piecesPromise]) 
-        .then(([log, piece]) => {
+        .then(([log, pieces]) => {
+          const workouts = extractWorkouts(log, pieces);
+          console.log('workouts', workouts);
+
           resolve({
             log,
-            piece,
-            person: extractPeople(log)
+            piece: pieces,
+            workout: extractWorkouts(log, pieces),
+            person: extractPeople(log),
           });
         })
         .catch(reject);
