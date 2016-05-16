@@ -3,7 +3,6 @@ model: cleanup importer legacy objects, piece
 field: move LogTableFields to components/LogTable
 linegraph: line labels
 linegraph: repeated pieces
-sparkline: remove/deprecate
 fix ":local rect" css poisoning
 person/piece-type sparkline
 piece/multi-people distribution
@@ -25,7 +24,6 @@ decorator support
 smarter filtering
 figure out a story for user identity
 figure out a story for rower identity
-flesh out user stories
 db state storage
 integrate redux-devtools
 git lint/test hooks
@@ -98,3 +96,5 @@ sentry?
 # linegraph: extract line component
 # linegraph: labels
 # rename cols to fields?
+# flesh out user stories
+# sparkline: remove/deprecate
