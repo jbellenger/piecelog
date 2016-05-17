@@ -1,6 +1,9 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {selector as modelsSelector} from '../../modules/store/models';
+import * as Format from '../../modules/format';
+import * as Fields from '../../modules/field/fields';
+import Table from '../Table';
 
 export class View extends React.Component {
   static propTypes = {
@@ -14,10 +17,13 @@ export class View extends React.Component {
 
     return (
       <div>
-        <h1>Event {event.event_id}</h1>
-        <pre>
-          {JSON.stringify(results)}
-        </pre>
+        <h1>{Fields.EVENT_WORKOUT_ID.apply(event)} > {Format.formatStamp(event.event_stamp)}</h1>
+        <Table
+          rows={results}
+          fields={[
+            Fields.RESULT_PERSON_ID,
+          ]}
+        />
       </div>
     )
   }
