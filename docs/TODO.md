@@ -1,3 +1,4 @@
+logtable: adapt for use with results
 model: repeated pieces
 model: cleanup importer legacy objects, piece
 field: move LogTableFields to components/LogTable

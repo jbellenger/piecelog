@@ -8,7 +8,9 @@ import QueryEditorPage from '../QueryEditor/Page';
 import PersonRoute from '../Person/Route';
 import PieceRoute from '../Piece/Route';
 import PieceTypeRoute from '../PieceType/Route';
+import WorkoutsRoute from '../Workouts/Route';
 import WorkoutRoute from '../Workout/Route';
+import EventRoute from '../Event/Route';
 import SvgTest from '../SvgTest/Route';
 
 export default class PageRouter extends React.Component {
@@ -26,6 +28,7 @@ export default class PageRouter extends React.Component {
           <Route path="piece/:pieceId" component={PieceRoute} />
           <Route path="piece-type/:pieceType" component={PieceTypeRoute} />
           <Route path="workout/:workoutId" component={WorkoutRoute} />
+          <Route path="event/:eventId" component={EventRoute} />
         </Route>
       </Router>
     );

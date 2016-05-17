@@ -18,10 +18,8 @@ export class View extends React.Component {
   }
 }
 
-export const mapStateToProps = (state, {personId}) => {
-  return {
-    person: modelsSelector(state).exec('select * from person where person_id=?', [personId])[0],
-  };
-};
+export const mapStateToProps = (state, {personId}) => ({
+  person: modelsSelector(state).exec('select * from person where person_id=?', [personId])[0],
+});
 
 export default connect(mapStateToProps)(View);
