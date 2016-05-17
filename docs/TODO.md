@@ -1,3 +1,4 @@
+event: craft a 'siblingEvents' query
 logtable: adapt for use with results
 model: repeated pieces
 model: cleanup importer legacy objects, piece

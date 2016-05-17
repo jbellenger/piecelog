@@ -1,6 +1,9 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {selector as modelsSelector} from '../../modules/store/models';
+import Table from '../Table';
+import * as EventFields from '../Event/fields';
+
 
 export class View extends React.Component {
   static propTypes = {
@@ -11,11 +14,26 @@ export class View extends React.Component {
   
   render() {
     const {workout, events, results} = this.props;
-    console.log(workout.workout_id, 'events', events);
-    console.log(workout.workout_id, 'results', results);
+    const pieces = workout.workout_pieces;
+
     return (
       <div>
         <h1>Workout {workout.workout_id}</h1>
+        {pieces && (
+          <div>
+            {JSON.stringify(pieces)}
+          </div>
+        )}
+        <div>
+          <h2>Events</h2>
+          <Table 
+            rows={events} 
+            fields={[
+              EventFields.EVENT_ID,
+              EventFields.EVENT_STAMP,
+            ]}
+          />
+        </div>
       </div>
     );
   }
