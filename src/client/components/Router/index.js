@@ -8,7 +8,6 @@ import QueryEditorPage from '../QueryEditor/Page';
 import PersonRoute from '../Person/Route';
 import PieceRoute from '../Piece/Route';
 import PieceTypeRoute from '../PieceType/Route';
-import WorkoutsRoute from '../Workouts/Route';
 import WorkoutRoute from '../Workout/Route';
 import EventRoute from '../Event/Route';
 import SvgTest from '../SvgTest/Route';
