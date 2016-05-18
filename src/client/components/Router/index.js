@@ -8,8 +8,8 @@ import QueryEditorPage from '../QueryEditor/Page';
 import PersonRoute from '../Person/Route';
 import PieceRoute from '../Piece/Route';
 import PieceTypeRoute from '../PieceType/Route';
-import WorkoutRoute from '../Workout/Route';
-import EventRoute from '../Event/Route';
+import WorkoutRoute from '../Workout/WorkoutRoute';
+import EventRoute from '../Event/EventRoute';
 import SvgTest from '../SvgTest/Route';
 
 export default class PageRouter extends React.Component {

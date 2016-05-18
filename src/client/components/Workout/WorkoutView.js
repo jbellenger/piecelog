@@ -4,7 +4,7 @@ import {selector as modelsSelector} from '../../modules/store/models';
 import Table from '../Table';
 import * as Fields from '../../modules/field/fields';
 
-export class View extends React.Component {
+export class WorkoutView extends React.Component {
   static propTypes = {
     workout: PropTypes.object.isRequired,
     events: PropTypes.array.isRequired,
@@ -47,4 +47,4 @@ export const mapStateToProps = (state, {workoutId}) => {
   };
 };
 
-export default connect(mapStateToProps)(View);
+export default connect(mapStateToProps)(WorkoutView);

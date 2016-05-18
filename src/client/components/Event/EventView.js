@@ -5,7 +5,7 @@ import * as Format from '../../modules/format';
 import * as Fields from '../../modules/field/fields';
 import Table from '../Table';
 
-export class View extends React.Component {
+export class EventView extends React.Component {
   static propTypes = {
     event: PropTypes.object.isRequired,
     results: PropTypes.array.isRequired,
@@ -39,4 +39,4 @@ export const mapStateToProps = (state, {eventId}) => {
   };
 };
 
-export default connect(mapStateToProps)(View);
+export default connect(mapStateToProps)(EventView);
