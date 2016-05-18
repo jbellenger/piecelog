@@ -20,4 +20,8 @@ const PERSON_FORMAT = (value) => (
 );
 export const RESULT_PERSON_ID = new Field('result_person_id', 'person', PERSON_FORMAT);
 
+export const RESULT_WEIGHT_KILOS = new Field('result_weight_kilos', 'kgs', Format.formatWeight);
+
+export const RESULT_WEIGHT_POUNDS = new Field('result_weight_pounds', 'lbs', Format.formatWeight);
+
 export const EVENT_WORKOUT_ID = new Field('event_workout_id', 'workout', WORKOUT_ID_FORMAT);
