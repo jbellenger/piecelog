@@ -5,6 +5,7 @@ import * as Format from '../../modules/format';
 import * as Fields from '../../modules/field/fields';
 import Table from '../Table';
 import Result from '../../modules/model/Result';
+import ResultsTable from '../ResultsTable';
 
 export class EventView extends React.Component {
   static propTypes = {
@@ -19,13 +20,7 @@ export class EventView extends React.Component {
     return (
       <div>
         <h1>{Fields.EVENT_WORKOUT_ID.apply(event)} > {Format.formatStamp(event.event_stamp)}</h1>
-        <Table
-          rows={results}
-          fields={[
-            Fields.RESULT_PERSON_ID,
-            Fields.RESULT_WEIGHT_POUNDS,
-          ]}
-        />
+        <ResultsTable results={results} />
       </div>
     )
   }

@@ -24,4 +24,8 @@ export const RESULT_WEIGHT_KILOS = new Field('result_weight_kilos', 'kgs', Forma
 
 export const RESULT_WEIGHT_POUNDS = new Field('result_weight_pounds', 'lbs', Format.formatWeight);
 
+export const RESULT_ENTRIES = new Field('result_entries', 'results', JSON.stringify);
+
+export const RESULT_ENTRY = new Field('result_entries', 'result', JSON.stringify);
+
 export const EVENT_WORKOUT_ID = new Field('event_workout_id', 'workout', WORKOUT_ID_FORMAT);
