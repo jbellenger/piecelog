@@ -13,11 +13,11 @@ export class WorkoutView extends React.Component {
   
   render() {
     const {workout, events, results} = this.props;
-    const pieces = workout.workout_pieces;
+    const pieces = workout.pieces;
 
     return (
       <div>
-        <h1>Workout {workout.workout_id}</h1>
+        <h1>Workout {workout.id}</h1>
         {pieces && (
           <div>
             {JSON.stringify(pieces)}
@@ -41,7 +41,7 @@ export class WorkoutView extends React.Component {
 export const mapStateToProps = (state, {workoutId}) => {
   const models = modelsSelector(state);
   return {
-    workout: models.workouts.findByWorkoutId(workoutId),
+    workout: models.workouts.findById(workoutId),
     events: models.events.filterByWorkoutId(workoutId),
     results: models.results.filterByWorkoutId(workoutId),
   };

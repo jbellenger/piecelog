@@ -96,7 +96,7 @@ export const extractPeople = (log) => {
   return lodash.values(people);
 };
 
-export const extractWorkoutId = (workout_pieces) => {
+export const extractWorkoutId = (pieces) => {
   const baseName = (arch) => {
     const millis = arch.time_millis;
     const meters = arch.distance_meters;
@@ -112,8 +112,8 @@ export const extractWorkoutId = (workout_pieces) => {
       return `${meters}m`;
     }
   };
-  const base = baseName(workout_pieces[0]);
-  const count = workout_pieces.length;
+  const base = baseName(pieces[0]);
+  const count = pieces.length;
   return count > 1 ?
     `${count} x ${base}` :
     base;
@@ -128,7 +128,7 @@ export const extractWorkouts = (log, pieces) => {
   const allWorkouts = lodash.values(pieceGroups).map((pieceRows) => {
     const personRows = lodash.groupBy(pieceRows, (row) => row.log_person_id);
     const typicalSet = lodash.maxBy(lodash.values(personRows), (rows) => rows.length);
-    const workout_pieces = typicalSet.map((row) => {
+    const pieces = typicalSet.map((row) => {
       const piece = findPiece(row);
       const p = {};
       if (piece.piece_time_millis) {
@@ -141,29 +141,29 @@ export const extractWorkouts = (log, pieces) => {
     });
 
     const workout = {
-      workout_pieces,
-      workout_id: extractWorkoutId(workout_pieces),
+      pieces,
+      id: extractWorkoutId(pieces),
     };
 
     // annotate matching pieces with workout_id, to be picked up in
     // extractSchedule
     pieceRows.map((row) => {
       const piece = findPiece(row);
-      piece.piece_workout_id = workout.workout_id;
+      piece.workout_id = workout.id;
     });
 
     return workout;
   });
 
-  return lodash.uniqBy(allWorkouts, (wo) => wo.workout_id);
+  return lodash.uniqBy(allWorkouts, (wo) => wo.id);
 };
 
 export const extractEvents = (pieces) => pieces
   .filter((p) => !p.piece_id.startsWith('misc-'))
   .map((piece) => ({
-    event_id: piece.piece_stamp, // JMB TODO: use guids?
-    event_stamp: piece.piece_stamp,
-    event_workout_id: piece.piece_workout_id,
+    id: piece.piece_stamp, // JMB TODO: use guids?
+    stamp: piece.piece_stamp,
+    workout_id: piece.workout_id,
   }));
 
 export const extractResults = (log, pieces, workouts, events) => {
@@ -172,23 +172,23 @@ export const extractResults = (log, pieces, workouts, events) => {
   lodash.mapKeys(pieceGroups, (pieceRows, log_piece_id) => {
     const personGroups = lodash.groupBy(pieceRows, (row) => row.log_person_id);
     const piece = lodash.find(pieces, (p) => p.piece_id === log_piece_id);
-    const event = lodash.find(events, (e) => e.event_stamp === piece.piece_stamp);
+    const event = lodash.find(events, (e) => e.stamp === piece.piece_stamp);
 
     lodash.mapKeys(personGroups, (personRows, log_person_id) => {
       const base = personRows[0];
-      const workout = lodash.find(workouts, (wo) => wo.workout_id === piece.piece_workout_id);
+      const workout = lodash.find(workouts, (wo) => wo.id === piece.workout_id);
       if (!workout) {
         console.log('dropping rows', personRows);
         return;
       }
       results.push({
-        result_person_id: log_person_id,
-        result_event_id: event && event.event_id,
-        result_workout_id: workout.workout_id,
-        result_stamp: base.log_stamp,
-        result_weight_kilos: base.log_weight_kilos,
-        result_racingage: base.log_racingage,
-        result_entries: personRows.map((row) => ({
+        person_id: log_person_id,
+        event_id: event && event.id,
+        workout_id: workout.id,
+        stamp: base.log_stamp,
+        weight_kilos: base.log_weight_kilos,
+        racingage: base.log_racingage,
+        entries: personRows.map((row) => ({
           distance_meters: row.log_distance_meters,
           time_millis: row.log_time_millis,
         })),
@@ -199,13 +199,13 @@ export const extractResults = (log, pieces, workouts, events) => {
 };
 
 export const annotatePieces = (pieces, workouts) => pieces
-  .filter((p) => !p.piece_workout_id)
+  .filter((p) => !p.workout_id)
   .forEach((p) => {
     const match = p.piece_id.match(/misc-(.*)/);
     if (match) {
-      const workout = workouts.find((wo) => wo.workout_id === match[1]);
+      const workout = workouts.find((wo) => wo.id === match[1]);
       if (workout) {
-        p.piece_workout_id = workout.workout_id;
+        p.workout_id = workout.id;
       }
     }
   });

@@ -12,7 +12,7 @@ export class WorkoutCollection {
     this.models = models;
   }
 
-  findByWorkoutId(workoutId) {
-    return this.workouts.find((x) => x.workout_id === workoutId);
+  findById(id) {
+    return this.workouts.find((x) => x.id === id);
   }
 }

@@ -12,11 +12,11 @@ export class EventCollection {
     this.events = objs.map((x) => new Event(x));
   }
 
-  findByEventId(eventId) {
-    return this.events.find((x) => x.event_id === eventId);
+  findById(id) {
+    return this.events.find((x) => x.id === id);
   }
 
   filterByWorkoutId(workoutId) {
-    return this.events.filter((x) => x.event_workout_id === workoutId);
+    return this.events.filter((x) => x.workout_id === workoutId);
   }
 }

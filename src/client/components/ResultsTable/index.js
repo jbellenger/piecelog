@@ -39,7 +39,7 @@ export default class ResultsTable extends React.Component {
       Fields.RESULT_PERSON_ID,
       Fields.RESULT_WEIGHT_POUNDS,
     ];
-    if (results.some((x) => x.result_entries.length > 1)) {
+    if (results.some((x) => x.entries.length > 1)) {
       // multi entry result
       fields.push(
         Fields.RESULT_ENTRIES,

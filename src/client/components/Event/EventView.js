@@ -15,11 +15,11 @@ export class EventView extends React.Component {
 
   render() {
     const {event, results} = this.props;
-    console.log(event.event_id, 'results', results);
+    console.log(event.id, 'results', results);
 
     return (
       <div>
-        <h1>{Fields.EVENT_WORKOUT_ID.apply(event)} > {Format.formatStamp(event.event_stamp)}</h1>
+        <h1>{Fields.EVENT_WORKOUT_ID.apply(event)} > {Format.formatStamp(event.stamp)}</h1>
         <ResultsTable results={results} />
       </div>
     )
@@ -31,7 +31,7 @@ export const mapStateToProps = (state, {eventId}) => {
   const models = modelsSelector(state);
 
   return {
-    event: models.events.findByEventId(eventId),
+    event: models.events.findById(eventId),
     results: models.results.filterByEventId(eventId),
   };
 };

@@ -5,18 +5,18 @@ export class Result {
   constructor(data) {
     merge(this, data);
     if (this.result_entries) {
-      this.result_entries = this.result_entries.map((x) => new ResultEntry(x));
+      this.entries = this.entries.map((x) => new ResultEntry(x));
     }
   }
 
-  get result_weight_pounds() {
-    if (this.result_weight_kilos !== undefined) {
-      return this.result_weight_kilos * 2.2;
+  get weight_pounds() {
+    if (this.weight_kilos !== undefined) {
+      return this.weight_kilos * 2.2;
     }
   }
 
   collect(fieldName) {
-    this.result_entries.map((x) => x[fieldName]);
+    this.entries.map((x) => x[fieldName]);
   }
 }
 
@@ -27,10 +27,10 @@ export class ResultCollection {
   }
 
   filterByEventId(eventId) {
-    return this.results.filter((x) => x.result_event_id === eventId);
+    return this.results.filter((x) => x.event_id === eventId);
   }
 
   filterByWorkoutId(workoutId) {
-    return this.results.filter((x) => x.result_workout_id === workoutId);
+    return this.results.filter((x) => x.workout_id === workoutId);
   }
 }
