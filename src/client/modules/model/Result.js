@@ -4,7 +4,9 @@ import ResultEntry from './ResultEntry';
 export class Result {
   constructor(data) {
     merge(this, data);
-    this.result_entries = this.result_entries.map((x) => new ResultEntry(x));
+    if (this.result_entries) {
+      this.result_entries = this.result_entries.map((x) => new ResultEntry(x));
+    }
   }
 
   get result_weight_pounds() {

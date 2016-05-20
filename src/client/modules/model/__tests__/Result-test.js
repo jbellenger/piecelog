@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import Result from '../Result';
+import {Result} from '../Result';
 
 suite('Result', () => {
   suite('result_weight_pounds', () => {
