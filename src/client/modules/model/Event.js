@@ -1,13 +1,22 @@
 import merge from 'lodash/merge';
 
-export default class Event {
-  static fields = [
-    'event_id',
-    'event_stamp',
-    'event_workout_id',
-  ];
-
+export class Event {
   constructor(data) {
     merge(this, data);
+  }
+}
+
+export class EventCollection {
+  constructor(objs, models) {
+    this.models = models;
+    this.events = objs.map((x) => new Event(x));
+  }
+
+  findByEventId(eventId) {
+    return this.events.find((x) => x.event_id === eventId);
+  }
+
+  filterByWorkoutId(workoutId) {
+    return this.events.filter((x) => x.event_workout_id === workoutId);
   }
 }

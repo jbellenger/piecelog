@@ -2,6 +2,7 @@ event: craft a 'siblingEvents' query
 logtable: adapt for use with results
 model: repeated pieces
 model: cleanup importer legacy objects, piece
+remove dep on alasql
 field: move LogTableFields to components/LogTable
 linegraph: line labels
 linegraph: repeated pieces

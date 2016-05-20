@@ -1,24 +1,34 @@
 import merge from 'lodash/merge';
+import ResultEntry from './ResultEntry';
 
-export default class Result {
-  static fields = [
-    'result_entries',
-    'result_event_id',
-    'result_person_id',
-    'result_racingage',
-    'result_stamp',
-    'result_weight_kilos',
-    'result_weight_pounds',
-    'result_workout_id',
-  ].join(',');
-
+export class Result {
   constructor(data) {
     merge(this, data);
+    this.result_entries = this.result_entries.map((x) => new ResultEntry(x));
   }
 
   get result_weight_pounds() {
     if (this.result_weight_kilos !== undefined) {
       return this.result_weight_kilos * 2.2;
     }
+  }
+
+  collect(fieldName) {
+    this.result_entries.map((x) => x[fieldName]);
+  }
+}
+
+export class ResultCollection {
+  constructor(objs, models) {
+    this.results = objs.map((x) => new Result(x));
+    this.models = models;
+  }
+
+  filterByEventId(eventId) {
+    return this.results.filter((x) => x.result_event_id === eventId);
+  }
+
+  filterByWorkoutId(workoutId) {
+    return this.results.filter((x) => x.result_workout_id === workoutId);
   }
 }

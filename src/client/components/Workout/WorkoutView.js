@@ -41,9 +41,9 @@ export class WorkoutView extends React.Component {
 export const mapStateToProps = (state, {workoutId}) => {
   const models = modelsSelector(state);
   return {
-    workout: models.exec('select * from workouts where workout_id=?', [workoutId])[0],
-    events: models.exec('select * from events where event_workout_id=? order by event_stamp desc', [workoutId]),
-    results: models.exec('select * from results where result_workout_id=?', [workoutId]),
+    workout: models.workouts.findByWorkoutId(workoutId),
+    events: models.events.filterByWorkoutId(workoutId),
+    results: models.results.filterByWorkoutId(workoutId),
   };
 };
 

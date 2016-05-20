@@ -27,7 +27,7 @@ rl.on('line', (line) => {
   if (line.trim()) {
     try {
       const result = db.exec(line.trim());
-      console.log(util.inspect(result));
+      console.log(util.inspect(result, {depth: null}));
     } catch (err) {
       console.error('Error:', err);
     }

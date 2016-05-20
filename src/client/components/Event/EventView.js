@@ -31,8 +31,8 @@ export const mapStateToProps = (state, {eventId}) => {
   const models = modelsSelector(state);
 
   return {
-    event: models.exec('select * from events where event_id=?', [eventId])[0],
-    results: models.exec(`select ${Result.fields} from results where result_event_id=?`, [eventId]),
+    event: models.events.findByEventId(eventId),
+    results: models.results.filterByEventId(eventId),
   };
 };
 

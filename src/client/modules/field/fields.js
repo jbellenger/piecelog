@@ -28,4 +28,6 @@ export const RESULT_ENTRIES = new Field('result_entries', 'results', JSON.string
 
 export const RESULT_ENTRY = new Field('result_entries', 'result', JSON.stringify);
 
+export const RESULT_ENTRY_SPLIT = new Field(null, 'split', null, (x) => 'TODO');
+
 export const EVENT_WORKOUT_ID = new Field('event_workout_id', 'workout', WORKOUT_ID_FORMAT);
