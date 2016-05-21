@@ -1,12 +1,16 @@
 import merge from 'lodash/merge';
-import ResultEntry from './ResultEntry';
+import {ResultEntry, ResultEntryCollection} from './ResultEntry';
 
 export class Result {
   constructor(data) {
     merge(this, data);
-    if (this.result_entries) {
+    if (this.entries) {
       this.entries = this.entries.map((x) => new ResultEntry(x));
     }
+  }
+
+  get entry_collection() {
+    return new ResultEntryCollection(this.entries, this.models);
   }
 
   get weight_pounds() {

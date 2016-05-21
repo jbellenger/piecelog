@@ -1,3 +1,4 @@
+resulttable: create Field component for agg columns
 event: craft a 'siblingEvents' query
 logtable: adapt for use with results
 model: repeated pieces

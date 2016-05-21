@@ -28,6 +28,9 @@ export const RESULT_ENTRIES = new Field('entries', 'results', JSON.stringify);
 
 export const RESULT_ENTRY = new Field('entries', 'result', JSON.stringify);
 
-export const RESULT_ENTRY_SPLIT = new Field(null, 'split', null, (x) => 'TODO');
+const resultEntryFormat = (coll) => {
+  return Format.formatSplit(coll.mean_split_seconds);
+};
+export const RESULT_ENTRY_SPLIT = new Field('entry_collection', 'split', resultEntryFormat);
 
 export const EVENT_WORKOUT_ID = new Field('workout_id', 'workout', WORKOUT_ID_FORMAT);
