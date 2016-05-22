@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router';
 import Field from '.';
 import * as Format from '../format';
+import MeanField from '../../components/ResultsTable/MeanField';
 
 const EVENT_STAMP_FORMAT = (value) => (
   <Link to={`/event/${value}`}>{Format.formatStamp(value)}</Link>
@@ -24,13 +25,9 @@ export const RESULT_WEIGHT_KILOS = new Field('weight_kilos', 'kgs', Format.forma
 
 export const RESULT_WEIGHT_POUNDS = new Field('weight_pounds', 'lbs', Format.formatWeight);
 
-export const RESULT_ENTRIES = new Field('entries', 'results', JSON.stringify);
-
-export const RESULT_ENTRY = new Field('entries', 'result', JSON.stringify);
-
-const resultEntryFormat = (coll) => {
-  return Format.formatSplit(coll.mean_split_seconds);
-};
+const resultEntryFormat = (coll) => (
+  <DistributionField collection={coll} stat="split_seconds" formatter={Format.formatSplit} />
+);
 export const RESULT_ENTRY_SPLIT = new Field('entry_collection', 'split', resultEntryFormat);
 
 export const EVENT_WORKOUT_ID = new Field('workout_id', 'workout', WORKOUT_ID_FORMAT);

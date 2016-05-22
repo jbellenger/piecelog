@@ -33,12 +33,18 @@ export class ResultEntry {
 }
 
 export class ResultEntryCollection {
-  constructor(objs, models) {
+  constructor(objs, result, models) {
     this.entries = objs.map((x) => new ResultEntry(x));
+    this.result = result;
     this.models = models;
   }
 
-  get mean_split_seconds() {
-    return stats.mean(this.entries.map((x) => x.split_seconds));
+  get mean() {
+    return new ResultEntry({
+      distance_meters: stats.mean(this.entries.map((x) => x.distance_meters)),
+      time_millis: stats.mean(this.entries.map((x) => x.time_millis)),
+      models: this.models,
+      result: this.result,
+    });
   }
 }
