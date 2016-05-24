@@ -25,9 +25,20 @@ export const RESULT_WEIGHT_KILOS = new Field('weight_kilos', 'kgs', Format.forma
 
 export const RESULT_WEIGHT_POUNDS = new Field('weight_pounds', 'lbs', Format.formatWeight);
 
-const resultEntryFormat = (coll) => (
-  <DistributionField collection={coll} stat="split_seconds" formatter={Format.formatSplit} />
+const aggSplitFormat = (coll) => (
+  <MeanField collection={coll} stat="split_seconds" formatter={Format.formatSplit} />
 );
-export const RESULT_ENTRY_SPLIT = new Field('entry_collection', 'split', resultEntryFormat);
+export const RESULT_ENTRY_SPLIT = new Field('entry_collection', 'split', aggSplitFormat);
+
+const aggWattsFormat = (coll) => (
+  <MeanField collection={coll} stat="watts" formatter={Format.formatWatts} />
+);
+export const RESULT_ENTRY_WATTS = new Field('entry_collection', 'watts', aggWattsFormat);
+
+const aggWattsPerKgFormat = (coll) => (
+  <MeanField collection={coll} stat="watts_per_kg" formatter={Format.formatWattsPerKg} />
+);
+export const RESULT_ENTRY_WATTS_PER_KG = new Field('entry_collection', 'watts', aggWattsPerKgFormat);
+
 
 export const EVENT_WORKOUT_ID = new Field('workout_id', 'workout', WORKOUT_ID_FORMAT);

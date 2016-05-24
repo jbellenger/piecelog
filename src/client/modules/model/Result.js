@@ -10,7 +10,7 @@ export class Result {
   }
 
   get entry_collection() {
-    return new ResultEntryCollection(this.entries, this.models);
+    return new ResultEntryCollection(this.entries, this, this.models);
   }
 
   get weight_pounds() {

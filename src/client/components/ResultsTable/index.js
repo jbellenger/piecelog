@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import Table from '../Table';
 import * as Fields from '../../modules/field/fields';
+import * as styles from './styles.css';
 
 /*
  * person    weight     split   watts/kg   adj.split
@@ -38,9 +39,11 @@ export default class ResultsTable extends React.Component {
     const fields = [
       Fields.RESULT_PERSON_ID,
       Fields.RESULT_WEIGHT_POUNDS,
+      Fields.RESULT_ENTRY_SPLIT,
+      Fields.RESULT_ENTRY_WATTS,
+      Fields.RESULT_ENTRY_WATTS_PER_KG,
     ];
-    fields.push(Fields.RESULT_ENTRY_SPLIT);
 
-    return <Table rows={results} fields={fields} />;
+    return <Table className={styles.root} rows={results} fields={fields} />;
   }
 }

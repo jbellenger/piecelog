@@ -3,6 +3,7 @@ import Row from './Row';
 import Headers from './Headers';
 import styles from './styles.css';
 import * as Shapes from './shapes';
+import classNames from 'classnames';
 
 export default class Table extends React.Component {
   static propTypes = {
@@ -12,10 +13,11 @@ export default class Table extends React.Component {
   };
 
   render() {
-    const {rows, fields, sortData} = this.props;
-    
+    const {rows, fields, sortData, className} = this.props;
+    const cnames = classNames(className, styles.root);
+
     return (
-      <table className={styles.root}>
+      <table className={cnames}>
         <tbody>
           <Headers fields={fields} sortData={sortData}/>
           {rows.map((row, idx) => <Row key={idx} fields={fields} row={row}/>)}

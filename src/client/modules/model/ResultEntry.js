@@ -18,7 +18,7 @@ export class ResultEntry {
   }
 
   get watts_per_kg() {
-    const kilos = this.result.result_weight_kilos;
+    const kilos = this.result.weight_kilos;
     if (kilos) {
       return this.watts/kilos;
     }
@@ -34,7 +34,7 @@ export class ResultEntry {
 
 export class ResultEntryCollection {
   constructor(objs, result, models) {
-    this.entries = objs.map((x) => new ResultEntry(x));
+    this.entries = objs.map((x) => new ResultEntry(x, result));
     this.result = result;
     this.models = models;
   }

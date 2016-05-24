@@ -1,4 +1,4 @@
-resulttable: create Field component for agg columns
+resulttable: fix numbering and layout of 'sub-table' columns
 event: craft a 'siblingEvents' query
 logtable: adapt for use with results
 model: repeated pieces
