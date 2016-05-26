@@ -35,7 +35,6 @@ export default class ResultsTable extends React.Component {
 
   render() {
     const {results} = this.props;
-
     const fields = [
       Fields.RESULT_PERSON_ID,
       Fields.RESULT_WEIGHT_POUNDS,

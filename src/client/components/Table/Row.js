@@ -19,15 +19,30 @@ export default class Row extends React.Component {
     //     - sub items will be individually formatted by field
     //     - surrounding rows will have colspan incremented by size of array
 
+    let maxRowspan;
+
     const objs = fields.map((field, i) => {
       const e = field.extractor(row);
+      let rowspan;
+      if (Array.isArray(e)) {
+        rowspan = Array.isArray(e) ? e.length : undefined;
+        maxRowspan = Math.max(rowspan, maxRowspan);
+      }
+
       return {
         field: field,
         index: i,
         formatted: field.formatter(e),
         extracted: e,
-        rowspan: 1,
+        rowspan
       };
+    });
+
+    // update rowspans
+    objs.forEach((o) => {
+      if (o.rowspan === -1) {
+        o.rowspan = maxRowspan;
+      }
     });
 
     return (
