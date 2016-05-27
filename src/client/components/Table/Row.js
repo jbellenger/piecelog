@@ -1,5 +1,8 @@
 import React, { PropTypes } from 'react';
+import castArray from 'lodash/castArray';
+import flatMap from 'lodash/flatMap';
 import * as Shapes from './shapes';
+import fill from 'lodash/fill';
 
 export default class Row extends React.Component {
   static propTypes = {
@@ -10,45 +13,37 @@ export default class Row extends React.Component {
   render() {
     const {fields, row} = this.props;
 
-    // field extractor protocol:
-    //   - if extractor returns an object, then:
-    //     - object will be formatted directly by field
-    //     - surrounding rows will have normal colspan
-    //
-    //   - if extractor returns an ??? (array? "MultiRowField"?) then:
-    //     - sub items will be individually formatted by field
-    //     - surrounding rows will have colspan incremented by size of array
+    // JMB TODO: 
+    const data = fields.map((field) => ({
+      field,
+      values: castArray(field.extractor(row)),
+    }));
 
-    let maxRowspan;
+    const totalTableRows = Math.max(...data.map((c) => c.values.length));
 
-    const objs = fields.map((field, i) => {
-      const e = field.extractor(row);
-      let rowspan;
-      if (Array.isArray(e)) {
-        rowspan = Array.isArray(e) ? e.length : undefined;
-        maxRowspan = Math.max(rowspan, maxRowspan);
+    // each row can be expanded to a 2-d table
+    const table = fill(Array(totalTableRows), Array(fields.length));
+    for (let r=0; r < totalTableRows; r++) {
+      for (let c=0; c < fields.length; c++) {
+        table[r][c] = data[c].values[r];
       }
+    }
 
-      return {
-        field: field,
-        index: i,
-        formatted: field.formatter(e),
-        extracted: e,
-        rowspan
-      };
-    });
+    console.log('table', table);
 
-    // update rowspans
-    objs.forEach((o) => {
-      if (o.rowspan === -1) {
-        o.rowspan = maxRowspan;
-      }
-    });
+    return null;
+    /*
+    const maxColLength = Math.max(...cols.map((c) => c.values.length));
 
     return (
       <tr>
-        {objs.map((obj) => <td rowSpan={obj.rowspan} key={obj.index}>{obj.formatted}</td>)}
+        {flatMap(cols, (col) => col.values.map((value) => (
+          <td rowSpan={maxColLength - col.values.length + 1}>
+            {col.field.formatter(value)}
+          </td>
+        )))}
       </tr>
     );
+    */
   }
 }
