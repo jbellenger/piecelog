@@ -1,4 +1,4 @@
-resulttable: fix numbering and layout of 'sub-table' columns
+table: expanded rows return more fields, not data
 event: craft a 'siblingEvents' query
 logtable: adapt for use with results
 model: repeated pieces
@@ -102,3 +102,4 @@ sentry?
 # rename cols to fields?
 # flesh out user stories
 # sparkline: remove/deprecate
+# resulttable: fix layout of 'sub-table' columns
