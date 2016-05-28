@@ -38,7 +38,6 @@ export default class ResultsTable extends React.Component {
     const fields = [
       Fields.RESULT_PERSON_ID,
       Fields.RESULT_WEIGHT_POUNDS,
-      Fields.RESULT_ENTRY_INDEX,
       Fields.RESULT_ENTRY_SPLIT,
       Fields.RESULT_ENTRY_WATTS_PER_KG,
     ];
