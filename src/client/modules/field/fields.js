@@ -32,4 +32,11 @@ export const RESULT_ENTRY_SPLIT = new Field(
   (x) => x.entry_collection.entries.map((e) => e.split_seconds)
 );
 
+export const RESULT_ENTRY_WATTS_PER_KG = new Field(
+  'entry_collection', 
+  'watts/kg', 
+  Format.formatWattsPerKg, 
+  (x) => x.entry_collection.entries.map((e) => e.watts_per_kg)
+);
+
 export const EVENT_WORKOUT_ID = new Field('workout_id', 'workout', WORKOUT_ID_FORMAT);
