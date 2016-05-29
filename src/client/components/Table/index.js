@@ -7,7 +7,6 @@ import range from 'lodash/range';
 import castArray from 'lodash/castArray';
 import flatMap from 'lodash/flatMap';
 
-
 // Drawing strategy:
 //   - when drawing a row, don't draw cells for undefined values
 //   - when drawing a cell, if cell in r+1 is undefined, assume that it should
@@ -27,7 +26,7 @@ const renderCell = (table, fields, r, c) => {
   if (data) {
     const fill = r+1 < table.length ? !table[r+1][c] : false
     const rowspan = fill ? table.length - r : 1;
-    const formatted = fields[c].formatter(data);
+    const formatted = fields[c].formatter(data, r);
     return <td rowSpan={rowspan}>{formatted}</td>;
   }
 }

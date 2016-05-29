@@ -2,7 +2,6 @@ import React from 'react';
 import {Link} from 'react-router';
 import Field from '.';
 import * as Format from '../format';
-import MeanField from '../../components/ResultsTable/MeanField';
 
 const EVENT_STAMP_FORMAT = (value) => (
   <Link to={`/event/${value}`}>{Format.formatStamp(value)}</Link>
@@ -25,18 +24,24 @@ export const RESULT_WEIGHT_KILOS = new Field('weight_kilos', 'kgs', Format.forma
 
 export const RESULT_WEIGHT_POUNDS = new Field('weight_pounds', 'lbs', Format.formatWeight);
 
+
+export const EVENT_WORKOUT_ID = new Field('workout_id', 'workout', WORKOUT_ID_FORMAT);
+
+const aggFormat = (inner) => (x, i) => {
+  const cls = i === 0 ? 'mean' : 'item';
+  return <span className={cls}>{inner(x)}</span>;
+};
+
 export const RESULT_ENTRY_SPLIT = new Field(
-  'entry_collection', 
+  null,
   'split', 
-  Format.formatSplit, 
+  aggFormat(Format.formatSplit),
   (x) => x.entry_collection.entries.map((e) => e.split_seconds)
 );
 
 export const RESULT_ENTRY_WATTS_PER_KG = new Field(
   'entry_collection', 
   'watts/kg', 
-  Format.formatWattsPerKg, 
+  aggFormat(Format.formatWattsPerKg), 
   (x) => x.entry_collection.entries.map((e) => e.watts_per_kg)
 );
-
-export const EVENT_WORKOUT_ID = new Field('workout_id', 'workout', WORKOUT_ID_FORMAT);
