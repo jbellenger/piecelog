@@ -1,7 +1,5 @@
 export default class Field {
-  static fromArray = (arr) => arr.map((key) => new Col(key));
-
-  constructor(key, header, formatter, extractor) {
+  constructor({key, header, formatter, extractor}) {
     this.key = key;
     this.header = header || key;
     this.formatter = formatter || ((x) => x);
