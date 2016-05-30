@@ -18,6 +18,12 @@ export default class ResultsTable extends React.Component {
       Fields.RESULT_ENTRY_ADJUSTED_SPLIT,
     ];
 
-    return <Table className={styles.root} rows={results} fields={fields} />;
+    return (
+      <Table 
+        sortField={Fields.RESULT_ENTRY_ADJUSTED_SPLIT}
+        className={styles.root} 
+        rows={results} 
+        fields={fields} />
+    );
   }
 }

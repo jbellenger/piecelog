@@ -1,3 +1,7 @@
 :local .root {
   font-size:12px;
 }
+
+:local .hot {
+  cursor: pointer;
+}

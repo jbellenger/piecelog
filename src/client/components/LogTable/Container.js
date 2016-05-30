@@ -26,25 +26,7 @@ export default class Container extends React.Component {
     };
   }
 
-  onSort(field) {
-    if (field === this.state.field) {
-      this.setState({desc: !this.state.desc});
-    } else {
-      this.setState({field});
-    }
-  }
-
-  get sortData() {
-    return {
-      field: this.state.field,
-      desc: this.state.desc,
-      onSort: this.onSort.bind(this),
-    };
-  }
-
   render() {
-    return (
-      <LogTable {...this.props} sortData={this.sortData} />
-    );
+    return <LogTable {...this.props} />
   }
 };

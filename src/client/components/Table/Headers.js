@@ -1,15 +1,17 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import * as Shapes from './shapes';
+import styles from './styles.css';
 
-const TableHeader = ({key, field, sortData}) => {
+const TableHeader = ({key, field, sortField, sortDesc, onSort}) => {
   let contents = field.header;
-  if (sortData && field === sortData.field) {
-    contents += sortData.desc ? '↓' : '↑';
+  if (sortField && field === sortField) {
+    contents += sortDesc ? '↓' : '↑';
   }
   const attrs = {key};
-  if (sortData) {
-    attrs.onClick = () => sortData.onSort(field);
+  if (onSort) {
+    attrs.onClick = () => onSort(field);
+    attrs.className = styles.hot;
   }
 
   return (
@@ -22,7 +24,9 @@ const TableHeader = ({key, field, sortData}) => {
 export default class Headers extends React.Component {
   static propTypes = {
     fields: Shapes.FieldsShape.isRequired,
-    sortData: Shapes.SortDataShape,
+    sortField: Shapes.FieldShape,
+    sortDesc: PropTypes.bool,
+    onSort: PropTypes.func,
   };
 
   render() {

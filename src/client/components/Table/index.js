@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import range from 'lodash/range';
 import castArray from 'lodash/castArray';
 import flatMap from 'lodash/flatMap';
+import orderBy from 'lodash/orderBy';
 
 // Drawing strategy:
 //   - when drawing a row, don't draw cells for undefined values
@@ -60,18 +61,50 @@ export default class Table extends React.Component {
   static propTypes = {
     rows: Shapes.RowsShape.isRequired,
     fields: Shapes.FieldsShape.isRequied,
-    sortData: Shapes.SortDataShape,
+    sortField: Shapes.FieldShape,
   };
 
+  constructor(props) {
+    super(props);
+    const {sortField, sortDesc = false} = props;
+    this.state = {sortField, sortDesc};
+  }
+
+  onSort(sortField) {
+    if (sortField === this.state.sortField) {
+      this.setState({sortDesc: !this.state.sortDesc});
+    } else {
+      this.setState({sortField});
+    }
+  }
+
   render() {
-    const {rows, fields, sortData, className} = this.props;
+    const {rows, fields, className} = this.props;
+    const {sortField, sortDesc} = this.state;
+
     const cnames = classNames(className, styles.root);
+    let onSort;
+    if (sortField) {
+      onSort = this.onSort.bind(this);
+    }
+
+    let sortedRows = rows;
+    if (sortField) {
+      sortedRows = orderBy(rows, (row) => (
+        castArray(sortField.extractor(row))[0]
+      ), [sortDesc && 'desc' || 'asc']);
+    }
 
     return (
       <table className={cnames}>
         <tbody>
-          <Headers fields={fields} sortData={sortData}/>
-          {flatMap(rows, (row) => trs(row, fields))}
+          <Headers 
+            fields={fields} 
+            sortField={sortField} 
+            sortDesc={sortDesc} 
+            onSort={onSort}
+          />
+          {flatMap(sortedRows, (row) => trs(row, fields))}
         </tbody>
       </table>
     );
