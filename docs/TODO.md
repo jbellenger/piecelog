@@ -1,9 +1,8 @@
-table: expanded rows return more fields, not data
-event: craft a 'siblingEvents' query
-logtable: adapt for use with results
-model: repeated pieces
+make results sortable
+figure out where RESULT_ENTRY fields belong
 model: cleanup importer legacy objects, piece
 remove dep on alasql
+remove query editor
 field: move LogTableFields to components/LogTable
 linegraph: line labels
 linegraph: repeated pieces
@@ -11,16 +10,12 @@ fix ":local rect" css poisoning
 person/piece-type sparkline
 piece/multi-people distribution
 fix LogTable/Table 'cols' prop warning 
-log query wizard
 log comparisons
-repeating piece types
 field editing
 record entry
 data sync
-figure out where racingage fits into logevent
 figure out queries to replicate spreadsheet functionality
 similar piece comparison view
-query editor persists query between component mounts
 smart table columns
 smart query errors
 eslint airbnb rules: https://www.npmjs.com/package/eslint-config-airbnb
@@ -103,3 +98,7 @@ sentry?
 # flesh out user stories
 # sparkline: remove/deprecate
 # resulttable: fix layout of 'sub-table' columns
+# model: repeated pieces
+# logtable: adapt for use with results
+# repeating piece types
+# figure out where racingage fits into logevent
