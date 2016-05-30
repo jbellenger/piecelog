@@ -25,4 +25,15 @@ suite('Adjust', () => {
       assert.closeTo(Adjust.weightAdjustDistance(300, 1000), 976, 1.0);
     });
   });
+
+  suite('ageHandicap1k', () => {
+    test('returns 0 for missing age', () => {
+      assert.equal(0, Adjust.ageHandicap1k());
+    });
+
+    test('adjusts 8+', () => {
+      assert.equal(10, Adjust.ageHandicap1k(50, Adjust.AGE_K_8PLUS_4X));
+      assert.equal(9, Adjust.ageHandicap1k(49, Adjust.AGE_K_8PLUS_4X));
+    });
+  });
 });

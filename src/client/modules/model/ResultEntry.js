@@ -25,10 +25,19 @@ export class ResultEntry {
   }
 
   get weight_adjusted_split_seconds() {
-    const pounds = this.result.result_weight_pounds;
+    const pounds = this.result.weight_pounds;
     if (pounds) {
-      return Adjust.weightAdjustTime(pounds, this.result_split_seconds);
+      return Adjust.weightAdjustTime(pounds, this.split_seconds);
     }
+  }
+
+  get age_handicap() {
+    return (this.distance_meters / 1000) * 
+      Adjust.ageHandicap1k(this.result.racingage, Adjust.AGE_K_8PLUS_4X);
+  }
+
+  get weight_age_adjusted_split_seconds() {
+    return this.weight_adjusted_split_seconds - this.age_handicap;
   }
 }
 

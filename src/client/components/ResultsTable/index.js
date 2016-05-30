@@ -15,6 +15,7 @@ export default class ResultsTable extends React.Component {
       Fields.RESULT_WEIGHT_POUNDS,
       Fields.RESULT_ENTRY_SPLIT,
       Fields.RESULT_ENTRY_WATTS_PER_KG,
+      Fields.RESULT_ENTRY_ADJUSTED_SPLIT,
     ];
 
     return <Table className={styles.root} rows={results} fields={fields} />;

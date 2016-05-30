@@ -65,3 +65,9 @@ export const RESULT_ENTRY_WATTS_PER_KG = new Field({
   formatter: aggFormat(Format.formatWattsPerKg), 
   extractor: (x) => x.entry_collection.entries.map((e) => e.watts_per_kg)
 });
+
+export const RESULT_ENTRY_ADJUSTED_SPLIT = new Field({
+  header: 'adjusted split',
+  formatter: aggFormat(Format.formatSplit),
+  extractor: (x) => x.entry_collection.entries.map((e) => e.weight_age_adjusted_split_seconds)
+});
