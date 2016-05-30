@@ -54,20 +54,26 @@ const aggFormat = (inner) => (x, i) => {
   return <span className={cls}>{inner(x)}</span>;
 };
 
+const extractorWithMean = (fieldName) => (result) => {
+  const coll = result.entry_collection;
+  return [coll.mean].concat(coll.entries)
+    .map((e) => e[fieldName]);
+}
+
 export const RESULT_ENTRY_SPLIT = new Field({
   header: 'split', 
   formatter: aggFormat(Format.formatSplit),
-  extractor: (x) => x.entry_collection.entries.map((e) => e.split_seconds)
+  extractor: extractorWithMean('split_seconds'),
 });
 
 export const RESULT_ENTRY_WATTS_PER_KG = new Field({
   header: 'watts/kg', 
   formatter: aggFormat(Format.formatWattsPerKg), 
-  extractor: (x) => x.entry_collection.entries.map((e) => e.watts_per_kg)
+  extractor: extractorWithMean('watts_per_kg'),
 });
 
 export const RESULT_ENTRY_ADJUSTED_SPLIT = new Field({
   header: 'adjusted split',
   formatter: aggFormat(Format.formatSplit),
-  extractor: (x) => x.entry_collection.entries.map((e) => e.weight_age_adjusted_split_seconds)
+  extractor: extractorWithMean('weight_age_adjusted_split_seconds'),
 });

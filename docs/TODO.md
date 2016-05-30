@@ -1,4 +1,3 @@
-results table: include mean values in extracted array
 figure out where RESULT_ENTRY fields belong
 model: cleanup importer legacy objects, piece
 remove dep on alasql
@@ -103,3 +102,4 @@ sentry?
 # repeating piece types
 # figure out where racingage fits into logevent
 # sortable ResultsTable
+# results table: include mean values in extracted array
