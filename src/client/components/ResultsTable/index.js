@@ -17,14 +17,17 @@ export default class ResultsTable extends React.Component {
       ResultFields.ENTRY_WATTS_PER_KG,
       ResultFields.ENTRY_ADJUSTED_SPLIT,
     ],
+    sortField: ResultFields.ENTRY_ADJUSTED_SPLIT,
+    sortDesc: false
   }
 
   render() {
-    const {results, fields} = this.props;
+    const {results, fields, sortField, sortDesc} = this.props;
 
     return (
       <Table 
-        sortField={ResultFields.ENTRY_ADJUSTED_SPLIT}
+        sortField={sortField}
+        sortDesc={sortDesc}
         className={styles.root} 
         rows={results} 
         fields={fields} />

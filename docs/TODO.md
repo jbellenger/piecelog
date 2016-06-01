@@ -1,3 +1,5 @@
+results-table: conditionally include mean entry
+person view: fix up bad cell collapsing
 model: cleanup importer legacy objects, piece
 remove dep on alasql
 remove query editor

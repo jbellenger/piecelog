@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {selector as modelsSelector} from '../../modules/store/models';
 import ResultsTable from '../ResultsTable';
 import PersonSummary from './PersonSummary';
+import * as ResultsFields from '../ResultsTable/fields';
 
 export class PersonView extends React.Component {
   static propTypes = {
@@ -15,7 +16,17 @@ export class PersonView extends React.Component {
       <div>
         <h1>{person.id}</h1>
         <PersonSummary personId={person.id} />
-        <ResultsTable results={results} />
+        <ResultsTable 
+          results={results} 
+          fields={[
+            ResultsFields.STAMP,
+            ResultsFields.EVENT_WORKOUT_ID,
+            ResultsFields.WEIGHT_POUNDS,
+            ResultsFields.ENTRY_SPLIT,
+          ]}
+          sortField={ResultsFields.STAMP}
+          sortDesc={true}
+        />
       </div>
     );
   }

@@ -8,6 +8,12 @@ export const PERSON_ID = new Field({
   formatter: Format.formatPerson,
 });
 
+export const STAMP = new Field({
+  key: 'stamp', 
+  header: 'date', 
+  formatter: Format.formatStamp,
+});
+
 export const WEIGHT_KILOS = new Field({
   key: 'weight_kilos', 
   header: 'kgs', 
@@ -33,7 +39,8 @@ const aggFormat = (inner) => (x, i) => {
 
 const extractorWithMean = (fieldName) => (result) => {
   const coll = result.entry_collection;
-  return [coll.mean].concat(coll.entries)
+  const means = coll.entries.length > 1 ? [coll.mean] : [];
+  return means.concat(coll.entries)
     .map((e) => e[fieldName]);
 }
 
