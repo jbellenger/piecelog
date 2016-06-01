@@ -1,7 +1,7 @@
 import merge from 'lodash/merge';
 import * as Age from '../age';
 
-export default class Person {
+export class Person {
   static fields = [
     'person_id',
     'person_dob',
@@ -23,5 +23,16 @@ export default class Person {
     if (this.person_dob !== undefined) {
       return Age.racing_age(this.person_dob);
     }
+  }
+}
+
+export class PersonCollection {
+  constructor(persons, models) {
+    this.persons = persons;
+    this.models = models;
+  }
+
+  findById(id) {
+    return this.persons.find((x) => x.person_id === id);
   }
 }

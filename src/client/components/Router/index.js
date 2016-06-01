@@ -4,8 +4,7 @@ import Page from '../Page';
 import About from '../About';
 import Home from '../Home';
 import LogRoute from '../Log/Route';
-import QueryEditorPage from '../QueryEditor/Page';
-import PersonRoute from '../Person/Route';
+import PersonRoute from '../Person/PersonRoute';
 import PieceRoute from '../Piece/Route';
 import PieceTypeRoute from '../PieceType/Route';
 import WorkoutRoute from '../Workout/WorkoutRoute';
@@ -21,7 +20,6 @@ export default class PageRouter extends React.Component {
           <Route path="home" component={Home} />
           <Route path="about" component={About} />
           <Route path="log" component={LogRoute} />
-          <Route path="query" component={QueryEditorPage} />
           <Route path="svg" component={SvgTest} />
           <Route path="person/:personId" component={PersonRoute} />
           <Route path="piece/:pieceId" component={PieceRoute} />

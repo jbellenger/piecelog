@@ -3,7 +3,6 @@ import {selector as modelsSelector} from '../../modules/store/models';
 import {connect} from 'react-redux';
 import LogEvent from '../../modules/model/LogEvent';
 import Piece from '../../modules/model/Piece';
-import QueryDebug from '../QueryDebug';
 
 const LogQuery = (Inner) => class LogQuery extends React.Component {
   render() {

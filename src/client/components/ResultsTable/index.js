@@ -6,17 +6,21 @@ import * as styles from './styles.css';
 export default class ResultsTable extends React.Component {
   static propTypes = {
     results: PropTypes.array.isRequired,
+    fields: PropTypes.array,
   };
 
-  render() {
-    const {results} = this.props;
-    const fields = [
+  static defaultProps = {
+    fields: [
       ResultFields.PERSON_ID,
       ResultFields.WEIGHT_POUNDS,
       ResultFields.ENTRY_SPLIT,
       ResultFields.ENTRY_WATTS_PER_KG,
       ResultFields.ENTRY_ADJUSTED_SPLIT,
-    ];
+    ],
+  }
+
+  render() {
+    const {results, fields} = this.props;
 
     return (
       <Table 

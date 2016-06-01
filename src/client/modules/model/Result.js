@@ -37,4 +37,8 @@ export class ResultCollection {
   filterByWorkoutId(workoutId) {
     return this.results.filter((x) => x.workout_id === workoutId);
   }
+
+  filterByPersonId(personId) {
+    return this.results.filter((x) => x.person_id === personId);
+  }
 }
