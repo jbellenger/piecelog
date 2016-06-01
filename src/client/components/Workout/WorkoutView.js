@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {selector as modelsSelector} from '../../modules/store/models';
 import Table from '../Table';
-import * as Fields from '../../modules/field/fields';
+import * as EventFields from '../Event/fields';
 
 export class WorkoutView extends React.Component {
   static propTypes = {
@@ -28,8 +28,8 @@ export class WorkoutView extends React.Component {
           <Table 
             rows={events} 
             fields={[
-              Fields.EVENT_ID,
-              Fields.EVENT_STAMP,
+              EventFields.ID,
+              EventFields.STAMP,
             ]}
           />
         </div>
