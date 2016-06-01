@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import Table from '../Table';
-import * as Fields from '../../modules/field/fields';
+import * as ResultFields from './fields';
 import * as styles from './styles.css';
 
 export default class ResultsTable extends React.Component {
@@ -11,16 +11,16 @@ export default class ResultsTable extends React.Component {
   render() {
     const {results} = this.props;
     const fields = [
-      Fields.RESULT_PERSON_ID,
-      Fields.RESULT_WEIGHT_POUNDS,
-      Fields.RESULT_ENTRY_SPLIT,
-      Fields.RESULT_ENTRY_WATTS_PER_KG,
-      Fields.RESULT_ENTRY_ADJUSTED_SPLIT,
+      ResultFields.PERSON_ID,
+      ResultFields.WEIGHT_POUNDS,
+      ResultFields.ENTRY_SPLIT,
+      ResultFields.ENTRY_WATTS_PER_KG,
+      ResultFields.ENTRY_ADJUSTED_SPLIT,
     ];
 
     return (
       <Table 
-        sortField={Fields.RESULT_ENTRY_ADJUSTED_SPLIT}
+        sortField={ResultFields.ENTRY_ADJUSTED_SPLIT}
         className={styles.root} 
         rows={results} 
         fields={fields} />

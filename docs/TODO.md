@@ -1,4 +1,3 @@
-figure out where RESULT_ENTRY fields belong
 model: cleanup importer legacy objects, piece
 remove dep on alasql
 remove query editor
@@ -15,8 +14,6 @@ record entry
 data sync
 figure out queries to replicate spreadsheet functionality
 similar piece comparison view
-smart table columns
-smart query errors
 eslint airbnb rules: https://www.npmjs.com/package/eslint-config-airbnb
 decorator support
 smarter filtering
@@ -103,3 +100,6 @@ sentry?
 # figure out where racingage fits into logevent
 # sortable ResultsTable
 # results table: include mean values in extracted array
+# figure out where RESULT_ENTRY fields belong
+# smart query errors
+# smart table columns
