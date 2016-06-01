@@ -23,8 +23,8 @@ suite('importer', () => {
 
       const result = importer.extractPeople(input);
       assert.deepEqual(result, [
-        {person_id: 'name-1'},
-        {person_id: 'name-2'}
+        {id: 'name-1'},
+        {id: 'name-2'}
       ]);
     });
   });

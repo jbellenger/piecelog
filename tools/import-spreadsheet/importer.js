@@ -84,13 +84,13 @@ export const extractPeople = (log) => {
   const people = {};
 
   log.forEach((row) => {
-    const person = {person_id: row.log_person_id};
+    const person = {id: row.log_person_id};
     const dob = racingDob(row);
     if (dob) {
-      person.person_dob = dob;
+      person.dob = dob;
     }
 
-    people[person.person_id] = person;
+    people[person.id] = person;
   });
 
   return lodash.values(people);

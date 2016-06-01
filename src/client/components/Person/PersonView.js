@@ -13,8 +13,8 @@ export class PersonView extends React.Component {
     const {person, results} = this.props;
     return (
       <div>
-        <h1>{person.person_id}</h1>
-        <PersonSummary personId={person.person_id} />
+        <h1>{person.id}</h1>
+        <PersonSummary personId={person.id} />
         <ResultsTable results={results} />
       </div>
     );
