@@ -1,6 +1,0 @@
-#!/bin/bash
-
-set -eax
-
-webpack -d --config config/webpack.node.js
-node build/node/main.js

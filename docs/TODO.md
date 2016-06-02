@@ -1,7 +1,7 @@
 person view: investigate why misc-6k pieces are erroneously grouped by date
+importer: remove log entries
 results-table: conditionally include mean entry
 model: cleanup importer legacy objects, piece
-remove dep on alasql
 remove query editor
 field: move LogTableFields to components/LogTable
 linegraph: line labels
@@ -106,3 +106,4 @@ sentry?
 # smart query errors
 # smart table columns
 # person view: fix up bad cell collapsing
+# remove dep on alasql

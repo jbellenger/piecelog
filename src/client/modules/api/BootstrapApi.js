@@ -1,5 +1,5 @@
 import api from '.';
-import lodash from 'lodash';
+import merge from 'lodash/merge';
 import Person from '../model/Person';
 
 export const bootstrap = (opts = {}) => {
@@ -7,13 +7,12 @@ export const bootstrap = (opts = {}) => {
     db: {
       log: true,
       person: true,
-      piece: true,
       workouts: true,
       results: true,
       events: true,
     },
   };
 
-  const args = lodash.merge({}, opts, defaulted);
+  const args = merge({}, opts, defaulted);
   return api.get('/bootstrap', {query: JSON.stringify(args)});
 };

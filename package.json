@@ -8,7 +8,7 @@
     "build": "./scripts/build",
     "import-spreadsheet": "node ./tools/import-spreadsheet",
     "lint": "eslint src tools",
-    "start": "./scripts/start",
+    "start": "node -r babel-register ./src/server/dev-main",
     "inspect-bundle": "webpack --json --config config/webpack.web.js | webpack-bundle-size-analyzer",
     "query": "node -r babel-register ./scripts/query.js",
     "test": "mocha --ui tdd --recursive --require babel-register src/**/*-test.js tools/**/*-test.js",

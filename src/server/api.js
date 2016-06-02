@@ -1,13 +1,12 @@
 import { Router } from 'express';
 import cors from 'cors';
+import fs from 'fs';
 
-let mockdb = {pieces: [], log: [], people: [], results: [], events: [], workouts: []};
-
-try {
-  mockdb = require('./mockdb.json');
-} catch (err) {
-  console.log('mockdb.json not found, defaulting to an empty db');
-}
+const loadMockDb = () => {
+  const path = require.resolve('./mockdb.json');
+  const body = fs.readFileSync(path, {encoding: 'utf8'});
+  return JSON.parse(body);
+};
 
 export const middleware = Router();
 middleware.use(cors());
@@ -18,7 +17,9 @@ middleware.get('/1/bootstrap', (req, res) => {
     const parsed = JSON.parse(req.query.query);
 
     if (parsed.db) {
+      const mockdb = loadMockDb();
       json.db = {};
+
       if (parsed.db.log) {
         json.db.log = mockdb.log || [];
       }
