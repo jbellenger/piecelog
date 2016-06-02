@@ -167,6 +167,11 @@ export const extractEvents = (pieces) => pieces
   }));
 
 export const extractResults = (log, pieces, workouts, events) => {
+  // considerations:
+  //   - multi-entry pieces (4x1k) will be split on different rows but should
+  //     be in the same result
+  //   - misc pieces (misc-6k) will be split on different rows but should be in
+  //     different results
   const pieceGroups = lodash.groupBy(log, (row) => row.log_piece_id);
   const results = [];
   lodash.mapKeys(pieceGroups, (pieceRows, log_piece_id) => {

@@ -3,9 +3,13 @@ import cors from 'cors';
 import fs from 'fs';
 
 const loadMockDb = () => {
-  const path = require.resolve('./mockdb.json');
-  const body = fs.readFileSync(path, {encoding: 'utf8'});
-  return JSON.parse(body);
+  try {
+    const path = require.resolve('./mockdb.json');
+    const body = fs.readFileSync(path, {encoding: 'utf8'});
+    return JSON.parse(body);
+  } catch (err) {
+    return {};
+  }
 };
 
 export const middleware = Router();
