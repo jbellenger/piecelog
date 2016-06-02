@@ -8,9 +8,11 @@ import castArray from 'lodash/castArray';
 import flatMap from 'lodash/flatMap';
 import orderBy from 'lodash/orderBy';
 
+const COLLAPSE = "_COLLAPSE";
+
 // Drawing strategy:
-//   - when drawing a row, don't draw cells for undefined values
-//   - when drawing a cell, if cell in r+1 is undefined, assume that it should
+//   - when drawing a row, don't draw cells for COLLAPSE values
+//   - when drawing a cell, if cell in r+1 is COLLAPSE, assume that it should
 //     fill remaining rows
 //     - rowspan = table.length - r
 //     - otherwise, use rowspan = 1
@@ -18,20 +20,23 @@ import orderBy from 'lodash/orderBy';
 const renderRow = (table, fields, r) => {
   const cells = range(table[r].length)
     .map((c) => renderCell(table, fields, r, c))
-    .filter(Boolean);
+    .filter((c) => c !== COLLAPSE);
   return <tr>{cells}</tr>
 };
 
 const renderCell = (table, fields, r, c) => {
   const data = table[r][c];
-  if (data) {
-    const fill = r+1 < table.length ? !table[r+1][c] : false
-    const rowspan = fill ? table.length - r : 1;
+  if (data !== COLLAPSE) {
+    const expand = r+1 < table.length ? table[r+1][c] === COLLAPSE : false
+    const rowspan = expand ? table.length - r : 1;
     const formatted = fields[c].formatter(data, r);
     return <td rowSpan={rowspan}>{formatted}</td>;
   }
 }
 
+// Expansion strategy:
+//   - When expanding a row, if current cell is undefined but previous row in
+//     the same column had a value, insert COLLAPSE
 const expandRow = (row, fields) => {
   const data = fields.map((field) => ({
     field,
@@ -41,14 +46,19 @@ const expandRow = (row, fields) => {
   const totalTableRows = Math.max(...data.map((c) => c.values.length));
 
   const table = [];
-  // each row can be expanded to a 2-d table
+  // each "row" can be expanded into a 2-d table
   for (let r=0; r < totalTableRows; r++) {
     const row = [];
     for (let c=0; c < fields.length; c++) {
-      row.push(data[c].values[r]);
+      let value = data[c].values[r];
+      if (!value && r > 0 && table[r-1][c]) {
+        value = COLLAPSE;
+      }
+      row.push(value);
     }
     table.push(row);
   }
+
   return table;
 };
 

@@ -1,5 +1,5 @@
+person view: investigate why misc-6k pieces are erroneously grouped by date
 results-table: conditionally include mean entry
-person view: fix up bad cell collapsing
 model: cleanup importer legacy objects, piece
 remove dep on alasql
 remove query editor
@@ -105,3 +105,4 @@ sentry?
 # figure out where RESULT_ENTRY fields belong
 # smart query errors
 # smart table columns
+# person view: fix up bad cell collapsing

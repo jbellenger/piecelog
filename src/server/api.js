@@ -2,9 +2,6 @@ import { Router } from 'express';
 import cors from 'cors';
 
 let mockdb = {pieces: [], log: [], people: [], results: [], events: [], workouts: []};
-let mockqueries = {
-  'all-log-desc': 'select * from log order by stamp desc',
-};
 
 try {
   mockdb = require('./mockdb.json');
@@ -19,16 +16,6 @@ middleware.get('/1/bootstrap', (req, res) => {
   const json = {};
   if (req.query.query) {
     const parsed = JSON.parse(req.query.query);
-
-    if (parsed.queries) {
-      json.queries = {};
-
-      Object.keys(parsed.queries).forEach((key) => {
-        if (mockqueries[key]) {
-          json.queries[key] = mockqueries[key];
-        }
-      });
-    }
 
     if (parsed.db) {
       json.db = {};
