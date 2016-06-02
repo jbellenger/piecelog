@@ -1,8 +1,6 @@
 import api from '.';
 import lodash from 'lodash';
-import LogEvent from '../model/LogEvent';
 import Person from '../model/Person';
-import Piece from '../model/Piece';
 
 export const bootstrap = (opts = {}) => {
   const defaulted = {

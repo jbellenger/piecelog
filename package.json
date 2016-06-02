@@ -38,7 +38,6 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
-    "alasql": "^0.2.4",
     "classnames": "^2.2.3",
     "compression": "^1.6.1",
     "cors": "^2.7.1",
