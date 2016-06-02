@@ -15,8 +15,6 @@ export class EventView extends React.Component {
 
   render() {
     const {event, results} = this.props;
-    console.log(event.id, 'results', results);
-
     return (
       <div>
         <h1>{EventFields.WORKOUT_ID.apply(event)} > {Format.formatStamp(event.stamp)}</h1>
