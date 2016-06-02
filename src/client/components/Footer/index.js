@@ -4,7 +4,7 @@ import styles from './styles.css';
 
 export default class Footer extends React.Component {
   render() {
-    const { className } = this.props;
+    const {className} = this.props;
 
     return (
       <footer className={className}>

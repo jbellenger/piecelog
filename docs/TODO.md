@@ -1,21 +1,13 @@
-person view: investigate why misc-6k pieces are erroneously grouped by date
-importer: remove log entries
 results-table: conditionally include mean entry
-model: cleanup importer legacy objects, piece
-remove query editor
-field: move LogTableFields to components/LogTable
 linegraph: line labels
 linegraph: repeated pieces
 fix ":local rect" css poisoning
 person/piece-type sparkline
 piece/multi-people distribution
-fix LogTable/Table 'cols' prop warning 
-log comparisons
 field editing
 record entry
 data sync
 figure out queries to replicate spreadsheet functionality
-similar piece comparison view
 eslint airbnb rules: https://www.npmjs.com/package/eslint-config-airbnb
 decorator support
 smarter filtering
@@ -107,3 +99,8 @@ sentry?
 # smart table columns
 # person view: fix up bad cell collapsing
 # remove dep on alasql
+# person view: investigate why misc-6k pieces are erroneously grouped by date
+# importer: remove log entries
+# remove query editor
+# field: move LogTableFields to components/LogTable
+# model: cleanup importer legacy objects, piece

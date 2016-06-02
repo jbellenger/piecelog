@@ -7,8 +7,6 @@ export default class NavBar extends React.Component {
     return (
       <nav className={styles.root}>
         <Link to="/home">home</Link>
-        <Link to="/log">log</Link>
-        <Link to="/query">query</Link>
       </nav>
     );
   }

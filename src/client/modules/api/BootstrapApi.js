@@ -5,7 +5,6 @@ import Person from '../model/Person';
 export const bootstrap = (opts = {}) => {
   const defaulted = {
     db: {
-      log: true,
       person: true,
       workouts: true,
       results: true,

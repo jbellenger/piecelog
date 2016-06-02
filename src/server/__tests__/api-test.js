@@ -18,24 +18,6 @@ suite('api', () => {
         .expect(200, {}, done);
     });
 
-    test('should return log data when requested', (done) => {
-      request(app)
-        .get('/1/bootstrap')
-        .query(formatQuery({db: {log: true}}))
-        .expect('Content-Type', /json/)
-        .expect((res) => assert.property(res.body.db, 'log'))
-        .end(done);
-    });
-
-    test('should return piece data when requested', (done) => {
-      request(app)
-        .get('/1/bootstrap')
-        .query(formatQuery({db: {piece: true}}))
-        .expect('Content-Type', /json/)
-        .expect((res) => assert.property(res.body.db, 'piece'))
-        .end(done);
-    });
-
     test('should return person data when requested', (done) => {
       request(app)
         .get('/1/bootstrap')

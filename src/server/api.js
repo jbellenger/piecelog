@@ -24,14 +24,8 @@ middleware.get('/1/bootstrap', (req, res) => {
       const mockdb = loadMockDb();
       json.db = {};
 
-      if (parsed.db.log) {
-        json.db.log = mockdb.log || [];
-      }
       if (parsed.db.person) {
         json.db.person = mockdb.person || [];
-      }
-      if (parsed.db.piece) {
-        json.db.piece = mockdb.piece || [];
       }
       if (parsed.db.results) {
         json.db.results = mockdb.results || [];
