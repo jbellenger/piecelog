@@ -115,7 +115,7 @@ export const extractWorkoutId = (pieces) => {
   const base = baseName(pieces[0]);
   const count = pieces.length;
   return count > 1 ?
-    `${count} x ${base}` :
+    `${count}x${base}` :
     base;
 };
 
