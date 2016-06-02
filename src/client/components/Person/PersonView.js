@@ -2,7 +2,6 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {selector as modelsSelector} from '../../modules/store/models';
 import ResultsTable from '../ResultsTable';
-import PersonSummary from './PersonSummary';
 import * as ResultsFields from '../ResultsTable/fields';
 
 export class PersonView extends React.Component {
@@ -15,7 +14,6 @@ export class PersonView extends React.Component {
     return (
       <div>
         <h1>{person.id}</h1>
-        <PersonSummary personId={person.id} />
         <ResultsTable 
           results={results} 
           fields={[
