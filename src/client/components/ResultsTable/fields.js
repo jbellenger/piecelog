@@ -26,7 +26,7 @@ export const WEIGHT_POUNDS = new Field({
   formatter: Format.formatWeight
 });
 
-export const EVENT_WORKOUT_ID = new Field({
+export const WORKOUT_ID = new Field({
   key: 'workout_id', 
   header: 'workout', 
   formatter: Format.formatWorkout,

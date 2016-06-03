@@ -17,7 +17,9 @@ db state storage
 integrate redux-devtools
 git lint/test hooks
 a11y
-styling
+styling:
+  fonts/spacing/colors/footer: https://zeit.co/blog/async-and-await
+  gradients: https://lernajs.io/
 hosting: zeit now, aws lambda, gcp, heroku
 deployment
 sentry?

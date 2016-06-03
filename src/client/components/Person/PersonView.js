@@ -18,7 +18,7 @@ export class PersonView extends React.Component {
           results={results} 
           fields={[
             ResultsFields.STAMP,
-            ResultsFields.EVENT_WORKOUT_ID,
+            ResultsFields.WORKOUT_ID,
             ResultsFields.WEIGHT_POUNDS,
             ResultsFields.ENTRY_SPLIT,
           ]}
