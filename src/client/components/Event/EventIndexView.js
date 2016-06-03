@@ -2,23 +2,29 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {selector as modelsSelector} from '../../modules/store/models';
 import Table from '../Table';
-import * as WorkoutFields from './fields';
+import * as EventFields from './fields';
 
-const WorkoutIndexView = ({workouts}) => (
+const WorkoutIndexView = ({events}) => (
   <div>
-    <h1>Workouts</h1>
+    <h1>Events</h1>
     <Table 
-      rows={workouts} 
+      rows={events} 
       fields={[
-        WorkoutFields.ID
+        EventFields.ID,
+        EventFields.STAMP,
+        EventFields.WORKOUT_ID,
       ]}
+      sortField={EventFields.STAMP}
+      sortDesc={true}
     />
   </div>
 );
 
 export const mapStateToProps = (state) => {
   const models = modelsSelector(state);
-  return { workouts: models.workouts.workouts };
+  return {
+    events: models.events.events
+  };
 };
 
 export default connect(mapStateToProps)(WorkoutIndexView);

@@ -7,6 +7,7 @@ import PersonRoute from '../Person/PersonRoute';
 import WorkoutRoute from '../Workout/WorkoutRoute';
 import WorkoutIndexView from '../Workout/WorkoutIndexView';
 import EventRoute from '../Event/EventRoute';
+import EventIndexView from '../Event/EventIndexView';
 import SvgTest from '../SvgTest/Route';
 
 export default class PageRouter extends React.Component {
@@ -24,7 +25,10 @@ export default class PageRouter extends React.Component {
             <Route path=":workoutId" component={WorkoutRoute} />
           </Route>
 
-          <Route path="event/:eventId" component={EventRoute} />
+          <Route path="event">
+            <IndexRoute component={EventIndexView} />
+            <Route path=":eventId" component={EventRoute} />
+          </Route>
         </Route>
       </Router>
     );
