@@ -21,7 +21,7 @@ export class Person {
 
 export class PersonCollection {
   constructor(persons, models) {
-    this.persons = persons;
+    this.persons = persons.map((x) => new Person(x));
     this.models = models;
   }
 

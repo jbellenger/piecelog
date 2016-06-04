@@ -1,3 +1,4 @@
+revisit d3 for charting
 WorkoutTable: how to show count of how many events?
 results-table: conditionally include mean entry
 linegraph: line labels
