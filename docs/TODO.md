@@ -1,4 +1,4 @@
-revisit d3 for charting
+test Victory charts with inverted y axis
 WorkoutTable: how to show count of how many events?
 results-table: conditionally include mean entry
 linegraph: line labels
@@ -108,3 +108,4 @@ sentry?
 # remove query editor
 # field: move LogTableFields to components/LogTable
 # model: cleanup importer legacy objects, piece
+# revisit d3 for charting
