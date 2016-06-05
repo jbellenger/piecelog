@@ -8,4 +8,11 @@ suite('Result', () => {
       assert.equal(row.weight_pounds, 4.4);
     });
   });
+
+  suite('stamp', () => {
+    test('returns a Date object', () => {
+      const row = new Result({stamp: Date.now()});
+      assert.instanceOf(row.stamp, Date);
+    });
+  });
 });

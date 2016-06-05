@@ -4,6 +4,10 @@ import {ResultEntry, ResultEntryCollection} from './ResultEntry';
 export class Result {
   constructor(data) {
     merge(this, data);
+    if (data.stamp) {
+      this.stamp = new Date(data.stamp);
+    }
+
     if (this.entries) {
       this.entries = this.entries.map((x) => new ResultEntry(x));
     }
