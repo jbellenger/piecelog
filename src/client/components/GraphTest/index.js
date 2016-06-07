@@ -4,6 +4,7 @@ import {VictoryChart, VictoryScatter, VictoryAxis} from 'victory';
 import {connect} from 'react-redux';
 import {selector as modelsSelector} from '../../modules/store/models';
 import * as ResultFields from '../ResultsTable/fields';
+import * as Format from '../../modules/format';
 import d3 from 'd3';
 
 const View = ({results}) => {
@@ -24,6 +25,7 @@ const View = ({results}) => {
       <VictoryAxis
         dependentAxis
         label={ResultFields.ENTRY_SPLIT.header}
+        tickFormat={Format.formatSplit}
         standalone={false}
       />
     </VictoryChart>
@@ -33,7 +35,7 @@ const View = ({results}) => {
 export const mapStateToProps = (state) => {
   const models = modelsSelector(state);
   return {
-    results: models.results.filterByWorkoutId('2x22min'),
+    results: models.results.filterByWorkoutId('6k'),
   };
 };
 
