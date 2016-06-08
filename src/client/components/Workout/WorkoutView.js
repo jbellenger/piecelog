@@ -4,7 +4,7 @@ import {selector as modelsSelector} from '../../modules/store/models';
 import Table from '../Table';
 import * as EventFields from '../Event/fields';
 import ResultsTable from '../ResultsTable';
-import * as ResultsFields from '../ResultsTable/fields';
+import * as ResultFields from '../ResultsTable/fields';
 
 export class WorkoutView extends React.Component {
   static propTypes = {
@@ -38,13 +38,13 @@ export class WorkoutView extends React.Component {
         <h1>Results</h1>
         <ResultsTable 
           fields={[
-            ResultsFields.PERSON_ID,
-            ResultsFields.STAMP,
-            ResultsFields.WEIGHT_POUNDS,
-            ResultsFields.ENTRY_WATTS_PER_KG,
-            ResultsFields.ENTRY_SPLIT,
+            ResultFields.PERSON_ID,
+            ResultFields.STAMP,
+            ResultFields.WEIGHT_POUNDS,
+            ResultFields.ENTRY_WATTS_PER_KG,
+            ResultFields.ENTRY_SPLIT,
           ]}
-          sortField={ResultsFields.STAMP}
+          sortField={ResultFields.STAMP}
           sortDesc={true}
           results={results} 
         />

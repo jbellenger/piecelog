@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import {selector as modelsSelector} from '../../modules/store/models';
 import * as ResultFields from '../ResultsTable/fields';
 import * as Format from '../../modules/format';
-import d3 from 'd3';
 
 const View = ({results}) => {
   console.log('results', results);
