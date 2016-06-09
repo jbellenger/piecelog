@@ -1,3 +1,4 @@
+re-evaluate d3
 victory: test with multi-piece workouts
 victory: test separating formatters for graph/table
 WorkoutTable: how to show count of how many events?
