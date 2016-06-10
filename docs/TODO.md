@@ -1,4 +1,6 @@
 re-evaluate d3
+victory: calculate y-domain
+separate formatters for table vs graphs
 victory: test with multi-piece workouts
 victory: test separating formatters for graph/table
 WorkoutTable: how to show count of how many events?
@@ -112,3 +114,4 @@ sentry?
 # model: cleanup importer legacy objects, piece
 # revisit d3 for charting
 # test Victory charts with inverted y axis
+# fix weird growing precision on victory chart y-ticks

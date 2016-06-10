@@ -22,6 +22,13 @@ export class PersonView extends React.Component {
         <h1>{person.id}</h1>
         <div>
           <VictoryChart domain={domain}>
+            {results.map((r) => (
+              <VictoryScatter
+                data={r.entry_collection.entries}
+                x={() => r.stamp.getTime()}
+                y={"split_seconds"}
+              />
+            ))}
             {results
               .filter((r) => r.entry_collection.entries.length > 1)
               .map((r) => (

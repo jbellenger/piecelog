@@ -2,8 +2,9 @@ import React from 'react';
 import {Link} from 'react-router';
 import formatNumber from 'format-number';
 
-export const formatSplit = (seconds, round=1) => {
+export const formatSplit = (seconds) => {
   let result = '';
+  const round = 1;
   if (seconds) {
     const minutes = Number.parseInt(seconds/60);
     const remainder = formatNumber({padLeft: 2, padRight: round, round})(seconds - (minutes*60));
