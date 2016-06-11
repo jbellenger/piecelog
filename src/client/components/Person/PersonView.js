@@ -73,10 +73,12 @@ export class PersonView extends React.Component {
             <VictoryAxis
               label={ResultFields.STAMP.header}
               tickFormat={ResultFields.STAMP.formatter}
+              offsetY={45}
               standalone={false}
             />
             <VictoryAxis
-              dependentAxis
+              dependentAxis={true}
+              offsetX={45}
               label={ResultFields.ENTRY_SPLIT.header}
               tickFormat={Format.formatSplit}
               standalone={false}
