@@ -1,6 +1,7 @@
 re-evaluate d3
 separate formatters for table vs graphs
-victory: event graph
+victory: workout graph?
+victory: colorize people and events
 victory: consolidate graphs
 victory: toggleable data series (with animation)
 victory: test separating formatters for graph/table
@@ -121,3 +122,4 @@ sentry?
 # import-spreadsheet: investigate missing 5x1k users (me, don)
 #   - result objects are missing event_id
 #   - my/dons 1k entries are showing up under 6k
+# victory: event graph
