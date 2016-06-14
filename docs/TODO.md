@@ -1,7 +1,10 @@
+import-spreadsheet: investigate missing 5x1k users (me, don)
+  - result objects are missing event_id
 re-evaluate d3
-victory: calculate y-domain
 separate formatters for table vs graphs
-victory: test with multi-piece workouts
+victory: event graph
+victory: consolidate graphs
+victory: toggleable data series (with animation)
 victory: test separating formatters for graph/table
 WorkoutTable: how to show count of how many events?
 results-table: conditionally include mean entry
@@ -115,3 +118,5 @@ sentry?
 # revisit d3 for charting
 # test Victory charts with inverted y axis
 # fix weird growing precision on victory chart y-ticks
+# victory: calculate y-domain
+# victory: test with multi-piece workouts

@@ -59,26 +59,24 @@ export class PersonView extends React.Component {
       y: [Math.min(...splits), Math.max(...splits)]
     }; 
 
-    const workoutGroups = groupBy(results, 'workout_id');
+    const workoutPairs = toPairs(groupBy(results, 'workout_id'));
 
     return (
       <div>
         <h1>{person.id}</h1>
         <div>
           <VictoryChart domain={domain}>
-            {toPairs(workoutGroups).map(this.renderMultiPieceLines)}
-            {toPairs(workoutGroups).map(this.renderScatter)}
-            {toPairs(workoutGroups).map(this.renderMultiWorkoutLines)}
+            {workoutPairs.map(this.renderMultiPieceLines)}
+            {workoutPairs.map(this.renderScatter)}
+            {workoutPairs.map(this.renderMultiWorkoutLines)}
 
             <VictoryAxis
               label={ResultFields.STAMP.header}
               tickFormat={ResultFields.STAMP.formatter}
-              offsetY={45}
               standalone={false}
             />
             <VictoryAxis
               dependentAxis={true}
-              offsetX={45}
               label={ResultFields.ENTRY_SPLIT.header}
               tickFormat={Format.formatSplit}
               standalone={false}
