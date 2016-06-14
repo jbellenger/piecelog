@@ -1,5 +1,3 @@
-import-spreadsheet: investigate missing 5x1k users (me, don)
-  - result objects are missing event_id
 re-evaluate d3
 separate formatters for table vs graphs
 victory: event graph
@@ -120,3 +118,6 @@ sentry?
 # fix weird growing precision on victory chart y-ticks
 # victory: calculate y-domain
 # victory: test with multi-piece workouts
+# import-spreadsheet: investigate missing 5x1k users (me, don)
+#   - result objects are missing event_id
+#   - my/dons 1k entries are showing up under 6k

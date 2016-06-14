@@ -4,6 +4,7 @@ import {selector as modelsSelector} from '../../modules/store/models';
 import * as Format from '../../modules/format';
 import * as EventFields from './fields';
 import groupBy from 'lodash/groupBy';
+import toPairs from 'lodash/toPairs';
 import Table from '../Table';
 import Result from '../../modules/model/Result';
 import ResultsTable from '../ResultsTable';
@@ -16,16 +17,42 @@ export class EventView extends React.Component {
     results: PropTypes.array.isRequired,
   };
 
+  renderPersonScatter([personId, results]) {
+    return results
+      .map((r) => (
+        <VictoryScatter
+          data={r.entry_collection.entries}
+          x={() => personId}
+          y={'split_seconds'} />
+      ));
+  }
+
+  renderPersonLine([personId, results]) {
+    return results
+      .map((r) => (
+        <VictoryLine
+          data={r.entry_collection.entries}
+          x={() => personId}
+          y={'split_seconds'}
+        />
+      ));
+  }
+
   render() {
     const {event, results} = this.props;
+    const personGroups = groupBy(results, 'person_id');
+    const personPairs = toPairs(personGroups);
+
     return (
       <div>
         <h1>{EventFields.WORKOUT_ID.apply(event)} > {Format.formatStamp(event.stamp)}</h1>
         <div>
           <VictoryChart>
+            {personPairs.map(this.renderPersonScatter)}
+            {personPairs.map(this.renderPersonLine)}
             <VictoryAxis
-              label={ResultFields.STAMP.header}
-              tickFormat={ResultFields.STAMP.formatter}
+              label={ResultFields.PERSON_ID.header}
+              tickValues={Object.keys(personGroups)}
               standalone={false}
             />
             <VictoryAxis
