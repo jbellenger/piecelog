@@ -8,8 +8,13 @@ import toPairs from 'lodash/toPairs';
 import Table from '../Table';
 import Result from '../../modules/model/Result';
 import ResultsTable from '../ResultsTable';
-import {VictoryChart, VictoryScatter, VictoryAxis, VictoryLine} from 'victory';
+import {VictoryChart, VictoryScatter, VictoryAxis, VictoryLine, VictoryLabel} from 'victory';
 import * as ResultFields from '../ResultsTable/fields';
+import Tick from 'victory-chart/lib/components/victory-axis/tick';
+
+const RotatedLabel = (props) => (
+  <VictoryLabel {...props} angle={-25} textAnchor={"end"} />
+);
 
 export class EventView extends React.Component {
   static propTypes = {
@@ -53,6 +58,7 @@ export class EventView extends React.Component {
             <VictoryAxis
               label={ResultFields.PERSON_ID.header}
               tickValues={Object.keys(personGroups)}
+              tickLabelComponent={<RotatedLabel />}
               standalone={false}
             />
             <VictoryAxis

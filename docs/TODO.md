@@ -1,10 +1,10 @@
-re-evaluate d3
 separate formatters for table vs graphs
 victory: workout graph?
 victory: colorize people and events
 victory: consolidate graphs
 victory: toggleable data series (with animation)
 victory: test separating formatters for graph/table
+re-evaluate d3
 WorkoutTable: how to show count of how many events?
 results-table: conditionally include mean entry
 linegraph: line labels
@@ -123,3 +123,4 @@ sentry?
 #   - result objects are missing event_id
 #   - my/dons 1k entries are showing up under 6k
 # victory: event graph
+# victory: set tick label angles
