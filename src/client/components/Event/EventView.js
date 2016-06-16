@@ -12,8 +12,8 @@ import {VictoryChart, VictoryScatter, VictoryAxis, VictoryLine, VictoryLabel} fr
 import * as ResultFields from '../ResultsTable/fields';
 import Tick from 'victory-chart/lib/components/victory-axis/tick';
 
-const RotatedLabel = (props) => (
-  <VictoryLabel {...props} angle={-25} textAnchor={"end"} />
+export const RotatedLabel = (angle) =>  (props) => (
+  <VictoryLabel {...props} angle={angle} textAnchor={"end"} />
 );
 
 export class EventView extends React.Component {
@@ -47,6 +47,7 @@ export class EventView extends React.Component {
     const {event, results} = this.props;
     const personGroups = groupBy(results, 'person_id');
     const personPairs = toPairs(personGroups);
+    const PersonTickLabel = RotatedLabel(-25);
 
     return (
       <div>
@@ -56,9 +57,8 @@ export class EventView extends React.Component {
             {personPairs.map(this.renderPersonScatter)}
             {personPairs.map(this.renderPersonLine)}
             <VictoryAxis
-              label={ResultFields.PERSON_ID.header}
               tickValues={Object.keys(personGroups)}
-              tickLabelComponent={<RotatedLabel />}
+              tickLabelComponent={<PersonTickLabel />}
               standalone={false}
             />
             <VictoryAxis

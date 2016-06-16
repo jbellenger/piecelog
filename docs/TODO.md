@@ -1,5 +1,9 @@
 separate formatters for table vs graphs
-victory: workout graph?
+bad adjustments: http://127.0.0.1:8080/event/1450483200000
+importer: prune gregs dnf 6k, chases unweighted 6k
+graph: draw mean time with a distinct style
+victory: sort graph with same criteria as table
+victory: workout graph: draw vertical scatter+line for each event. Draw mean.
 victory: colorize people and events
 victory: consolidate graphs
 victory: toggleable data series (with animation)
