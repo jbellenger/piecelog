@@ -31,13 +31,12 @@ export class ResultEntry {
     }
   }
 
-  get age_handicap() {
-    return (this.distance_meters / 1000) * 
-      Adjust.ageHandicap1k(this.result.racingage, Adjust.AGE_K_8PLUS_4X);
+  get age_handicap1k() {
+    return Adjust.ageHandicap1k(this.result.racingage, Adjust.AGE_K_8PLUS_4X);
   }
 
   get weight_age_adjusted_split_seconds() {
-    return this.weight_adjusted_split_seconds - this.age_handicap;
+    return this.weight_adjusted_split_seconds - this.age_handicap1k/2;
   }
 }
 

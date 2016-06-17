@@ -1,14 +1,12 @@
 separate formatters for table vs graphs
-bad adjustments: http://127.0.0.1:8080/event/1450483200000
-importer: prune gregs dnf 6k, chases unweighted 6k
 graph: draw mean time with a distinct style
+combine graphs+tables with a composite component
 victory: sort graph with same criteria as table
 victory: workout graph: draw vertical scatter+line for each event. Draw mean.
 victory: colorize people and events
 victory: consolidate graphs
 victory: toggleable data series (with animation)
 victory: test separating formatters for graph/table
-re-evaluate d3
 WorkoutTable: how to show count of how many events?
 results-table: conditionally include mean entry
 linegraph: line labels
@@ -128,3 +126,6 @@ sentry?
 #   - my/dons 1k entries are showing up under 6k
 # victory: event graph
 # victory: set tick label angles
+# re-evaluate d3
+# importer: prune gregs dnf 6k, chases unweighted 6k
+# bad adjustments: http://127.0.0.1:8080/event/1450483200000

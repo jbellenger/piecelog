@@ -161,7 +161,7 @@ export const extractWorkouts = (log, pieces) => {
 export const extractEvents = (pieces) => pieces
   .filter((p) => !p.id.startsWith('misc-'))
   .map((piece) => ({
-    id: piece.stamp, // JMB TODO: use guids?
+    id: Number(piece.stamp), // JMB TODO: use guids?
     stamp: piece.stamp,
     workout_id: piece.workout_id,
   }));
