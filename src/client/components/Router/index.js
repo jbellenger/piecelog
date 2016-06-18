@@ -9,7 +9,6 @@ import WorkoutRoute from '../Workout/WorkoutRoute';
 import WorkoutIndexView from '../Workout/WorkoutIndexView';
 import EventRoute from '../Event/EventRoute';
 import EventIndexView from '../Event/EventIndexView';
-import GraphTest from '../GraphTest/Route';
 
 export default class PageRouter extends React.Component {
   render() {
@@ -19,7 +18,6 @@ export default class PageRouter extends React.Component {
           <IndexRoute component={Home} />
           <Route path="home" component={Home} />
           <Route path="about" component={About} />
-          <Route path="graph" component={GraphTest} />
           <Route path="person">
             <IndexRoute component={PersonIndexView} />
             <Route path=":personId" component={PersonRoute} />
