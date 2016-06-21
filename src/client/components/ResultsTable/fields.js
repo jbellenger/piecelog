@@ -44,6 +44,12 @@ const extractorWithMean = (fieldName) => (result) => {
     .map((e) => e[fieldName]);
 }
 
+export const MEAN_SPLIT = new Field({
+  header: 'mean split',
+  formatter: Format.formatSplit,
+  extractor: (r) => r.entry_collection.mean.split_seconds,
+});
+
 export const ENTRY_SPLIT = new Field({
   header: 'split', 
   formatter: aggFormat(Format.formatSplit),

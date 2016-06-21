@@ -12,6 +12,7 @@ import ResultsTable from '../ResultsTable';
 import * as ResultFields from '../ResultsTable/fields';
 import {VictoryChart, VictoryAxis, VictoryScatter, VictoryLine} from 'victory';
 import RotatedLabel from '../Graph/RotatedLabel';
+import ScatterLine from '../Graph/ScatterLine';
 
 export class WorkoutView extends React.Component {
   static propTypes = {
@@ -51,6 +52,13 @@ export class WorkoutView extends React.Component {
 
     const eventIds = uniq(results.map((r) => r.event_id).filter(Boolean));
     const EventTickLabel = RotatedLabel(-25);
+    const resultGroups = values(groupBy(results, 'stamp'));
+    const scatterLines = resultGroups.map((rs) => (
+      <ScatterLine
+        data={rs}
+        xfield={ResultFields.STAMP}
+        yfield={ResultFields.MEAN_SPLIT}
+      />));
 
     return (
       <div>
@@ -73,8 +81,7 @@ export class WorkoutView extends React.Component {
         <h1>Results</h1>
         <div>
           <VictoryChart>
-            {this.renderResultsLines(results)}
-            {this.renderResultsScatter(results)}
+            {scatterLines}
             <VictoryAxis
               tickValues={eventIds}
               tickLabelComponent={<EventTickLabel />}
