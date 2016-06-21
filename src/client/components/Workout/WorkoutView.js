@@ -5,6 +5,7 @@ import groupBy from 'lodash/groupBy';
 import toPairs from 'lodash/toPairs';
 import uniq from 'lodash/uniq';
 import values from 'lodash/values';
+import flatten from 'lodash/flatten';
 import Table from '../Table';
 import * as EventFields from '../Event/fields';
 import * as Format from '../../modules/format';
@@ -20,31 +21,6 @@ export class WorkoutView extends React.Component {
     events: PropTypes.array.isRequired,
     results: PropTypes.array.isRequired,
   };
-  
-  renderResultsScatter(results) {
-    return <VictoryScatter
-      data={results}
-      x={'stamp'}
-      y={(r) => r.entry_collection.mean.split_seconds}
-    />
-  }
-
-  renderResultsLines(results) {
-    const groups = values(groupBy(results, 'stamp')).filter((rs) => rs.length > 1);
-    return groups.map((stampResults) => {
-      const stamps = stampResults.map((r) => r.stamp);
-      // for some reason, victory's automatic domain calculation ends up
-      // finding 0 as the xmin
-      return <VictoryLine
-        domain={{
-          x: [Math.min(...stamps), Math.max(...stamps)],
-        }}
-        data={stampResults}
-        x={'stamp'}
-        y={(r) => r.entry_collection.mean.split_seconds}
-      />
-    });
-  }
 
   render() {
     const {workout, events, results} = this.props;
@@ -54,11 +30,8 @@ export class WorkoutView extends React.Component {
     const EventTickLabel = RotatedLabel(-25);
     const resultGroups = values(groupBy(results, 'stamp'));
     const scatterLines = resultGroups.map((rs) => (
-      <ScatterLine
-        data={rs}
-        xfield={ResultFields.STAMP}
-        yfield={ResultFields.MEAN_SPLIT}
-      />));
+      ScatterLine({xfield: ResultFields.STAMP, yfield: ResultFields.MEAN_SPLIT, data: rs})
+    ));
 
     return (
       <div>

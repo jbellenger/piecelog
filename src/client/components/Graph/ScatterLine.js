@@ -1,18 +1,47 @@
 import React from 'react';
 import {VictoryScatter, VictoryLine} from 'victory';
 
-const Inner = (Component, {xfield, yfield, data}) => <Component
-  standalone={false}
-  data={data}
-  x={xfield.extractor}
-  y={yfield.extractor}
-/>;
+const Inner = (Component, {domain, xfield, yfield, data}) => {
 
-const ScatterLine = (props) => (
-  <g>
-    {Inner(VictoryScatter, props)}
-    {Inner(VictoryLine, props)}
-  </g>
-);
+  return (
+    <Component
+      domain={domain}
+      standalone={false}
+      data={data}
+      x={xfield.extractor}
+      y={yfield.extractor}
+    />
+  );
+};
+
+const fillDomain = (props) => {
+  if (props.domain) {
+    return props;
+  }
+
+  const {data, xfield, yfield} = props;
+  const xs = data.map(xfield.extractor);
+  const ys = data.map(yfield.extractor);
+
+  const domain = {
+    x: [Math.min(...xs), Math.max(...xs)],
+    y: [Math.min(...ys), Math.max(...ys)]
+  };
+
+  return {domain, ...props};
+};
+
+
+const ScatterLine = (props) => {
+  // Domain auto calculation doesn't seem to work.
+  const fixedProps = fillDomain(props);
+
+  const children = [
+    Inner(VictoryScatter, fixedProps),
+    Inner(VictoryLine, fixedProps),
+  ];
+
+  return children;
+};
 
 export default ScatterLine;
