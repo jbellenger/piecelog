@@ -2,16 +2,14 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {selector as modelsSelector} from '../../modules/store/models';
 import groupBy from 'lodash/groupBy';
-import toPairs from 'lodash/toPairs';
 import uniq from 'lodash/uniq';
 import values from 'lodash/values';
-import flatten from 'lodash/flatten';
 import Table from '../Table';
 import * as EventFields from '../Event/fields';
 import * as Format from '../../modules/format';
 import ResultsTable from '../ResultsTable';
 import * as ResultFields from '../ResultsTable/fields';
-import {VictoryChart, VictoryAxis, VictoryScatter, VictoryLine} from 'victory';
+import {VictoryChart, VictoryAxis} from 'victory';
 import RotatedLabel from '../Graph/RotatedLabel';
 import ScatterLine from '../Graph/ScatterLine';
 
@@ -29,8 +27,12 @@ export class WorkoutView extends React.Component {
     const eventIds = uniq(results.map((r) => r.event_id).filter(Boolean));
     const EventTickLabel = RotatedLabel(-25);
     const resultGroups = values(groupBy(results, 'stamp'));
-    const scatterLines = resultGroups.map((rs) => (
-      ScatterLine({xfield: ResultFields.STAMP, yfield: ResultFields.MEAN_SPLIT, data: rs})
+    const scatterLines = resultGroups.map((data) => (
+      ScatterLine({
+        xfield: ResultFields.STAMP, 
+        yfield: ResultFields.MEAN_SPLIT, 
+        data
+      })
     ));
 
     return (

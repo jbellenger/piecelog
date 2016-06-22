@@ -4,14 +4,12 @@ import {selector as modelsSelector} from '../../modules/store/models';
 import * as Format from '../../modules/format';
 import * as EventFields from './fields';
 import groupBy from 'lodash/groupBy';
-import toPairs from 'lodash/toPairs';
-import Table from '../Table';
-import Result from '../../modules/model/Result';
+import values from 'lodash/values';
 import ResultsTable from '../ResultsTable';
-import {VictoryChart, VictoryScatter, VictoryAxis, VictoryLine} from 'victory';
+import {VictoryChart, VictoryAxis} from 'victory';
 import RotatedLabel from '../Graph/RotatedLabel';
+import ScatterLine from '../Graph/ScatterLine';
 import * as ResultFields from '../ResultsTable/fields';
-import Tick from 'victory-chart/lib/components/victory-axis/tick';
 
 export class EventView extends React.Component {
   static propTypes = {
@@ -19,42 +17,30 @@ export class EventView extends React.Component {
     results: PropTypes.array.isRequired,
   };
 
-  renderPersonScatter([personId, results]) {
-    return results
-      .map((r) => (
-        <VictoryScatter
-          data={r.entry_collection.entries}
-          x={() => personId}
-          y={'split_seconds'} />
-      ));
-  }
-
-  renderPersonLine([personId, results]) {
-    return results
-      .map((r) => (
-        <VictoryLine
-          data={r.entry_collection.entries}
-          x={() => personId}
-          y={'split_seconds'}
-        />
-      ));
-  }
-
   render() {
     const {event, results} = this.props;
     const personGroups = groupBy(results, 'person_id');
-    const personPairs = toPairs(personGroups);
+    const personIds = Object.keys(personGroups);
+    const resultSets = values(personGroups);
+
     const PersonTickLabel = RotatedLabel(-25);
+    const scatterLines = resultSets.map((data) => (
+      ScatterLine({
+        domain: false,
+        xfield: ResultFields.PERSON_ID,
+        yfield: ResultFields.MEAN_SPLIT,
+        data
+      })
+    ));
 
     return (
       <div>
         <h1>{EventFields.WORKOUT_ID.apply(event)} > {Format.formatStamp(event.stamp)}</h1>
         <div>
           <VictoryChart>
-            {personPairs.map(this.renderPersonScatter)}
-            {personPairs.map(this.renderPersonLine)}
+            {scatterLines}
             <VictoryAxis
-              tickValues={Object.keys(personGroups)}
+              tickValues={personIds}
               tickLabelComponent={<PersonTickLabel />}
               standalone={false}
             />
