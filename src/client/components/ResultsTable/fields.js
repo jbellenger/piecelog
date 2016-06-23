@@ -50,6 +50,7 @@ export const MEAN_SPLIT = new Field({
   extractor: (r) => r.entry_collection.mean.split_seconds,
 });
 
+// JMB TODO: find a better way to do these ENTRY_* fields
 export const ENTRY_SPLIT = new Field({
   header: 'split', 
   formatter: aggFormat(Format.formatSplit),
@@ -67,3 +68,16 @@ export const ENTRY_ADJUSTED_SPLIT = new Field({
   formatter: aggFormat(Format.formatSplit),
   extractor: extractorWithMean('weight_age_adjusted_split_seconds'),
 });
+
+export const ResultEntryFields = {
+  SPLIT: new Field({
+    header: 'split',
+    formatter: Format.formatSplit,
+    extractor: (e) => e.split_seconds,
+  }),
+  STAMP: new Field({
+    header: 'date', 
+    formatter: Format.formatStamp,
+    extractor: (e) => e.result.stamp,
+  }),
+};

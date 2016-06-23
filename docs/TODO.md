@@ -1,4 +1,3 @@
-use ScatterLine in PersonView
 separate formatters for table vs graphs
 graph: draw mean time with a distinct style
 combine graphs+tables with a composite component
@@ -131,3 +130,4 @@ sentry?
 # importer: prune gregs dnf 6k, chases unweighted 6k
 # bad adjustments: http://127.0.0.1:8080/event/1450483200000
 # use ScatterLine in EventView
+# use ScatterLine in PersonView

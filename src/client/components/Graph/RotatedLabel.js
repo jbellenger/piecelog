@@ -5,4 +5,4 @@ const RotatedLabel = (angle) => (props) => (
   <VictoryLabel {...props} angle={angle} textAnchor={"end"} />
 );
 
-export default RotatedLabel;
+export default RotatedLabel(-25);

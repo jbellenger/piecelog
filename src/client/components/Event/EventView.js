@@ -23,7 +23,6 @@ export class EventView extends React.Component {
     const personIds = Object.keys(personGroups);
     const resultSets = values(personGroups);
 
-    const PersonTickLabel = RotatedLabel(-25);
     const scatterLines = resultSets.map((data) => (
       ScatterLine({
         domain: false,
@@ -41,7 +40,7 @@ export class EventView extends React.Component {
             {scatterLines}
             <VictoryAxis
               tickValues={personIds}
-              tickLabelComponent={<PersonTickLabel />}
+              tickLabelComponent={<RotatedLabel />}
               standalone={false}
             />
             <VictoryAxis

@@ -1,14 +1,14 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import minBy from 'lodash/minBy';
-import maxBy from 'lodash/maxBy';
-import flatten from 'lodash/flatten';
 import groupBy from 'lodash/groupBy';
-import toPairs from 'lodash/toPairs';
+import values from 'lodash/values';
 import {selector as modelsSelector} from '../../modules/store/models';
 import ResultsTable from '../ResultsTable';
-import * as ResultFields from '../ResultsTable/fields';
 import {VictoryChart, VictoryScatter, VictoryAxis, VictoryLine} from 'victory';
+import * as ResultFields from '../ResultsTable/fields';
+import {ResultEntryFields} from '../ResultsTable/fields';
+import RotatedLabel from '../Graph/RotatedLabel';
+import ScatterLine from '../Graph/ScatterLine';
 import * as Format from '../../modules/format';
 
 export class PersonView extends React.Component {
@@ -16,67 +16,46 @@ export class PersonView extends React.Component {
     person: PropTypes.object.isRequired
   };
 
-  renderMultiPieceLines([workoutId, results]) {
-    return results
-      .filter((r) => r.entry_collection.entries.length > 1)
-      .map((r) => (
-        <VictoryLine
-          data={r.entry_collection.entries}
-          x={() => r.stamp.getTime()}
-          y={"split_seconds"}
-        />
-      ));
+  renderWorkoutTrends(results) {
+    const resultGroups = groupBy(results, 'workout_id');
+    return values(resultGroups).map((data) => (
+      ScatterLine({
+        xfield: ResultFields.STAMP, 
+        yfield: ResultFields.MEAN_SPLIT, 
+        data
+      })
+    ));
   }
 
-  renderScatter([workoutId, results]) {
-    return results
-      .map((r) => (
-        <VictoryScatter
-          data={r.entry_collection.entries}
-          x={() => r.stamp.getTime()}
-          y={"split_seconds"}
-        />
-      ));
-  }
-
-  renderMultiWorkoutLines([workoutId, results]) {
-    return (
-      <VictoryLine
-        data={results}
-        x={(r) => r.stamp.getTime()}
-        y={(r) => r.entry_collection.mean.split_seconds}
-      />
-    );
+  renderWorkouts(results) {
+    return results.map((r) => (
+      ScatterLine({
+        xfield: ResultEntryFields.STAMP, 
+        yfield: ResultEntryFields.SPLIT, 
+        data: r.entry_collection.entries
+      })
+    ));
   }
 
   render() {
     const {person, results} = this.props;
 
-    const stamps = results.map((r) => r.stamp);
-    const splits = flatten(results.map((r) => r.entry_collection.entries.map((e) => e.split_seconds)));
-    const domain = {
-      x: [Math.min(...stamps), Math.max(...stamps)],
-      y: [Math.min(...splits), Math.max(...splits)]
-    }; 
-
-    const workoutPairs = toPairs(groupBy(results, 'workout_id'));
-
     return (
       <div>
         <h1>{person.id}</h1>
         <div>
-          <VictoryChart domain={domain}>
-            {workoutPairs.map(this.renderMultiPieceLines)}
-            {workoutPairs.map(this.renderScatter)}
-            {workoutPairs.map(this.renderMultiWorkoutLines)}
+          <VictoryChart>
+            {this.renderWorkouts(results)}
+            {this.renderWorkoutTrends(results)}
 
             <VictoryAxis
               label={ResultFields.STAMP.header}
               tickFormat={ResultFields.STAMP.formatter}
+              tickLabelComponent={<RotatedLabel />}
               standalone={false}
             />
             <VictoryAxis
-              dependentAxis={true}
+              dependentAxis
               label={ResultFields.ENTRY_SPLIT.header}
               tickFormat={Format.formatSplit}
               standalone={false}

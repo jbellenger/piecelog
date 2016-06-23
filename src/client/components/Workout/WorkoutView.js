@@ -25,7 +25,6 @@ export class WorkoutView extends React.Component {
     const pieces = workout.pieces;
 
     const eventIds = uniq(results.map((r) => r.event_id).filter(Boolean));
-    const EventTickLabel = RotatedLabel(-25);
     const resultGroups = values(groupBy(results, 'stamp'));
     const scatterLines = resultGroups.map((data) => (
       ScatterLine({
@@ -59,7 +58,7 @@ export class WorkoutView extends React.Component {
             {scatterLines}
             <VictoryAxis
               tickValues={eventIds}
-              tickLabelComponent={<EventTickLabel />}
+              tickLabelComponent={<RotatedLabel />}
               tickFormat={Format.formatStamp}
               standalone={false}
             />
