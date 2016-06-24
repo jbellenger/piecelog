@@ -1,3 +1,4 @@
+move models functions to redux selectors?
 separate formatters for table vs graphs
 graph: draw mean time with a distinct style
 combine graphs+tables with a composite component

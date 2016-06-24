@@ -49,7 +49,6 @@ export class PersonView extends React.Component {
             {this.renderWorkoutTrends(results)}
 
             <VictoryAxis
-              label={ResultFields.STAMP.header}
               tickFormat={ResultFields.STAMP.formatter}
               tickLabelComponent={<RotatedLabel />}
               standalone={false}
